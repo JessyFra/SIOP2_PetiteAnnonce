@@ -22,7 +22,7 @@ jobs:
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} rsync -avz -e "ssh -p 1622" \
           --exclude-from='.deployignore' \
-          ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/
+          ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html/TP_PetiteAnnonce
 
     - name: Set public read/execute on all files and folders except imgUpload
       run: |
