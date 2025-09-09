@@ -34,7 +34,7 @@
                     </li>
                 <?php endif; ?>
 
-                <li class="nav-item ms-2">
+                <li class="nav-item">
                     <a class="btn fw-bold" href="index.php?page=deposer" style="background-color:#0D9B8A; color:#fff;">
                         <i class="fa-solid fa-square-plus" style="margin-right: 5px;"></i> Déposer une annonce
                     </a>
