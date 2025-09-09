@@ -1,0 +1,67 @@
+<?php
+
+class UsersDTO {
+
+    private $id;
+    private $username;
+    private $hashed_password;
+    private $global_name;
+    private $biography;
+    private $role;
+    private $created_at;
+
+    public function getId() {
+		return $this->id;
+	}
+	public function setId($id) {
+		$this->id = $id;
+	}
+
+    public function getUsername() {
+        return $this->username;
+    }
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function getHashedPassword() {
+        return $this->hashed_password;
+    }
+
+    public function setHashedPassword($hashed_password) {
+        $this->hashed_password = $hashed_password;
+    }
+
+    public function getGlobalName() {
+        return $this->global_name;
+    }
+
+    public function setGlobalName($global_name) {
+        $this->global_name = $global_name;
+    }
+
+    public function getBiography() {
+        return $this->biography;
+    }
+
+    public function setBiography($biography) {
+        $this->biography = $biography;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }
+
+    public function getCreatedAt() {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt($created_at) {
+        $this->created_at = $created_at;
+    }
+
+}
