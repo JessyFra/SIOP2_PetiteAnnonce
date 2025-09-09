@@ -1,0 +1,35 @@
+/* ---------------------------- Base CSS ---------------------------- */
+
+/* Import de la police Poppins & Pacifico*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+/* Réinitialisation des styles par défaut pour tous les éléments */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Navbar */
+
+.custom-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #0d9b8a;
+    box-shadow: 0 4px 6px rgb(13, 155, 138, 0.15);
+    margin-bottom: 25px;
+}
+
+.custom-navbar a{
+    text-decoration: none;
+}
+
+.navbar-nav .custom-nav-link.active {
+    font-weight: bold;
+    color: #0d9b8a !important;
+}
