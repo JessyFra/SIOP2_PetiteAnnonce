@@ -1,8 +1,5 @@
-
 SET NAMES utf8mb4;
-DROP DATABASE IF EXISTS SIOP2_PetiteAnnonce;
-CREATE DATABASE SIOP2_PetiteAnnonce;
-USE SIOP2_PetiteAnnonce;
+USE 202425_b2_jfrachisse;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -14,7 +11,6 @@ DROP TABLE IF EXISTS ad_category;
 DROP TABLE IF EXISTS message;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
 
 # Utilisateurs
 CREATE TABLE user (
@@ -43,7 +39,7 @@ CREATE TABLE category (
 
 
 # Annonces
-CREATE TABLE ad (
+CREATE TABLE ads (
     id INT AUTO_INCREMENT PRIMARY KEY,
     author_id INT NOT NULL,
     title VARCHAR(64) NOT NULL,
