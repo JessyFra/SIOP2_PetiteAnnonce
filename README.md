@@ -102,7 +102,7 @@ Un script SQL de création et de remplissage de la base sera disponible dans le 
 - [ ] Implémenter les DAO/DTO pour chaque entité
 
 ### 7. Frontend & Responsive
-- [ ] Intégrer Bootstrap pour le responsive design
+- [X] Intégrer Bootstrap pour le responsive design
 - [ ] Améliorer l’ergonomie et le graphisme des pages
 
 ### 8. Documentation
