@@ -1,6 +1,6 @@
 <?php
 
-class AdsDTO {
+class AdDTO {
     
     private $id;
     private $author_id;
@@ -8,7 +8,6 @@ class AdsDTO {
     private $description;
     private $price;
     private $city_id;
-    private $category_id;
     private $created_at;
 
     public function getId() {
@@ -57,14 +56,6 @@ class AdsDTO {
 
     public function setCityId($city_id) {
         $this->city_id = $city_id;
-    }
-
-    public function getCategoryId() {
-        return $this->category_id;
-    }
-
-    public function setCategoryId($category_id) {
-        $this->category_id = $category_id;
     }
 
     public function getCreatedAt() {

@@ -1,6 +1,6 @@
 <?php
 
-class CategorieDTO {
+class CategoryDTO {
 
     private $id;
     private $name;

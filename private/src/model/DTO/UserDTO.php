@@ -1,6 +1,6 @@
 <?php
 
-class UsersDTO {
+class UserDTO {
 
     private $id;
     private $username;

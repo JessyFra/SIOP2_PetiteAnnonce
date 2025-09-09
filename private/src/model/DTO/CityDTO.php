@@ -1,6 +1,6 @@
 <?php
 
-class CitieDTO {
+class CityDTO {
     
     private $id;
     private $name;
