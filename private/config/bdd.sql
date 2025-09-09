@@ -39,7 +39,7 @@ CREATE TABLE category (
 
 
 # Annonces
-CREATE TABLE ads (
+CREATE TABLE ad (
     id INT AUTO_INCREMENT PRIMARY KEY,
     author_id INT NOT NULL,
     title VARCHAR(64) NOT NULL,
