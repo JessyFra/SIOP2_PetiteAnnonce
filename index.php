@@ -1,11 +1,17 @@
 <?php
-// Routeur pour 3 pages
-
+// Routeur principal
+// Récupère la page demandée via le paramètre 'page' dans l'URL, par défaut 'annonces'
 $page = $_GET['page'] ?? 'annonces';
 
-/*
-- Vérifie les paramètres après ? dans l'URL, si vide redirection vers la liste des annonces
-*/
+// Liste des pages autorisées et leur titre
+$pages = [
+    'annonces'    => ['class' => 'annonceControl',    'method' => 'annonce',      'title' => 'Petites annonces'],
+    'connexion'   => ['class' => 'userControl',       'method' => 'connexion',  'title' => 'Connexion - Petites annonces', 'css' => 'authStyle.css'],
+    'inscription' => ['class' => 'userControl',       'method' => 'inscription', 'title' => 'Inscription - Petites annonces']
+    // Plus de pages peuvent être ajoutées ici
+];
+
+// Vérifie les paramètres après ? dans l'URL, si vide redirection vers la liste des annonces
 if (empty($_SERVER['QUERY_STRING'])) {
     header("Location: index.php?page=annonces");
     exit;
@@ -14,37 +20,12 @@ if (empty($_SERVER['QUERY_STRING'])) {
 // Démarrage du buffer pour capturer le contenu de la page
 ob_start();
 
-// Route selon la valeur de "page"
-switch ($page) {
-    case 'annonces':
-        include_once 'private/src/control/AnnounceControl.php';
-        $controller = new AnnounceControl();
-        $controller->liste(); // Affiche la liste des annonces
-        $pageTitle = "Petites annonces"; // Titre de la page
-        break;
-
-    case 'connexion':
-        include_once 'private/src/control/UserControl.php';
-        $controller = new UserControl();
-        $controller->connexion(); // Affiche le formulaire de connexion
-        $pageTitle = "Connexion - Petites annonces"; // Titre de la page
-        break;
-
-    case 'inscription':
-        include_once 'private/src/control/UserControl.php';
-        $controller = new UserControl();
-        $controller->inscription(); // Affiche le formulaire d'inscription
-        $pageTitle = "Inscription - Petites annonces"; // Titre de la page
-        break;
-
-    default:
-        // Page par défaut : liste des annonces
-        include_once 'private/src/control/AnnounceControl.php';
-        $controller = new AnnounceControl();
-        $controller->liste();
-        $pageTitle = "Petites annonces"; // Titre de la page
-        break;
-}
+include_once 'private/src/control/' . $pages[$page]['class'] . '.php'; 
+$controllerClass = $pages[$page]['class'];
+$controller = new $controllerClass();
+$controller->{$pages[$page]['method']}();
+$pageTitle = $pages[$page]['title'];
+$pageCSS = $pages[$page]['css'];
 
 // Récupère le contenu généré par le contrôleur
 $pageContent = ob_get_clean();
