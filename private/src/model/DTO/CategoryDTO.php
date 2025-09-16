@@ -1,14 +1,14 @@
 <?php
 
-class CategorieDTO {
+class CategoryDTO {
 
     private $id;
     private $name;
 
+    // Getters et Setters
     public function getId() {
         return $this->id;
     }
-
     public function setId($id) {
         $this->id = $id;
     }
@@ -16,9 +16,10 @@ class CategorieDTO {
     public function getName() {
         return $this->name;
     }
-
     public function setName($name) {
         $this->name = $name;
     }
+
+    // Autres fonctions
     
 }
