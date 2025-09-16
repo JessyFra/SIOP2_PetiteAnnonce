@@ -46,3 +46,7 @@ form .loupe:hover {
     font-weight: bold;
     color: #0d9b8a !important;
 }
+
+.navbar-nav .nav-item:nth-child(3) {
+    margin-left: 10px;
+}
