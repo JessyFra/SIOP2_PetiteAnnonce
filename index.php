@@ -6,7 +6,7 @@ $page = $_GET['page'] ?? 'annonces';
 // Liste des pages autorisées et leur titre
 $pages = [
     'annonces'    => ['class' => 'annonceControl',    'method' => 'annonce',      'title' => 'Petites annonces'],
-    'connexion'   => ['class' => 'userControl',       'method' => 'connexion',  'title' => 'Connexion - Petites annonces'],
+    'connexion'   => ['class' => 'userControl',       'method' => 'connexion',  'title' => 'Connexion - Petites annonces', 'css' => 'authStyle.css'],
     'inscription' => ['class' => 'userControl',       'method' => 'inscription', 'title' => 'Inscription - Petites annonces']
     // Plus de pages peuvent être ajoutées ici
 ];
@@ -25,6 +25,7 @@ $controllerClass = $pages[$page]['class'];
 $controller = new $controllerClass();
 $controller->{$pages[$page]['method']}();
 $pageTitle = $pages[$page]['title'];
+$pageCSS = $pages[$page]['css'];
 
 // Récupère le contenu généré par le contrôleur
 $pageContent = ob_get_clean();
