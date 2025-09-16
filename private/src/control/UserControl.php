@@ -2,15 +2,9 @@
 
 class userControl
 {
-    public function connexion()
+    public function auth()
     {
-        // Vue du formulaire de connexion
-        include_once 'private/src/view/connexionForm.php';
-    }
-
-    public function inscription()
-    {
-        // Vue du formulaire d'inscription
-        include_once 'private/src/view/inscriptionForm.php';
+        // Vue du formulaire d'authentification
+        include_once 'private/src/view/auth.php';
     }
 }
