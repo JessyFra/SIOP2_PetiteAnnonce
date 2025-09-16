@@ -20,6 +20,8 @@ class MessageDAO {
                 $result["receiver_id"],
                 $result["created_at"]
             );
+
+            return $message;
         }
 
         return null;

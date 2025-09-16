@@ -17,6 +17,8 @@ class CategoryDAO {
                 $result["id"],
                 $result["name"]
             );
+
+            return $category;
         }
 
         return null;

@@ -22,6 +22,8 @@ class UserDAO {
                 $result["role"],
                 $result["created_at"]
             );
+
+            return $user;
         }
 
         return null;

@@ -22,6 +22,8 @@ class AnnounceDAO {
                 $result["author_id"],
                 $result["created_at"]
             );
+
+            return $announce;
         }
 
         return null;

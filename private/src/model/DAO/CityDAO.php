@@ -17,6 +17,8 @@ class CityDAO {
                 $result["id"],
                 $result["name"]
             );
+
+            return $city;
         }
 
         return null;
