@@ -27,7 +27,7 @@
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
-                        <a class="nav-link custom-nav-link" href="index.php?page=connexion">Se connecter</a>
+                        <a class="nav-link custom-nav-link" href="index.php?page=auth">Compte</a>
                     </li>
                 <?php endif; ?>
 

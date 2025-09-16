@@ -22,6 +22,7 @@
     z-index: 1000;
     border-bottom: 1px solid #0d9b8a;
     box-shadow: 0 4px 6px rgb(13, 155, 138, 0.15);
+    margin-bottom: 20px;
 }
 
 .custom-navbar a {
