@@ -10,6 +10,16 @@ class UserDTO {
     private $role;
     private $created_at;
 
+    public function __construct($id, $name, $hashed_password, $global_name, $biography, $role, $created_at) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->hashed_password = $hashed_password;
+        $this->global_name = $global_name;
+        $this->biography = $biography;
+        $this->role = $role;
+        $this->created_at = $created_at;
+    }
+
     // Getters et Setters
     public function getId() {
 		return $this->id;
