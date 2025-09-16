@@ -17,30 +17,30 @@ ob_start();
 // Route selon la valeur de "page"
 switch ($page) {
     case 'annonces':
-        include_once 'private/src/control/annonceControl.php';
-        $controller = new annonceControl();
+        include_once 'private/src/control/AnnounceControl.php';
+        $controller = new AnnounceControl();
         $controller->liste(); // Affiche la liste des annonces
         $pageTitle = "Petites annonces"; // Titre de la page
         break;
 
     case 'connexion':
-        include_once 'private/src/control/userControl.php';
-        $controller = new userControl();
+        include_once 'private/src/control/UserControl.php';
+        $controller = new UserControl();
         $controller->connexion(); // Affiche le formulaire de connexion
         $pageTitle = "Connexion - Petites annonces"; // Titre de la page
         break;
 
     case 'inscription':
-        include_once 'private/src/control/userControl.php';
-        $controller = new userControl();
+        include_once 'private/src/control/UserControl.php';
+        $controller = new UserControl();
         $controller->inscription(); // Affiche le formulaire d'inscription
         $pageTitle = "Inscription - Petites annonces"; // Titre de la page
         break;
 
     default:
         // Page par défaut : liste des annonces
-        include_once 'private/src/control/annonceControl.php';
-        $controller = new annonceControl();
+        include_once 'private/src/control/AnnounceControl.php';
+        $controller = new AnnounceControl();
         $controller->liste();
         $pageTitle = "Petites annonces"; // Titre de la page
         break;
