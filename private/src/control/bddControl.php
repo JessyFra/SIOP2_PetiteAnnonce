@@ -6,7 +6,7 @@ class bddControl {
     private static string $passwordLocal = "";
 
 
-    private static PDO $connex;
+    private static $connex;
 
     public static function getConnexion(): PDO {
         if (self::$connex == null) {
