@@ -2,7 +2,7 @@
     <!-- Form box -->
     <div class="box">
         <!-- Form -->
-        <form method="POST" action="src/control/UserControl/loginUser.php">
+        <form method="POST" action="">
             <h2>Connexion</h2>
             <!-- Input fields -->
             <div class="inputBox inputBoxOther">
@@ -27,7 +27,7 @@
     <!-- Form box -->
     <div class="box">
         <!-- Form -->
-        <form method="POST" action="src/control/UserControl/registUser.php">
+        <form method="POST" action="">
             <h2>Inscription</h2>
             <!-- Input fields -->
             <div class="boxIdentity">

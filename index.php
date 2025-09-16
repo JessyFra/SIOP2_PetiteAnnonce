@@ -6,8 +6,7 @@ $page = $_GET['page'] ?? 'annonces';
 // Liste des pages autorisées et leur titre
 $pages = [
     'annonces'    => ['class' => 'AnnounceControl',    'method' => 'annonce',      'title' => 'Petites annonces'],
-    'connexion'   => ['class' => 'UserControl',       'method' => 'connexion',  'title' => 'Connexion - Petites annonces', 'css' => 'authStyle.css'],
-    'inscription' => ['class' => 'UserControl',       'method' => 'inscription', 'title' => 'Inscription - Petites annonces']
+    'auth'        => ['class' => 'UserControl',       'method' => 'auth',       'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
     // Plus de pages peuvent être ajoutées ici
 ];
 
