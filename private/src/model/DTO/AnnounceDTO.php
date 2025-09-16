@@ -4,6 +4,7 @@ require_once 'private/config/DatabaseLinker.php';
 
 
 class AnnounceDTO {
+
     
     private $id;
     private $title;

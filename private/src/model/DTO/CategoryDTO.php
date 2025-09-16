@@ -5,10 +5,10 @@ class CategoryDTO {
     private $id;
     private $name;
 
+    // Getters et Setters
     public function getId() {
         return $this->id;
     }
-
     public function setId($id) {
         $this->id = $id;
     }
@@ -16,9 +16,10 @@ class CategoryDTO {
     public function getName() {
         return $this->name;
     }
-
     public function setName($name) {
         $this->name = $name;
     }
+
+    // Autres fonctions
     
 }
