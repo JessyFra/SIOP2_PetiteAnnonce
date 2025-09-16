@@ -1,5 +1,8 @@
 <?php
 
+require_once 'private/config/DatabaseLinker.php';
+
+
 class AnnounceDTO {
     
     private $id;
@@ -61,7 +64,7 @@ class AnnounceDTO {
     }
 
     // Autres fonctions
-    public function getAllAnnounces() {
+    public static function getAllAnnounces() {
         $bdd = DatabaseLinker::getConnexion();
 
         $query = $bdd->query(

@@ -5,7 +5,7 @@ class DatabaseLinker {
     private static string $loginLocal = "root";
     private static string $passwordLocal = "";
 
-    private static PDO $bdd;
+    private static ?PDO $bdd = null;
 
     public static function getConnexion(): PDO {
         if (self::$bdd == null) {
