@@ -26,5 +26,9 @@ class CategoryDTO {
     }
 
     // Autres fonctions
+    public function getAnnounces() {
+        // todo : A remplir
+        return null;
+    }
     
 }

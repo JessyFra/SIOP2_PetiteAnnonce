@@ -71,5 +71,19 @@ class AnnounceDTO {
     }
 
     // Autres fonctions
+    public function getCityName() {
+        $city = CityDAO::get($this->city_id);
+        return $city->getName();
+    }
+
+    public function getAuthorName() {
+        $author = UserDAO::get($this->author_id);
+        return $author->getName();
+    }
+
+    public function getCategories() {
+        // todo : A remplir
+        return null;
+    }
 
 }

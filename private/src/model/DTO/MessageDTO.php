@@ -52,5 +52,14 @@ class MessageDTO {
     }
 
     // Autres fonctions
+    public function getAuthorName() {
+        $author = UserDAO::get($this->author_id);
+        return $author->getName();
+    }
+
+    public function getReceiverName() {
+        $receiver = UserDAO::get($this->receiver_id);
+        return $receiver->getName();
+    }
 
 }
