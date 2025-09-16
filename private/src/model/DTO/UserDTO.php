@@ -1,15 +1,16 @@
 <?php
 
-class UsersDTO {
+class UserDTO {
 
     private $id;
-    private $username;
+    private $name;
     private $hashed_password;
     private $global_name;
     private $biography;
     private $role;
     private $created_at;
 
+    // Getters et Setters
     public function getId() {
 		return $this->id;
 	}
@@ -17,17 +18,16 @@ class UsersDTO {
 		$this->id = $id;
 	}
 
-    public function getUsername() {
-        return $this->username;
+    public function getName() {
+        return $this->name;
     }
-    public function setUsername($username) {
-        $this->username = $username;
+    public function setName($name) {
+        $this->name = $name;
     }
 
     public function getHashedPassword() {
         return $this->hashed_password;
     }
-
     public function setHashedPassword($hashed_password) {
         $this->hashed_password = $hashed_password;
     }
@@ -35,7 +35,6 @@ class UsersDTO {
     public function getGlobalName() {
         return $this->global_name;
     }
-
     public function setGlobalName($global_name) {
         $this->global_name = $global_name;
     }
@@ -43,7 +42,6 @@ class UsersDTO {
     public function getBiography() {
         return $this->biography;
     }
-
     public function setBiography($biography) {
         $this->biography = $biography;
     }
@@ -51,7 +49,6 @@ class UsersDTO {
     public function getRole() {
         return $this->role;
     }
-
     public function setRole($role) {
         $this->role = $role;
     }
@@ -59,9 +56,10 @@ class UsersDTO {
     public function getCreatedAt() {
         return $this->created_at;
     }
-
     public function setCreatedAt($created_at) {
         $this->created_at = $created_at;
     }
+
+    // Autres fonctions
 
 }

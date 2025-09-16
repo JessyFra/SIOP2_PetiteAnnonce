@@ -1,10 +1,10 @@
 <?php
 
-class annonceControl
+class AnnounceControl
 {
     public function liste()
     {
         // Vue de la liste des annonces
-        include_once 'private/src/view/annonceListe.php';
+        include_once 'private/src/view/announceListe.php';
     }
 }
