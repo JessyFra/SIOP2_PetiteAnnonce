@@ -23,6 +23,10 @@
 
                 <?php if (!empty($_SESSION['userID'])): ?>
                     <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="index.php?page=profil">Profil</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link text-danger" href="index.php?page=logout" title="Déconnexion">Déconnexion</a>
                     </li>
                 <?php else: ?>
@@ -32,7 +36,7 @@
                 <?php endif; ?>
 
                 <li class="nav-item">
-                    <a class="btn fw-bold" href="index.php?page=deposer">
+                    <a class="btn fw-bold" href="index.php?page=annonces">
                         <i class="fa-solid fa-square-plus" style="margin-right: 5px;"></i> Déposer une annonce
                     </a>
                 </li>
