@@ -1,11 +1,7 @@
 <?php
 
-require_once 'private/config/DatabaseLinker.php';
-
-
 class AnnounceDTO {
 
-    
     private $id;
     private $title;
     private $description;
@@ -13,6 +9,16 @@ class AnnounceDTO {
     private $city_id;
     private $author_id;
     private $created_at;
+
+    public function __construct($id, $title, $description, $price, $city_id, $author_id, $created_at) {
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->price = $price;
+        $this->city_id = $city_id;
+        $this->author_id = $author_id;
+        $this->created_at = $created_at;
+    }
 
     // Getters et Setters
     public function getId() {
@@ -65,20 +71,19 @@ class AnnounceDTO {
     }
 
     // Autres fonctions
-    public static function getAllAnnounces() {
-        $bdd = DatabaseLinker::getConnexion();
+    public function getCityName() {
+        $city = CityDAO::get($this->city_id);
+        return $city->getName();
+    }
 
-        $query = $bdd->query(
-            "SELECT announce.id, title, description, price, city.name AS city_name, user.name AS user_name, category.name AS category_name, announce.created_at FROM announce
-            INNER JOIN announce_category ON announce_category.announce_id = announce.id
-            INNER JOIN category ON category.id = announce_category.category_id
-            INNER JOIN user ON user.id = announce.author_id
-            INNER JOIN city ON city.id = announce.city_id
-            ORDER BY category_name DESC"
-        );
+    public function getAuthorName() {
+        $author = UserDAO::get($this->author_id);
+        return $author->getName();
+    }
 
-        return $query->fetchAll();
-
+    public function getCategories() {
+        // todo : A remplir
+        return null;
     }
 
 }

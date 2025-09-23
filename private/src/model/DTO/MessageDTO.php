@@ -8,6 +8,14 @@ class MessageDTO {
     private $receiver_id;
     private $created_at;
 
+    public function __construct($id, $content, $author_id, $receiver_id, $created_at) {
+        $this->id = $id;
+        $this->content = $content;
+        $this->author_id = $author_id;
+        $this->receiver_id = $receiver_id;
+        $this->created_at = $created_at;
+    }
+
     // Getters et Setters
     public function getId() {
         return $this->id;
@@ -44,5 +52,14 @@ class MessageDTO {
     }
 
     // Autres fonctions
+    public function getAuthorName() {
+        $author = UserDAO::get($this->author_id);
+        return $author->getName();
+    }
+
+    public function getReceiverName() {
+        $receiver = UserDAO::get($this->receiver_id);
+        return $receiver->getName();
+    }
 
 }
