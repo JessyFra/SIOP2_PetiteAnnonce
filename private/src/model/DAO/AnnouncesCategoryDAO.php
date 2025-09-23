@@ -14,7 +14,7 @@ class AnnounceCategoryDAO {
 
         if ($result != NULL) {
             $announce_category = new AnnounceCategoryDTO(
-                $result["annonce_id"],
+                $result["announce_id"],
                 $result["category_id"]
             );
 
@@ -33,7 +33,7 @@ class AnnounceCategoryDAO {
 
         if ($result != NULL) {
             $announce_category = new AnnounceCategoryDTO(
-                $result["annonce_id"],
+                $result["announce_id"],
                 $result["category_id"]
             );
 
@@ -53,7 +53,7 @@ class AnnounceCategoryDAO {
 
         foreach ($results as $result) {
             $announce_category = new AnnounceCategoryDTO(
-                $result["annonce_id"],
+                $result["announce_id"],
                 $result["category_id"]
             );
 
