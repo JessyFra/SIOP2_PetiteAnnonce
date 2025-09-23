@@ -2,7 +2,7 @@
 
 include_once 'private/config/DataBaseLinker.php';
 
-class AuthUserModel
+class UserDAO
 {
 
     public function getLoginExist($name)
