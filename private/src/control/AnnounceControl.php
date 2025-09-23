@@ -19,7 +19,10 @@ class AnnounceControl {
 
                 echo "<section class='announce'>";
                     echo "<div class='announce-picture'>";
-                        echo "<img class='picture' src='public/assets/img/".$annonce->getId().".png' alt=".$annonce->getTitle() .">";
+                        echo "<img class='picture' 
+                            src='public/assets/img/".$annonce->getId().".png' 
+                            alt='".$annonce->getTitle()."' 
+                            onerror=\"this.onerror=null;this.src='public/assets/default.png'\">";
                     echo "</div>";
                         echo "<div class='announce-description'>";
                         echo "<h3>".$annonce->getTitle()."</h3>";
