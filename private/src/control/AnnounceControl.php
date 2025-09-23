@@ -13,19 +13,17 @@ class AnnounceControl {
         echo "<div class='announces'>";
         foreach ($annonces as $annonce) {
             echo "<section class='announce'>";
-                echo "<div>";
+                echo "<div class='announce-picture'>";
                     echo "<img class='picture' src='public/assets/img/".$annonce->getId().".png' alt=" . $annonce->getTitle() .">";
-                echo "</div> <div>";
+                echo "</div>";
+                echo "<div class='announce-description'>";
                     echo "<h3>".$annonce->getTitle()."</h3>";
-                    echo "<div>".$annonce->getDescription()."</div>";
-                    echo "<div>".$annonce->getPrice()."</div>";
-                    echo "<div>".$annonce->getCityName()."</div>";
+                    echo "<p>".$annonce->getDescription()."</p>";
+                    echo "<p>".$annonce->getPrice()."</p>";
+                    echo "<p>".$annonce->getCityName()."</p>";
                 echo "</div>";
             echo "</section>";
         }
-        echo "<section class='announce'></section>";
         echo "</div>";
-
-
     }
 }
