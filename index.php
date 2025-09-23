@@ -8,7 +8,7 @@ $page = $_GET['page'] ?? 'annonces';
 
 // Liste des pages autorisées et leur titre
 $pages = [
-    'annonces' => ['class' => 'AnnounceControl', 'method' => 'annonce', 'title' => 'Petites annonces'],
+    'annonces' => ['class' => 'AnnounceControl', 'method' => 'annonce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
 
     'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css', 'js' => 'authMessage.js'],
     

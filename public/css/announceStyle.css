@@ -1,0 +1,30 @@
+.announces {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+}
+
+.announce {
+    display: flex;
+    flex-direction: row;
+    height : 250px;
+    min-width : 700px;
+    border-right : 2px solid darkgray;
+}
+
+.announce div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    width : 50%;
+    justify-content: center;
+}
+
+.announce-description p {
+    margin: 0;
+}
+
+.picture {
+    height: 100%;
+    border-radius: 15px;
+}

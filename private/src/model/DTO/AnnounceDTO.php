@@ -1,5 +1,8 @@
 <?php
 
+include_once 'private\src\model\DAO\CityDAO.php';
+include_once 'private\src\model\DAO\UserDAO.php';
+
 class AnnounceDTO {
 
     private $id;
@@ -80,10 +83,4 @@ class AnnounceDTO {
         $author = UserDAO::get($this->author_id);
         return $author->getName();
     }
-
-    public function getCategories() {
-        // todo : A remplir
-        return null;
-    }
-
 }
