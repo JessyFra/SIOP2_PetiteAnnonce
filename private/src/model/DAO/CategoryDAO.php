@@ -41,6 +41,15 @@ class CategoryDAO {
             $categories[] = $category;
         }
 
+        foreach ($categories as $key => $category) {
+            if ($category->getId() == 1) {
+                $otherCategory = $category;
+                unset($categories[$key]);
+                $categories[] = $otherCategory;
+                break;
+            }
+        }
+
         return $categories;
     }
 

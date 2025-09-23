@@ -9,12 +9,14 @@ class AnnounceControl {
         include_once 'private/src/view/announceListe.php';
 
         $categories = CategoryDAO::getAll();
+
         foreach ($categories as $category) {
             $annonces = $category->getAnnounces();
 
             echo "<br><h3>".$category->getName()."</h3>";
             echo "<div class='announces'>";
             foreach ($annonces as $annonce) {
+
                 echo "<section class='announce'>";
                 echo "<div class='announce-picture'>";
                 echo "<img class='picture' src='public/assets/img/".$annonce->getId().".png' alt=".$annonce->getTitle() .">";
