@@ -23,7 +23,7 @@
 
                 <?php if (!empty($_SESSION['userID'])): ?>
                     <li class="nav-item">
-                        <a class="nav-link text-danger" href="REMPLIR" title="Déconnexion">Déconnexion</a>
+                        <a class="nav-link text-danger" href="index.php?page=logout" title="Déconnexion">Déconnexion</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
