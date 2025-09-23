@@ -1,3 +1,2 @@
 .idea
-private/config/bdd.sql
-private/config/DataBaseLinker.php
+private/config/
