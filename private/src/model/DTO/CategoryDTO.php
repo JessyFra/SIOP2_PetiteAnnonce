@@ -1,7 +1,7 @@
 <?php
 
-include_once 'private\src\model\DAO\AnnounceCategoryDAO.php';
-include_once 'private\src\model\DAO\Announce.php';
+include_once 'private\src\model\DAO\AnnouncesCategoryDAO.php';
+include_once 'private\src\model\DAO\AnnounceDAO.php';
 
 class CategoryDTO {
 
@@ -35,20 +35,20 @@ class CategoryDTO {
         $announces = [];
 
         foreach ($results as $result) {
-            if ($result["category_id"] == $this->id) {
-                $announce = AnnounceDAO::get($result["announce_id"]);
+            if ($result->getCategoryId() == $this->id) {
+                $announce = AnnounceDAO::get($result->getAnnounceId());
 
-                $announce = new AnnounceDTO(
-                    $result["id"],
-                    $result["title"],
-                    $result["description"],
-                    $result["price"],
-                    $result["city_id"],
-                    $result["author_id"],
-                    $result["created_at"]
+                $announceDTO = new AnnounceDTO(
+                    $announce->getId(),
+                    $announce->getTitle(),
+                    $announce->getDescription(),
+                    $announce->getPrice(),
+                    $announce->getCityId(),
+                    $announce->getAuthorId(),
+                    $announce->getCreatedAt()
                 );
 
-                $announces[] = $announce;
+                $announces[] = $announceDTO;
             }
         }
 

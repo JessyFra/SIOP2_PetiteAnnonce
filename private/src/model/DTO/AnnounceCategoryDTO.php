@@ -8,8 +8,7 @@ class AnnounceCategoryDTO {
     private $announce_id;
     private $category_id;
 
-    public function __construct($announce_id, $category_id)
-    {
+    public function __construct($announce_id, $category_id) {
         $this->announce_id = $announce_id;
         $this->category_id = $category_id;
     }
