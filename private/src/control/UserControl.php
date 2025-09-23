@@ -9,15 +9,33 @@ class UserControl
     {
         $userDAO = new UserDAO();
 
+        $message = null;
+
         // Connexion
         if (isset($_POST['connexion'])) {
             $name = $_POST['username'];
             $password = $_POST['password'];
 
+            // Validation côté serveur
+            if (!preg_match('/^[a-zA-Z0-9._]{3,26}$/', $name)) {
+                $message = "Connexion -> Seules les lettres, chiffres, '.' et '_' sont autorisés (entre 3 et 26 caractères)";
+            } elseif (!preg_match('/^[A-Za-zÀ-ÿ0-9.]{1,15}$/', $password)) {
+                $message = "Connexion -> Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT";
+            } else {
+
             $userData = $userDAO->getUserInfo($name, $password);
 
             if ($userData) {
-                $user = new UserDTO();
+                $user = new UserDTO(
+                    $userData['id'],
+                    $userData['name'],
+                    $userData['hashed_password'],
+                    $userData['global_name'],
+                    $userData['biography'],
+                    $userData['role'],
+                    $userData['created_at']
+                );
+
                 $user->setId($userData['id']);
                 $user->setName($userData['name']);
                 $user->setHashedPassword($userData['hashed_password']);
@@ -32,30 +50,29 @@ class UserControl
                 header('Location: index.php?page=annonces');
                 exit;
             } else {
-                echo "Identifiants incorrects.";
+                    $message = "Connexion -> Identifiants incorrects";
             }
         }
+        }
 
+        // Inscription
         if (isset($_POST['inscription'])) {
             $name = $_POST['username'];
             $password = $_POST['password'];
             $confirmPassword = $_POST['confirmPassword'];
 
-            // Vérification des mots de passe
-            if ($password !== $confirmPassword) {
-                echo "Les mots de passe ne correspondent pas.";
-                return;
+            if (!preg_match('/^[a-zA-Z0-9._]{3,26}$/', $name)) {
+                $message = "Inscription -> Seules les lettres, chiffres, '.' et '_' sont autorisés (entre 3 et 26 caractères)";
+            } elseif (!preg_match('/^[A-Za-zÀ-ÿ0-9.]{1,15}$/', $password)) {
+                $message = "Inscription -> Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT";
+            } elseif ($password !== $confirmPassword) {
+                $message = "Inscription -> Les mots de passe ne correspondent pas.";
+            } elseif ($userDAO->getLoginExist($name)) {
+                $message = "Inscription -> Ce nom d'utilisateur est déjà pris.";
+            } else {
+                $userDAO->insertUser($name, $password);
+                $message = "Inscription réussie. Vous pouvez maintenant vous connecter.";
             }
-
-            // Vérification du login existant
-            if ($userDAO->getLoginExist($name)) {
-                echo "Ce nom d'utilisateur est déjà pris.";
-                return;
-            }
-
-            // Insertion en base
-            $userDAO->insertUser($name, $password);
-            echo "Inscription réussie. Vous pouvez maintenant vous connecter.";
         }
 
 
