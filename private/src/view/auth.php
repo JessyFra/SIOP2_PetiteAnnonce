@@ -1,3 +1,8 @@
+<?php if (!empty($message)): ?>
+    <div id="messageBox" data-message="<?php echo htmlspecialchars($message); ?>"></div>
+<?php endif; ?>
+
+
 <div class="authContainer">
     <!-- Form box -->
     <div class="box">
