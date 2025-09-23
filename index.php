@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Routeur principal
 // Récupère la page demandée via le paramètre 'page' dans l'URL, par défaut 'annonces'
 $page = $_GET['page'] ?? 'annonces';
@@ -6,7 +9,10 @@ $page = $_GET['page'] ?? 'annonces';
 // Liste des pages autorisées et leur titre
 $pages = [
     'annonces'    => ['class' => 'AnnounceControl',    'method' => 'annonce',      'title' => 'Petites annonces'],
+
     'auth'        => ['class' => 'UserControl',       'method' => 'auth',       'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
+    
+    'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion']
     // Plus de pages peuvent être ajoutées ici
 ];
 
