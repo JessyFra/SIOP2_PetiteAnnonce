@@ -1,3 +1,8 @@
+.container h1,
+.container p {
+    justify-self: center;
+}
+
 .announces {
     display: flex;
     gap: 20px;
@@ -15,8 +20,9 @@
 .announce div {
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
-    width : 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
     justify-content: center;
 }
 
