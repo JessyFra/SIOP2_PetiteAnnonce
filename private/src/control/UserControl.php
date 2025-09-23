@@ -23,36 +23,36 @@ class UserControl
                 $message = "Connexion -> Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT";
             } else {
 
-            $userData = $userDAO->getUserInfo($name, $password);
+                $userData = $userDAO->getUserInfo($name, $password);
 
-            if ($userData) {
-                $user = new UserDTO(
-                    $userData['id'],
-                    $userData['name'],
-                    $userData['hashed_password'],
-                    $userData['global_name'],
-                    $userData['biography'],
-                    $userData['role'],
-                    $userData['created_at']
-                );
+                if ($userData) {
+                    $user = new UserDTO(
+                        $userData['id'],
+                        $userData['name'],
+                        $userData['hashed_password'],
+                        $userData['global_name'],
+                        $userData['biography'],
+                        $userData['role'],
+                        $userData['created_at']
+                    );
 
-                $user->setId($userData['id']);
-                $user->setName($userData['name']);
-                $user->setHashedPassword($userData['hashed_password']);
-                $user->setGlobalName($userData['global_name']);
-                $user->setBiography($userData['biography']);
-                $user->setRole($userData['role']);
-                $user->setCreatedAt($userData['created_at']);
+                    $user->setId($userData['id']);
+                    $user->setName($userData['name']);
+                    $user->setHashedPassword($userData['hashed_password']);
+                    $user->setGlobalName($userData['global_name']);
+                    $user->setBiography($userData['biography']);
+                    $user->setRole($userData['role']);
+                    $user->setCreatedAt($userData['created_at']);
 
-                $_SESSION['userID'] = $user->getId();
-                $_SESSION['username'] = $user->getName();
+                    $_SESSION['userID'] = $user->getId();
+                    $_SESSION['username'] = $user->getName();
 
-                header('Location: index.php?page=annonces');
-                exit;
-            } else {
+                    header('Location: index.php?page=annonces');
+                    exit;
+                } else {
                     $message = "Connexion -> Identifiants incorrects";
+                }
             }
-        }
         }
 
         // Inscription
