@@ -71,8 +71,8 @@ Un script SQL de création et de remplissage de la base sera disponible dans le 
 ## TODO
 
 ### 1. Authentification & Comptes Utilisateurs
-- [ ] Créer la page d'inscription
-- [ ] Créer la page de connexion
+- [X] Créer la page d'inscription
+- [X] Créer la page de connexion
 - [ ] Implémenter la gestion des sessions utilisateurs
 - [ ] Ajouter la gestion du profil utilisateur (modification des infos, suppression du compte)
 
@@ -98,7 +98,7 @@ Un script SQL de création et de remplissage de la base sera disponible dans le 
 - [ ] Permettre le bannissement/dé-bannissement des utilisateurs (hors admin)
 
 ### 6. Base de données & Backend
-- [ ] Rédiger le script SQL de création et de remplissage de la base (`bdd.sql`)
+- [X] Rédiger le script SQL de création et de remplissage de la base (`bdd.sql`)
 - [ ] Implémenter les DAO/DTO pour chaque entité
 
 ### 7. Frontend & Responsive
@@ -108,10 +108,6 @@ Un script SQL de création et de remplissage de la base sera disponible dans le 
 ### 8. Documentation
 - [ ] Rédiger la documentation utilisateur avec captures d’écran
 - [ ] Ajouter le PDF dans le dossier `documentation`
-
-### 9. Déploiement & Git
-- [ ] Préparer le projet pour l’hébergement web
-- [ ] Mettre à jour régulièrement le dépôt GitHub avec des commits
 
 ---
 

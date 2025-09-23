@@ -8,9 +8,9 @@ $page = $_GET['page'] ?? 'annonces';
 
 // Liste des pages autorisées et leur titre
 $pages = [
-    'annonces'    => ['class' => 'AnnounceControl',    'method' => 'annonce',      'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
+    'annonces' => ['class' => 'AnnounceControl', 'method' => 'annonce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
 
-    'auth'        => ['class' => 'UserControl',       'method' => 'auth',       'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
+    'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css', 'js' => 'authMessage.js'],
     
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion']
     // Plus de pages peuvent être ajoutées ici
@@ -30,7 +30,9 @@ $controllerClass = $pages[$page]['class'];
 $controller = new $controllerClass();
 $controller->{$pages[$page]['method']}();
 $pageTitle = $pages[$page]['title'];
-$pageCSS = $pages[$page]['css'];
+$pageCSS = $pages[$page]['css'] ?? null;
+$pageJS = $pages[$page]['js'] ?? null;
+
 
 // Récupère le contenu généré par le contrôleur
 $pageContent = ob_get_clean();
