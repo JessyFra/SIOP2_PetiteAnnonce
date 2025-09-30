@@ -90,7 +90,38 @@ class UserControl
 
     public function profil()
     {
-        // Vue du profil de l'utilisateur
+        if (!isset($_SESSION['userID'])) {
+            header("Location: index.php?page=auth");
+            exit;
+        }
+
+        $userDAO = new UserDAO();
+        $user = $userDAO->get($_SESSION['userID']);
+        $message = null;
+
+        // Mise à jour profil
+        if (isset($_POST['updateProfile'])) {
+            $user->setName($_POST['name']);
+            $user->setGlobalName($_POST['global_name']);
+            $user->setBiography($_POST['biography']);
+            $newPassword = $_POST['new_password'];
+
+            if ($message === null) {
+                $userDAO->updateUser($user, $newPassword);
+                $message = "Profil mis à jour avec succès.";
+            }
+        }
+
+
+        // Suppression compte
+        if (isset($_POST['deleteAccount'])) {
+            $userDAO->deleteUser($user->getId());
+            session_unset();
+            session_destroy();
+            header("Location: index.php?page=annonces");
+            exit;
+        }
+
         include_once 'private/src/view/profilUser.php';
     }
 }
