@@ -1,9 +1,9 @@
+<?php if (!empty($message)): ?>
+    <div id="messageBox" data-message="<?php echo htmlspecialchars($message); ?>"></div>
+<?php endif; ?>
+
 <div class="profile-container">
     <h1 class="profile-header">Mon Profil</h1>
-
-    <?php if (isset($message)) : ?>
-        <div class="profile-message"><?= htmlspecialchars($message) ?></div>
-    <?php endif; ?>
 
     <form method="post" class="profile-form" id="profile-form">
         <div class="profile-row">
@@ -36,12 +36,18 @@
 
         <div class="profile-row muted">
             <span class="profile-label">Rôle</span>
-            <span class="profile-value"><?= htmlspecialchars($user->getRole()) ?></span>
+            <span class="profile-value">
+                <?php if (htmlspecialchars($user->getRole()) == "user") { 
+                        echo "Utilisateur"; 
+                    } else {
+                        echo "Administrateur";
+                    } ?>
+            </span>
         </div>
 
         <div class="profile-row muted">
             <span class="profile-label">Compte créé le</span>
-            <span class="profile-value"><?= date('d/m/Y H:i', strtotime($user->getCreatedAt())) ?></span>
+            <span class="profile-value"><?= date('d/m/Y à H:i', strtotime($user->getCreatedAt())) ?></span>
         </div>
 
         <div class="profile-actions">
