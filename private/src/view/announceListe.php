@@ -1,2 +1,2 @@
 <h1>Liste des Annonces</h1>
-<p>Ici s'affichera la liste des annonces.</p>
+<p>Retrouvez ici la liste des annonces que vous pourriez désirer</p>

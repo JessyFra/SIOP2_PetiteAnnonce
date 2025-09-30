@@ -3,10 +3,12 @@
     justify-self: center;
 }
 
-.announces {
+.category {
     display: flex;
     gap: 20px;
     overflow-x: scroll;
+    border-top: 2px solid darkgray;
+    padding-top: 10px;
 }
 
 .announce {
