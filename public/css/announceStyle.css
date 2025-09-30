@@ -4,11 +4,16 @@
 }
 
 .category {
+    border-top: 2px solid darkgray;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+}
+
+.articles {
     display: flex;
     gap: 20px;
     overflow-x: scroll;
-    border-top: 2px solid darkgray;
-    padding-top: 10px;
 }
 
 .announce {
@@ -22,7 +27,6 @@
 .announce div {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
     padding-right: 10px;
     width: 50%;
     justify-content: center;

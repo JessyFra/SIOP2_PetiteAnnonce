@@ -13,26 +13,27 @@ class AnnounceControl {
         foreach ($categories as $category) {
             $annonces = $category->getAnnounces();
 
-            echo "<br><h3>".$category->getName()."</h3>";
-//            echo "<";
             echo "<section class='category'>";
-                foreach ($annonces as $annonce) {
+                echo "<h3>".$category->getName()."</h3>";
+                echo "<div class='articles'>";
 
-                    echo "<article class='announce'>";
-                        echo "<div class='announce-picture'>";
-                            echo "<img class='picture' 
-                                src='public/assets/img/".$annonce->getId().".png' 
-                                alt='".$annonce->getTitle()."' 
-                                onerror=\"this.onerror=null;this.src='public/assets/default.png'\">";
-                        echo "</div>";
-                            echo "<div class='announce-description'>";
-                            echo "<h3>".$annonce->getTitle()."</h3>";
-                            echo "<p>".$annonce->getDescription()."</p>";
-                            echo "<p> Prix : ".$annonce->getPrice()." €</p>";
-                            echo "<p> 📍 ".$annonce->getCityName()."</p>";
+                foreach ($annonces as $annonce) {
+                        echo "<article class='announce'>";
+                            echo "<div class='announce-picture'>";
+                                echo "<img class='picture' 
+                                    src='public/assets/img/".$annonce->getId().".png' 
+                                    alt='".$annonce->getTitle()."' 
+                                    onerror=\"this.onerror=null;this.src='public/assets/default.png'\">";
                             echo "</div>";
-                    echo "</article>";
+                                echo "<div class='announce-description'>";
+                                echo "<h3>".$annonce->getTitle()."</h3>";
+                                echo "<p>".$annonce->getDescription()."</p>";
+                                echo "<p> Prix : ".$annonce->getPrice()." €</p>";
+                                echo "<p> 📍 ".$annonce->getCityName()."</p>";
+                                echo "</div>";
+                        echo "</article>";
                 }
+                echo "</div>";
             echo "</section>";
         }
     }
