@@ -1,36 +1,47 @@
-.container h1,
-.container p {
-    justify-self: center;
+.announce,
+.picture {
+    height: 350px;
 }
 
-.announces {
-    display: flex;
-    gap: 20px;
-    overflow-x: scroll;
+.picture img {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
 }
 
-.announce {
-    display: flex;
-    flex-direction: row;
-    height : 250px;
-    min-width : 700px;
-    border-right : 2px solid darkgray;
-}
-
-.announce div {
+.purchase {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 50%;
+    justify-content: center;
+    height: 175px;
+    width: 300px;
+    align-items: center;
+    gap: 5px;
+}
+
+article button {
+    height: 35px;
+    width: 200px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.black-border {
+    border: 2px solid black; /* dashed */
+    border-radius: 15px;
+}
+
+.row {
+    display: flex;
     justify-content: center;
 }
 
-.announce-description p {
+.row p {
     margin: 0;
 }
 
-.picture {
-    height: 100%;
-    border-radius: 15px;
-}

@@ -1,0 +1,42 @@
+.container h1,
+.container p {
+    justify-self: center;
+}
+
+.category {
+    border-top: 2px solid darkgray;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+}
+
+.articles {
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+}
+
+.announce {
+    display: flex;
+    flex-direction: row;
+    height : 250px;
+    min-width : 700px;
+    border-right : 2px solid darkgray;
+}
+
+.announce div {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    width: 50%;
+    justify-content: center;
+}
+
+.announce-description p {
+    margin: 0;
+}
+
+.picture {
+    height: 100%;
+    border-radius: 15px;
+}
