@@ -1,2 +1,56 @@
-<h1>Profil de l'utilisateur</h1>
-<p>Ici s'affichera les informations du profil de l'utilisateur.</p>
+<div class="profile-container">
+    <h1 class="profile-header">Mon Profil</h1>
+
+    <?php if (isset($message)) : ?>
+        <div class="profile-message"><?= htmlspecialchars($message) ?></div>
+    <?php endif; ?>
+
+    <form method="post" class="profile-form" id="profile-form">
+        <div class="profile-row">
+            <span class="profile-label">Nom d'utilisateur</span>
+            <span class="profile-value" id="name-display"><?= htmlspecialchars($user->getName()) ?></span>
+            <input type="text" class="profile-input" id="name-input" name="name" value="<?= htmlspecialchars($user->getName()) ?>" hidden>
+            <button type="button" class="edit-btn" onclick="toggleEdit('name')">✏️</button>
+        </div>
+
+        <div class="profile-row">
+            <span class="profile-label">Nom global</span>
+            <span class="profile-value" id="global_name-display"><?= htmlspecialchars($user->getGlobalName()) ?></span>
+            <input type="text" class="profile-input" id="global_name-input" name="global_name" value="<?= htmlspecialchars($user->getGlobalName()) ?>" hidden>
+            <button type="button" class="edit-btn" onclick="toggleEdit('global_name')">✏️</button>
+        </div>
+
+        <div class="profile-row">
+            <span class="profile-label">Biographie</span>
+            <span class="profile-value" id="biography-display"><?= nl2br(htmlspecialchars($user->getBiography())) ?></span>
+            <textarea class="profile-input" id="biography-input" name="biography" hidden><?= htmlspecialchars($user->getBiography()) ?></textarea>
+            <button type="button" class="edit-btn" onclick="toggleEdit('biography')">✏️</button>
+        </div>
+
+        <div class="profile-row">
+            <span class="profile-label">Mot de passe</span>
+            <span class="profile-value" id="password-display">••••••••</span>
+            <input type="password" class="profile-input" id="password-input" name="new_password" placeholder="Nouveau mot de passe" hidden>
+            <button type="button" class="edit-btn" onclick="togglePassword()">✏️</button>
+        </div>
+
+        <div class="profile-row muted">
+            <span class="profile-label">Rôle</span>
+            <span class="profile-value"><?= htmlspecialchars($user->getRole()) ?></span>
+        </div>
+
+        <div class="profile-row muted">
+            <span class="profile-label">Compte créé le</span>
+            <span class="profile-value"><?= date('d/m/Y H:i', strtotime($user->getCreatedAt())) ?></span>
+        </div>
+
+        <div class="profile-actions">
+            <input type="submit" name="updateProfile" value="Enregistrer" class="btn-discreet" id="save-btn" hidden>
+            <button type="button" class="btn-discreet danger" id="cancel-btn" onclick="cancelEdits()" hidden>Annuler</button>
+            <button type="submit" name="deleteAccount" class="btn-discreet danger"
+                onclick="return confirm('Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.');">
+                Supprimer
+            </button>
+        </div>
+    </form>
+</div>
