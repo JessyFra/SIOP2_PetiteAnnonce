@@ -11,6 +11,8 @@ $pages = [
     'annonces' => ['class' => 'AnnounceControl', 'method' => 'announce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
 
     'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css', 'js' => 'authMessage.js'],
+
+    'profil' => ['class' => 'UserControl', 'method' => 'profil', 'title' => 'Profil - Petites annonces', 'css' => 'profilStyle.css'],
     
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion']
     // Plus de pages peuvent être ajoutées ici

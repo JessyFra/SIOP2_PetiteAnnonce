@@ -84,7 +84,13 @@ class UserControl
     {
         session_unset();
         session_destroy();
-        header('Location: index.php?page=auth');
+        header('Location: index.php?page=annonces');
         exit;
+    }
+
+    public function profil()
+    {
+        // Vue du profil de l'utilisateur
+        include_once 'private/src/view/profilUser.php';
     }
 }
