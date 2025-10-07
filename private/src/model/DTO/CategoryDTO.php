@@ -1,7 +1,7 @@
 <?php
 
-include_once 'private\src\model\DAO\AnnounceCategoryDAO.php';
-include_once 'private\src\model\DAO\AnnounceDAO.php';
+include_once 'private/src/model/DAO/AnnounceCategoryDAO.php';
+include_once 'private/src/model/DAO/AnnounceDAO.php';
 
 class CategoryDTO {
 

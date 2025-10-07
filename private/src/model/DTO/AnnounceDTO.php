@@ -1,7 +1,7 @@
 <?php
 
-include_once 'private\src\model\DAO\CityDAO.php';
-include_once 'private\src\model\DAO\UserDAO.php';
+include_once 'private/src/model/DAO/CityDAO.php';
+include_once 'private/src/model/DAO/UserDAO.php';
 
 class AnnounceDTO {
 
