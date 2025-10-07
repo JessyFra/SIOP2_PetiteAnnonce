@@ -19,4 +19,5 @@ Un projet SLAM réalisé dans le cadre du BTS SIO en équipe de 2." />
 
 <!-- Feuilles de style personnalisées -->
 <link rel="stylesheet" href="public/css/baseStyle.css" />
-<link rel="stylesheet" href="public/css/<?= $pageCSS?>" />
+<link rel="stylesheet" href="public/css/popupStyle.css" />
+<link rel="stylesheet" href="public/css/<?= $pageCSS ?>" />

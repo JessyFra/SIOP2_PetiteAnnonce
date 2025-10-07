@@ -80,4 +80,45 @@ class UserDAO {
         $state = $bdd->prepare("INSERT INTO user (name, hashed_password) VALUES (?, SHA2(?, 256))");
         $state->execute(array($name, $password));
     }
+
+    public function updateUser(UserDTO $user, $newPassword = null)
+    {
+        $bdd = DatabaseLinker::getConnexion();
+
+        if ($newPassword) {
+            $state = $bdd->prepare("
+            UPDATE user 
+            SET global_name = ?, biography = ?, name = ?, hashed_password = SHA2(?, 256)
+            WHERE id = ?
+        ");
+            $state->execute([
+                $user->getGlobalName(),
+                $user->getBiography(),
+                $user->getName(),
+                $newPassword,
+                $user->getId()
+            ]);
+        } else {
+            $state = $bdd->prepare("
+            UPDATE user 
+            SET global_name = ?, biography = ?, name = ?
+            WHERE id = ?
+        ");
+            $state->execute([
+                $user->getGlobalName(),
+                $user->getBiography(),
+                $user->getName(),
+                $user->getId()
+            ]);
+        }
+    }
+
+
+    public function deleteUser($id)
+    {
+        $bdd = DatabaseLinker::getConnexion();
+
+        $state = $bdd->prepare("DELETE FROM user WHERE id = ?");
+        $state->execute([$id]);
+    }
 }

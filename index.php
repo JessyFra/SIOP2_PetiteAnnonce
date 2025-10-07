@@ -10,9 +10,9 @@ $page = $_GET['page'] ?? 'annonces';
 $pages = [
     'annonces' => ['class' => 'AnnounceControl', 'method' => 'announces', 'title' => 'Petites annonces', 'css' => 'announcesStyle.css'],
 
-    'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css', 'js' => 'authMessage.js'],
+    'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
 
-    'profil' => ['class' => 'UserControl', 'method' => 'profil', 'title' => 'Profil - Petites annonces', 'css' => 'profilStyle.css'],
+    'profil' => ['class' => 'UserControl', 'method' => 'profil', 'title' => 'Profil - Petites annonces', 'css' => 'profilStyle.css', 'js' => 'profil.js'],
     
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion'],
 
