@@ -1,0 +1,54 @@
+body, html {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.privateMessages {
+    display: flex;
+    height: 100%;
+    width: 25%;
+    border: 2px solid gray;
+    border-radius: 15px 0 0 15px;
+}
+
+.messagesBox {
+    display: flex;
+    height: 100%;
+    width: 75%;
+    align-items: end;
+    justify-content: center;
+    border: 2px solid gray;
+    border-left: none;
+    border-radius: 0 15px 15px 0;
+}
+
+.messageTextarea {
+    display: flex;
+    text-align: center;
+    padding-top: 0.5em;
+    height: 50px;
+    width: 100%;
+    resize: none;
+    scrollbar-width: none;
+    margin: 10px 2px 5px 5px;
+}
+
+.messageTextarea:focus {
+    outline: none;
+}
+
+.sendButton {
+    height: 50px;
+    width: 100px;
+    margin: 10px 5px 5px 2px;
+}
+

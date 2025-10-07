@@ -11,7 +11,6 @@ $announce = AnnounceDAO::get($announceId);
 
 ?>
 
-
 <section class="announce row">
     <article class="picture col-6">
         <?php
@@ -28,7 +27,7 @@ $announce = AnnounceDAO::get($announceId);
     <article class="purchase black-border col-4">
         <h5><?php echo $announce->getTitle() ?></h5>
         <button class="btn btn-secondary">Acheter</button>
-        <a href=""><button class="btn btn-primary">Contacter</button></a>
+        <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>"><button class="btn btn-primary">Contacter</button></a>
     </article>
 </section>
 
@@ -37,4 +36,3 @@ $announce = AnnounceDAO::get($announceId);
     <p>📍 <?php echo $announce->getCityName() ?></p>
     <p><?php echo $announce->getDescription() ?></p>
 </div>
-

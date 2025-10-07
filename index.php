@@ -14,7 +14,9 @@ $pages = [
     
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion'],
 
-    'annonce' => ['class' => 'AnnounceControl', 'method' => 'announce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css']
+    'annonce' => ['class' => 'AnnounceControl', 'method' => 'announce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
+
+    'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css']
     // Plus de pages peuvent être ajoutées ici
 ];
 
