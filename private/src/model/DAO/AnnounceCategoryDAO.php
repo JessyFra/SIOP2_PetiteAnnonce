@@ -1,6 +1,6 @@
 <?php
 
-require_once 'private/config/DatabaseLinker.php';
+require_once 'private/config/DataBaseLinker.php';
 require_once 'private/src/model/DTO/AnnounceCategoryDTO.php';
 
 class AnnounceCategoryDAO {
