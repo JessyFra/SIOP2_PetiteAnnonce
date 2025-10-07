@@ -124,3 +124,24 @@
     gap: 12px;
 }
 
+.profile-announces {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.profile-announces th,
+.profile-announces td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-announces th {
+    background-color: #f5f5f5;
+}
+
+.profile-announces tr:hover {
+    background-color: #f0f0f0;
+}
+

@@ -51,6 +51,7 @@ CREATE TABLE announce
     title       VARCHAR(64) NOT NULL,
     description TEXT,
     price       DOUBLE   DEFAULT 0,
+    status     ENUM ("closed", "open") DEFAULT "open",
     city_id     INT         NOT NULL,
     author_id   INT         NOT NULL,
     created_at  DATETIME DEFAULT NOW(),
@@ -107,7 +108,7 @@ VALUES (1, "Autres"),
 
 
 # Annonces
-INSERT INTO announce
+INSERT INTO announce (id, title, description, price, city_id, author_id, created_at)
 VALUES (1, "Maison 6 Pièces 105m²", "À découvrir", 285000, 1, 2, NOW()),
        (2, "Maison 5 pièces 110m²", "À seulement 4 km d'Uzès", 390000, 2, 3, NOW()),
        (3, "AUDI A6", "TDI ultra 190 Business", 17490, 1, 2, NOW()),

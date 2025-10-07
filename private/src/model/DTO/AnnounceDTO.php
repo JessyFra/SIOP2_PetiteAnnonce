@@ -9,15 +9,17 @@ class AnnounceDTO {
     private $title;
     private $description;
     private $price;
+    private $status;
     private $city_id;
     private $author_id;
     private $created_at;
 
-    public function __construct($id, $title, $description, $price, $city_id, $author_id, $created_at) {
+    public function __construct($id, $title, $description, $price, $status, $city_id, $author_id, $created_at) {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->price = $price;
+        $this->status = $status;
         $this->city_id = $city_id;
         $this->author_id = $author_id;
         $this->created_at = $created_at;
@@ -50,6 +52,14 @@ class AnnounceDTO {
     }
     public function setPrice($price) {
         $this->price = $price;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
     }
 
     public function getCityId() {

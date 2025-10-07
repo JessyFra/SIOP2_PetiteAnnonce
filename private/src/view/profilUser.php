@@ -37,11 +37,11 @@
         <div class="profile-row muted">
             <span class="profile-label">Rôle</span>
             <span class="profile-value">
-                <?php if (htmlspecialchars($user->getRole()) == "user") { 
-                        echo "Utilisateur"; 
-                    } else {
-                        echo "Administrateur";
-                    } ?>
+                <?php if (htmlspecialchars($user->getRole()) == "user") {
+                    echo "Utilisateur";
+                } else {
+                    echo "Administrateur";
+                } ?>
             </span>
         </div>
 
@@ -59,4 +59,57 @@
             </button>
         </div>
     </form>
+
+    <!-- ------------------- Mes annonces ------------------- -->
+    <h2 class="profile-subheader">Mes annonces</h2>
+
+    <?php
+    // Récupérer les annonces de l'utilisateur
+    require_once 'private/src/model/DAO/AnnounceDAO.php';
+    $announces = AnnounceDAO::getByUser($user->getId());
+
+    if (!empty($announces)):
+    ?>
+        <table class="profile-announces">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Prix</th>
+                    <th>Date de publication</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($announces as $announce): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($announce->getTitle()) ?></td>
+                        <td><?= htmlspecialchars(number_format($announce->getPrice(), 2, ',', ' ')) ?> €</td>
+                        <td><?= date('d/m/Y à H:i', strtotime($announce->getCreatedAt())) ?></td>
+                        <td>
+                            <a href="index.php?page=edit&id=<?= $announce->getId() ?>" class="btn-discreet">Modifier</a>
+                            <form method="post" action="" style="display:inline;">
+                                <input type="hidden" name="deleteAnnounceId" value="<?= $announce->getId() ?>">
+                                <button type="submit" class="btn-discreet danger"
+                                    onclick="return confirm('Voulez-vous vraiment retirer cette annonce ?');">
+                                    Retirer
+                                </button>
+                            </form>
+                            <?php if ($announce->getStatus() != 'closed'): ?>
+                                <form method="post" action="" style="display:inline;">
+                                    <input type="hidden" name="closeAnnounceId" value="<?= $announce->getId() ?>">
+                                    <button type="submit" class="btn-discreet">
+                                        Clôturer
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <span class="muted">Clôturée</span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p>Aucune annonce publiée pour le moment.</p>
+    <?php endif; ?>
 </div>
