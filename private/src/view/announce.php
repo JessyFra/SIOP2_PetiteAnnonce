@@ -14,10 +14,15 @@ $announce = AnnounceDAO::get($announceId);
 
 <section class="announce row">
     <article class="picture col-6">
-        <img src="public/assets/img/<?php echo $announce->getId() ?>.png"
-             alt="<?php echo $announce->getTitle() ?>"
-             onerror="this.onerror=null;this.src='public/assets/default.png'"
-        >
+        <?php
+
+        $pathImage = "public/assets/img/".$announce->getId().".png";
+        if (!file_exists($pathImage)) {
+            $pathImage = "public/assets/default.png";
+        }
+
+        ?>
+        <img src="<?php echo $pathImage ?>" alt="<?php echo $announce->getTitle() ?>">
     </article>
 
     <article class="purchase black-border col-4">

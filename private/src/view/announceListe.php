@@ -11,11 +11,18 @@
         <div class="articles">
 
         <?php foreach ($announces as $announce) { ?>
-            <article class="announce">
+            <?php
+
+            $pathImage = "public/assets/img/".$announce->getId().".png";
+            if (!file_exists($pathImage)) {
+                $pathImage = "public/assets/default.png";
+            }
+
+            ?>
+            <article id="<?php echo $announce->getId() ?>" class="announce">
                 <div class="announce-picture">
-                    <img class="picture" src="public/assets/img/<?php echo $announce->getId() ?>.png"
+                    <img class="picture" src="<?php echo $pathImage ?>"
                          alt="<?php echo $announce->getTitle() ?>"
-                         onerror="this.onerror=null;this.src='public/assets/default.png'"
                     >
                 </div>
 
