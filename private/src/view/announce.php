@@ -28,7 +28,7 @@ $announce = AnnounceDAO::get($announceId);
     <article class="purchase black-border col-4">
         <h5><?php echo $announce->getTitle() ?></h5>
         <button class="btn btn-secondary">Acheter</button>
-        <button class="btn btn-primary">Contacter</button>
+        <a href=""><button class="btn btn-primary">Contacter</button></a>
     </article>
 </section>
 

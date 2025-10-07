@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let id = element.getAttribute("id");
         console.log(id);
 
-        window.location.href = "index.php?page=annonce&&id=" + id;
+        window.location.href = "index.php?page=annonce&id=" + id;
     });
 
 });
