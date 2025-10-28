@@ -11,19 +11,23 @@ $announce = AnnounceDAO::get($announceId);
 
 ?>
 
-
 <section class="announce row">
     <article class="picture col-6">
-        <img src="public/assets/img/<?php echo $announce->getId() ?>.png"
-             alt="<?php echo $announce->getTitle() ?>"
-             onerror="this.onerror=null;this.src='public/assets/default.png'"
-        >
+        <?php
+
+        $pathImage = "public/assets/img/".$announce->getId().".png";
+        if (!file_exists($pathImage)) {
+            $pathImage = "public/assets/default.png";
+        }
+
+        ?>
+        <img src="<?php echo $pathImage ?>" alt="<?php echo $announce->getTitle() ?>">
     </article>
 
     <article class="purchase black-border col-4">
         <h5><?php echo $announce->getTitle() ?></h5>
         <button class="btn btn-secondary">Acheter</button>
-        <button class="btn btn-primary">Contacter</button>
+        <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>"><button class="btn btn-primary">Contacter</button></a>
     </article>
 </section>
 
@@ -32,4 +36,3 @@ $announce = AnnounceDAO::get($announceId);
     <p>📍 <?php echo $announce->getCityName() ?></p>
     <p><?php echo $announce->getDescription() ?></p>
 </div>
-
