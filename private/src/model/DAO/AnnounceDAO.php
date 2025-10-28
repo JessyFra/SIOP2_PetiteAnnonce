@@ -1,6 +1,6 @@
 <?php
 
-require_once 'private/config/DatabaseLinker.php';
+require_once 'private/config/DataBaseLinker.php';
 require_once 'private/src/model/DTO/AnnounceDTO.php';
 
 class AnnounceDAO {
@@ -18,6 +18,7 @@ class AnnounceDAO {
                 $result["title"],
                 $result["description"],
                 $result["price"],
+                $result["status"],
                 $result["city_id"],
                 $result["author_id"],
                 $result["created_at"]
@@ -43,6 +44,7 @@ class AnnounceDAO {
                 $result["title"],
                 $result["description"],
                 $result["price"],
+                $result["status"],
                 $result["city_id"],
                 $result["author_id"],
                 $result["created_at"]
@@ -54,4 +56,26 @@ class AnnounceDAO {
         return $announces;
     }
 
+    public static function getByUser($userId)
+    {
+        $bdd = DatabaseLinker::getConnexion();
+        $query = $bdd->prepare("SELECT * FROM announce WHERE author_id = ? ORDER BY created_at DESC");
+        $query->execute([$userId]);
+        $results = $query->fetchAll();
+
+        $announces = [];
+        foreach ($results as $result) {
+            $announces[] = new AnnounceDTO(
+                $result['id'],
+                $result['title'],
+                $result['description'],
+                $result['price'],
+                $result['status'],
+                $result['city_id'],
+                $result['author_id'],
+                $result['created_at']
+            );
+        }
+        return $announces;
+    }
 }

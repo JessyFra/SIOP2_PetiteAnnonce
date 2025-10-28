@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Détection du type de message
         let type = "error";
-        if (msg.includes("réussie") || msg.includes("connecter")) {
+        if (
+            msg.includes("réussie") ||
+            msg.includes("connecter") ||
+            msg.includes("succès")
+        ) {
             type = "success";
         }
 

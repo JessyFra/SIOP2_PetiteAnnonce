@@ -47,6 +47,6 @@ form .loupe:hover {
     color: #0d9b8a !important;
 }
 
-.navbar-nav .nav-item:nth-child(3) {
+.navbar-nav .nav-item:last-child {
     margin-left: 10px;
 }

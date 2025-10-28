@@ -170,36 +170,3 @@
 }
 
 /* ---------------------------------------------------------------------- */
-
-/* ---------------------------- Popup Message ---------------------------- */
-.popup-message {
-    position: fixed;
-    top: 85px;
-    right: 20px;
-    z-index: 1050;
-    background-color: #0d9b8a;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    font-weight: 500;
-    font-size: 14px;
-    animation: fadeInOut 5s ease forwards;
-    max-width: 300px;
-    line-height: 1.4;
-}
-
-.popup-message.success {
-    background-color: #198754;
-}
-
-.popup-message.error {
-    background-color: #dc3545;
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: translateY(-10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    90% { opacity: 1; }
-    100% { opacity: 0; transform: translateY(-10px); }
-}

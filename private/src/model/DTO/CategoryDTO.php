@@ -1,7 +1,7 @@
 <?php
 
-include_once 'private\src\model\DAO\AnnounceCategoryDAO.php';
-include_once 'private\src\model\DAO\AnnounceDAO.php';
+include_once 'private/src/model/DAO/AnnounceCategoryDAO.php';
+include_once 'private/src/model/DAO/AnnounceDAO.php';
 
 class CategoryDTO {
 
@@ -43,6 +43,7 @@ class CategoryDTO {
                     $announce->getTitle(),
                     $announce->getDescription(),
                     $announce->getPrice(),
+                    $announce->getStatus(),
                     $announce->getCityId(),
                     $announce->getAuthorId(),
                     $announce->getCreatedAt()

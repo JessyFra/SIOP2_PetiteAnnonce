@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 
 session_start();
 
@@ -10,7 +14,9 @@ $page = $_GET['page'] ?? 'annonces';
 $pages = [
     'annonces' => ['class' => 'AnnounceControl', 'method' => 'announces', 'title' => 'Petites annonces', 'css' => 'announcesStyle.css', 'js' => 'announcesScript.js'],
 
-    'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css', 'js' => 'authMessage.js'],
+    'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
+
+    'profil' => ['class' => 'UserControl', 'method' => 'profil', 'title' => 'Profil - Petites annonces', 'css' => 'profilStyle.css', 'js' => 'profil.js'],
     
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion'],
 
