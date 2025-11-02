@@ -1,0 +1,279 @@
+/* ==================== PUBLIC PROFILE STYLES ==================== */
+
+.public-profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* En-tête du profil */
+.profile-header {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.profile-avatar-large {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #0d9b8a 0%, #0a7a6d 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(13, 155, 138, 0.3);
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-username {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 5px 0;
+}
+
+.profile-handle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin: 0 0 15px 0;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+.stat-item i {
+    color: #0d9b8a;
+}
+
+/* Section du profil */
+.profile-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.profile-section h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-section h2 i {
+    color: #0d9b8a;
+}
+
+.profile-bio {
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Actions du profil */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.profile-actions .btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Grille d'annonces */
+.profile-announces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.profile-announce-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.profile-announce-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(13, 155, 138, 0.2);
+    border-color: #0d9b8a;
+}
+
+.announce-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.announce-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.announce-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-offer {
+    background: #28a745;
+    color: white;
+}
+
+.badge-request {
+    background: #007bff;
+    color: white;
+}
+
+.announce-status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(108, 117, 125, 0.9);
+    color: white;
+}
+
+.announce-card-body {
+    padding: 20px;
+}
+
+.announce-card-body h3 {
+    font-size: 1.1rem;
+    color: #1f2937;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.announce-card-body p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.announce-price {
+    color: #0d9b8a !important;
+    font-size: 1.3rem !important;
+    margin: 15px 0 !important;
+}
+
+.announce-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #9ca3af;
+    font-size: 0.85rem;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.announce-meta i {
+    color: #0d9b8a;
+}
+
+/* État vide */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+}
+
+.empty-state p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-danger {
+    background: #fee;
+    color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .profile-avatar-large {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+    }
+
+    .profile-username {
+        font-size: 1.5rem;
+    }
+
+    .profile-stats {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .profile-announces-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-section {
+        padding: 20px;
+    }
+}
