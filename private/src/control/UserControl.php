@@ -1,6 +1,7 @@
 <?php
 
 include_once 'private/src/model/DAO/UserDAO.php';
+include_once 'private/src/model/DAO/AnnounceDAO.php';
 include_once 'private/src/model/DTO/UserDTO.php';
 
 class UserControl
@@ -19,29 +20,27 @@ class UserControl
             $userData = $userDAO->getUserInfo($name, $password);
 
             if ($userData) {
-                $user = new UserDTO(
-                    $userData['id'],
-                    $userData['name'],
-                    $userData['hashed_password'],
-                    $userData['global_name'],
-                    $userData['biography'],
-                    $userData['role'],
-                    $userData['created_at']
-                );
+                // Vérifier si l'utilisateur est banni
+                if ($userData['banned'] == 1) {
+                    $message = "Connexion -> Votre compte a été banni. Contactez un administrateur.";
+                } else {
+                    $user = new UserDTO(
+                        $userData['id'],
+                        $userData['name'],
+                        $userData['hashed_password'],
+                        $userData['global_name'],
+                        $userData['biography'],
+                        $userData['role'],
+                        $userData['created_at'],
+                        $userData['banned']
+                    );
 
-                $user->setId($userData['id']);
-                $user->setName($userData['name']);
-                $user->setHashedPassword($userData['hashed_password']);
-                $user->setGlobalName($userData['global_name']);
-                $user->setBiography($userData['biography']);
-                $user->setRole($userData['role']);
-                $user->setCreatedAt($userData['created_at']);
+                    $_SESSION['userID'] = $user->getId();
+                    $_SESSION['username'] = $user->getName();
 
-                $_SESSION['userID'] = $user->getId();
-                $_SESSION['username'] = $user->getName();
-
-                header('Location: index.php?page=annonces');
-                exit;
+                    header('Location: index.php?page=annonces');
+                    exit;
+                }
             } else {
                 $message = "Connexion -> Identifiants incorrects";
             }
@@ -100,6 +99,35 @@ class UserControl
             }
         }
 
+        // Clôturer une annonce
+        if (isset($_POST['closeAnnounceId'])) {
+            $announceId = intval($_POST['closeAnnounceId']);
+            $announce = AnnounceDAO::get($announceId);
+
+            // Vérifier que l'annonce appartient à l'utilisateur
+            if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
+                if (AnnounceDAO::updateStatus($announceId, 'closed')) {
+                    $message = "Annonce clôturée avec succès.";
+                } else {
+                    $message = "Erreur lors de la clôture.";
+                }
+            }
+        }
+
+        // Supprimer une annonce
+        if (isset($_POST['deleteAnnounceId'])) {
+            $announceId = intval($_POST['deleteAnnounceId']);
+            $announce = AnnounceDAO::get($announceId);
+
+            // Vérifier que l'annonce appartient à l'utilisateur
+            if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
+                if (AnnounceDAO::delete($announceId)) {
+                    $message = "Annonce supprimée avec succès.";
+                } else {
+                    $message = "Erreur lors de la suppression.";
+                }
+            }
+        }
 
         // Suppression compte
         if (isset($_POST['deleteAccount'])) {
@@ -111,5 +139,38 @@ class UserControl
         }
 
         include_once 'private/src/view/profilUser.php';
+    }
+
+    /**
+     * Affiche le profil public d'un utilisateur
+     */
+    public function viewProfile()
+    {
+        // Récupération de l'ID utilisateur depuis l'URL
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            header("Location: index.php?page=annonces");
+            exit;
+        }
+
+        $userId = intval($_GET['id']);
+        $userDAO = new UserDAO();
+        $user = $userDAO->get($userId);
+
+        // Si l'utilisateur n'existe pas
+        if (!$user) {
+            header("Location: index.php?page=annonces");
+            exit;
+        }
+
+        // Récupérer les annonces de cet utilisateur
+        $announces = AnnounceDAO::getByUser($userId);
+
+        // Si c'est son propre profil, rediriger vers la page profil
+        if (isset($_SESSION['userID']) && $_SESSION['userID'] == $userId) {
+            header("Location: index.php?page=profil");
+            exit;
+        }
+
+        include_once 'private/src/view/publicProfile.php';
     }
 }
