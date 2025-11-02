@@ -3,41 +3,410 @@
     justify-self: center;
 }
 
-.category {
-    border-top: 2px solid darkgray;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding-top: 10px;
+/* Filtres de recherche */
+.filters-section {
+    margin-bottom: 30px;
 }
 
-.articles {
+.filters-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.filters-form .btn {
+    height: 38px;
+}
+
+.search-info {
+    margin: 15px 0;
+}
+
+/* ==================== AFFICHAGE PAR CATÉGORIE (comme LeBonCoin) ==================== */
+
+.category-section {
+    margin-bottom: 40px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #0d9b8a;
+}
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-title i {
+    color: #0d9b8a;
+}
+
+.category-count {
+    background: #e6f7f5;
+    color: #0d9b8a;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Scroll horizontal des annonces par catégorie */
+.category-announces-scroll {
     display: flex;
     gap: 20px;
-    overflow-x: scroll;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: #0d9b8a #f3f4f6;
 }
 
-.announce {
+.category-announces-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.category-announces-scroll::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.category-announces-scroll::-webkit-scrollbar-thumb {
+    background: #0d9b8a;
+    border-radius: 4px;
+}
+
+.category-announces-scroll::-webkit-scrollbar-thumb:hover {
+    background: #0a7a6d;
+}
+
+/* Carte d'annonce horizontale (pour les catégories) */
+.announce-card-horizontal {
     display: flex;
     flex-direction: row;
-    height : 250px;
-    min-width : 700px;
-    border-right : 2px solid darkgray;
+    min-width: 500px;
+    max-width: 500px;
+    height: 180px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.announce div {
+.announce-card-horizontal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(13, 155, 138, 0.2);
+    border-color: #0d9b8a;
+}
+
+.announce-image-horizontal {
+    width: 180px;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.announce-image-horizontal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.announce-content-horizontal {
+    flex: 1;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    padding-right: 10px;
-    width: 50%;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.announce-description p {
+.announce-content-horizontal h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.announce-desc {
+    color: #6b7280;
+    font-size: 0.9rem;
     margin: 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.picture {
+.announce-price-horizontal {
+    color: #0d9b8a;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.announce-meta-horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #9ca3af;
+    font-size: 0.85rem;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.announce-meta-horizontal span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.announce-meta-horizontal i {
+    color: #0d9b8a;
+}
+
+.announce-meta-horizontal span:last-child {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.announce-meta-horizontal span:last-child:hover {
+    color: #0d9b8a;
+}
+
+/* ==================== AFFICHAGE GRILLE (avec filtres) ==================== */
+
+.announces-list {
+    margin-top: 30px;
+}
+
+.announces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.announce-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.announce-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(13, 155, 138, 0.2);
+    border-color: #0d9b8a;
+}
+
+.announce-card-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.announce-card-image img {
+    width: 100%;
     height: 100%;
-    border-radius: 15px;
+    object-fit: cover;
+}
+
+.announce-card-content {
+    padding: 20px;
+}
+
+.announce-card-content h3 {
+    font-size: 1.1rem;
+    color: #1f2937;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.announce-description {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.announce-price {
+    color: #0d9b8a !important;
+    font-size: 1.3rem !important;
+    margin: 15px 0 !important;
+}
+
+.announce-footer {
+    display: flex;
+    justify-content: space-between;
+    color: #9ca3af;
+    font-size: 0.85rem;
+    padding-top: 10px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.announce-footer span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.announce-author {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.announce-author:hover {
+    color: #0d9b8a;
+}
+
+.announce-location i,
+.announce-author i {
+    color: #0d9b8a;
+}
+
+/* Badges */
+.announce-type-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.badge-offer {
+    background: #28a745;
+    color: white;
+}
+
+.badge-request {
+    background: #007bff;
+    color: white;
+}
+
+.announce-status-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(108, 117, 125, 0.9);
+    color: white;
+    z-index: 1;
+}
+
+/* Message aucun résultat */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.no-results p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 20px 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .announces-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-form .row {
+        gap: 15px !important;
+    }
+
+    .filters-form .col-md-2,
+    .filters-form .col-md-3 {
+        width: 100%;
+    }
+
+    .filters-form .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .category-announces-scroll {
+        gap: 15px;
+    }
+
+    .announce-card-horizontal {
+        min-width: 350px;
+        max-width: 350px;
+        height: 160px;
+    }
+
+    .announce-image-horizontal {
+        width: 140px;
+    }
+
+    .announce-content-horizontal {
+        padding: 12px;
+    }
+
+    .announce-content-horizontal h3 {
+        font-size: 1rem;
+    }
+
+    .category-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .category-section {
+        padding: 15px;
+    }
+
+    .category-title {
+        font-size: 1.2rem;
+    }
+
+    .announce-card-horizontal {
+        min-width: 280px;
+        max-width: 280px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .announce-image-horizontal {
+        width: 100%;
+        height: 150px;
+    }
 }
