@@ -24,6 +24,7 @@ CREATE TABLE user
     global_name     VARCHAR(64),
     biography       TEXT,
     role            ENUM ("user", "admin") DEFAULT "user",
+    banned TINYINT(1) DEFAULT 0,
     created_at      DATETIME               DEFAULT NOW()
 ) ENGINE = InnoDB;
 
@@ -52,6 +53,7 @@ CREATE TABLE announce
     description TEXT,
     price       DOUBLE   DEFAULT 0,
     status     ENUM ("closed", "open") DEFAULT "open",
+    type ENUM ("offer", "request") DEFAULT "offer",
     city_id     INT         NOT NULL,
     author_id   INT         NOT NULL,
     created_at  DATETIME DEFAULT NOW(),
