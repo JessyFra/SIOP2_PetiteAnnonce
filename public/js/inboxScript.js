@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", () => {
         scrollToBottom();
+        setInterval(checkMessages, 250)
     });
 
     const sendMessageButton = document.getElementById("sendMessageButton");
@@ -25,16 +26,22 @@ function scrollToBottom() {
     messagesBox.scrollTop = messagesBox.scrollHeight;
 }
 
+function sendAjax(page, object) {
+    const ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.open("POST", `index.php?page=${page}`);
+    ajaxRequest.setRequestHeader("Content-Type", "application/json");
+    ajaxRequest.send(JSON.stringify(object));
+
+    return ajaxRequest;
+}
+
 
 function sendMessage(content, receiverId) {
     let message = {};
     message.content = content;
     message.receiverId = receiverId;
 
-    const ajaxRequest = new XMLHttpRequest();
-    ajaxRequest.open("POST", "index.php?page=sendMessageAjax");
-    ajaxRequest.setRequestHeader("Content-Type", "application/json");
-    ajaxRequest.send(JSON.stringify(message));
+    const ajaxRequest = sendAjax("sendMessageAjax", message);
 
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
@@ -61,3 +68,9 @@ function sendMessage(content, receiverId) {
         }
     };
 }
+
+function checkMessages() {
+    console.log("A")
+}
+
+
