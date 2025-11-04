@@ -349,54 +349,6 @@
     gap: 12px;
 }
 
-/* Boutons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
-    color: white;
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-secondary {
-    background: white;
-    color: var(--gray-700);
-    border: 1px solid var(--gray-300);
-}
-
-.btn-secondary:hover {
-    background: var(--gray-50);
-    border-color: var(--gray-400);
-}
-
-.btn-danger-outline {
-    background: transparent;
-    color: var(--danger);
-    border: 1px solid var(--danger);
-    width: 100%;
-    justify-content: center;
-}
-
-.btn-danger-outline:hover {
-    background: var(--danger-light);
-}
-
 /* Footer de carte */
 .card-footer {
     padding: 20px 24px;

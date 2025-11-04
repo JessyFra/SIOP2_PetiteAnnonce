@@ -114,6 +114,21 @@ class UserControl
             }
         }
 
+        // Rouvrir une annonce
+        if (isset($_POST['reopenAnnounceId'])) {
+            $announceId = intval($_POST['reopenAnnounceId']);
+            $announce = AnnounceDAO::get($announceId);
+
+            // Vérifier que l'annonce appartient à l'utilisateur
+            if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
+                if (AnnounceDAO::updateStatus($announceId, 'open')) {
+                    $message = "Annonce rouverte avec succès.";
+                } else {
+                    $message = "Erreur lors de la réouverture.";
+                }
+            }
+        }
+
         // Supprimer une annonce
         if (isset($_POST['deleteAnnounceId'])) {
             $announceId = intval($_POST['deleteAnnounceId']);

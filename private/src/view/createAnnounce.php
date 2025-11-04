@@ -184,7 +184,7 @@ $cities = CityDAO::getAll();
                     <i class="fa-solid fa-times"></i>
                     Annuler
                 </a>
-                <button type="submit" name="createAnnounce" class="btn btn-primary">
+                <button type="submit" name="createAnnounce" class="btn publishBtn">
                     <i class="fa-solid fa-check"></i>
                     Publier l'annonce
                 </button>

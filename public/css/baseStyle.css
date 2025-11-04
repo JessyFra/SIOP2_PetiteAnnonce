@@ -31,7 +31,10 @@
 
 .nav-item .btn,
 form .loupe,
-.filterSearchBtn {
+.filterSearchBtn,
+.contactBtn,
+.publishBtn,
+.editBtn {
     background-color: #0d9b8a;
     color: white;
     transition: 0.5s;
@@ -39,7 +42,10 @@ form .loupe,
 
 .nav-item .btn:hover,
 form .loupe:hover,
-.filterSearchBtn:hover {
+.filterSearchBtn:hover,
+.contactBtn:hover,
+.publishBtn:hover,
+.editBtn:hover {
     background-color: #0d9b8abf;
     color: white;
 }
