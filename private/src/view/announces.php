@@ -63,7 +63,7 @@
 
             <!-- Boutons -->
             <div class="col-md-3">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn filterSearchBtn">
                     <i class="fa-solid fa-magnifying-glass"></i> Rechercher
                 </button>
                 <a href="index.php?page=annonces" class="btn btn-secondary">

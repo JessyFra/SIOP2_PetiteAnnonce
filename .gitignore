@@ -1,3 +1,4 @@
 .idea
 private/config/bdd.sql
 private/config/DatabaseLinker.php
+public/assets/img/

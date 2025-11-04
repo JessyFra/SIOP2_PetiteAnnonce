@@ -61,7 +61,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn filterSearchBtn">
                 <i class="fa-solid fa-filter"></i> Filtrer
             </button>
             <a href="index.php?page=admin-announces" class="btn btn-secondary">

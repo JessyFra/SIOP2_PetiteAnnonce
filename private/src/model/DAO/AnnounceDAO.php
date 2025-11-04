@@ -182,4 +182,65 @@ class AnnounceDAO
         $query = $bdd->prepare("DELETE FROM announce WHERE id = ?");
         return $query->execute([$announceId]);
     }
+
+    /**
+     * Insère une nouvelle annonce et retourne son ID
+     */
+    public static function insert($title, $description, $price, $type, $cityId, $authorId, $categoryIds = [])
+    {
+        $bdd = DatabaseLinker::getConnexion();
+
+        // Insertion de l'annonce
+        $query = $bdd->prepare("
+        INSERT INTO announce (title, description, price, type, city_id, author_id) 
+        VALUES (?, ?, ?, ?, ?, ?)
+    ");
+        $query->execute([$title, $description, $price, $type, $cityId, $authorId]);
+
+        // Récupération de l'ID de l'annonce créée
+        $announceId = $bdd->lastInsertId();
+
+        // Insertion des catégories
+        if (!empty($categoryIds)) {
+            $queryCategory = $bdd->prepare("INSERT INTO announce_category (announce_id, category_id) VALUES (?, ?)");
+            foreach ($categoryIds as $categoryId) {
+                $queryCategory->execute([$announceId, $categoryId]);
+            }
+        }
+
+        return $announceId;
+    }
+
+    /**
+     * Met à jour une annonce existante
+     */
+    public static function update($announceId, $title, $description, $price, $type, $cityId, $categoryIds = [])
+    {
+        $bdd = DatabaseLinker::getConnexion();
+
+        // Mise à jour de l'annonce
+        $query = $bdd->prepare("
+        UPDATE announce 
+        SET title = ?, description = ?, price = ?, type = ?, city_id = ? 
+        WHERE id = ?
+    ");
+        $result = $query->execute([$title, $description, $price, $type, $cityId, $announceId]);
+
+        // Mise à jour des catégories
+        if (!empty($categoryIds)) {
+            // Suppression des anciennes catégories
+            $deleteQuery = $bdd->prepare("DELETE FROM announce_category WHERE announce_id = ?");
+            $deleteQuery->execute([$announceId]);
+
+            // Insertion des nouvelles catégories
+            $insertQuery = $bdd->prepare("INSERT INTO announce_category (announce_id, category_id) VALUES (?, ?)");
+            foreach ($categoryIds as $categoryId) {
+                $insertQuery->execute([$announceId, $categoryId]);
+            }
+        }
+
+        return $result;
+    }
+
+    
 }

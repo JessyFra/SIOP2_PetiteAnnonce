@@ -55,7 +55,7 @@ if (!empty($_SESSION['userID'])) {
                 <?php endif; ?>
 
                 <li class="nav-item">
-                    <a class="btn fw-bold" href="index.php?page=annonces">
+                    <a class="btn fw-bold" href="index.php?page=create-announce">
                         <i class="fa-solid fa-square-plus" style="margin-right: 5px;"></i> Déposer une annonce
                     </a>
                 </li>
