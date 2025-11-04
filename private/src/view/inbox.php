@@ -34,6 +34,6 @@ $messages = MessageDAO::getAll($meId, $recipientId);
 
     <div class="d-flex w-100">
         <textarea id="messageTextarea" class="form-control" placeholder="Envoyer un message"></textarea>
-        <button class="btn btn-primary sendButton ">Envoyer</button>
+        <button id="sendMessageButton" class="btn btn-primary">Envoyer</button>
     </div>
 </section>

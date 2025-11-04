@@ -26,6 +26,8 @@ $pages = [
 
     'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css', 'js' => 'inboxScript.js'],
 
+    'sendMessageAjax' => ['class' => 'InboxControl', 'method' => 'sendMessageAjax'],
+
     // Routes admin
     'admin' => ['class' => 'AdminControl', 'method' => 'dashboard', 'title' => 'Administration - Tableau de bord', 'css' => 'adminStyle.css'],
 

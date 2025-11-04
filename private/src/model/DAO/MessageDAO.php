@@ -51,4 +51,11 @@ class MessageDAO {
         return $messages;
     }
 
+    public static function insert($content, $authorId, $receiverId) {
+        $bdd = DatabaseLinker::getConnexion();
+
+        $query = $bdd->prepare("INSERT INTO message (content, author_id, receiver_id) VALUES (?, ?, ?)");
+        $query->execute(array($content, $authorId, $receiverId));
+    }
+
 }

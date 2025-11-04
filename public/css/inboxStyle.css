@@ -49,7 +49,7 @@ body, html {
     margin: 10px 2px 5px 5px;
 }
 
-.sendButton {
+#sendMessageButton {
     height: 50px;
     width: 100px;
     margin: 10px 5px 5px 2px;
@@ -60,7 +60,7 @@ body, html {
         height: 65px;
     }
 
-    .sendButton {
+    #sendMessageButton {
         height: 65px;
     }
 }
