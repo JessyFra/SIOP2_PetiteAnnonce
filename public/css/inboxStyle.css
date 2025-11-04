@@ -7,12 +7,12 @@ body, html {
 
 .container {
     display: flex;
-    height: 100%;
+    height: 85%;
     width: 100%;
     margin-bottom: 10px;
 }
 
-.privateMessages {
+#privateMessages {
     display: flex;
     height: 100%;
     width: 25%;
@@ -20,8 +20,9 @@ body, html {
     border-radius: 15px 0 0 15px;
 }
 
-.messagesBox {
+#mainBox {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 75%;
     align-items: end;
@@ -31,19 +32,21 @@ body, html {
     border-radius: 0 15px 15px 0;
 }
 
-.messageTextarea {
+#messagesBox {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#messageTextarea {
     display: flex;
     text-align: center;
-    padding-top: 0.5em;
     height: 50px;
     width: 100%;
     resize: none;
     scrollbar-width: none;
     margin: 10px 2px 5px 5px;
-}
-
-.messageTextarea:focus {
-    outline: none;
 }
 
 .sendButton {
@@ -52,3 +55,37 @@ body, html {
     margin: 10px 5px 5px 2px;
 }
 
+@media only screen and (max-width: 600px) {
+    #messageTextarea {
+        height: 65px;
+    }
+
+    .sendButton {
+        height: 65px;
+    }
+}
+
+.messageBox {
+    margin: 10px;
+}
+
+.mbox-left {
+    justify-items: end;
+}
+
+.mbox-right {
+    justify-items: start;
+}
+
+.message {
+    max-width: 350px;
+    padding: 10px;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .message {
+        max-width: 200px;
+    }
+}

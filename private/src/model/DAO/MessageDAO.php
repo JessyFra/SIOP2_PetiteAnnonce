@@ -27,11 +27,11 @@ class MessageDAO {
         return null;
     }
 
-    public static function getAll($authorId, $receiverId) {
+    public static function getAll($user1, $user2) {
         $bdd = DatabaseLinker::getConnexion();
 
-        $query = $bdd->prepare("SELECT * FROM message WHERE author_id = ? AND receiver_id = ?");
-        $query->execute(array($authorId, $receiverId));
+        $query = $bdd->prepare("SELECT * FROM message WHERE (author_id = ? AND receiver_id = ?) OR (receiver_id = ? AND author_id = ?) ORDER BY created_at");
+        $query->execute(array($user1, $user2, $user1, $user2));
         $results = $query->fetchAll();
 
         $messages = [];

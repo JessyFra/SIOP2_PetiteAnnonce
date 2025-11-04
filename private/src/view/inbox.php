@@ -1,23 +1,39 @@
 <?php
 
 if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
-    $receiverId = htmlspecialchars($_GET["id"], ENT_QUOTES);
-    $authorId = $_SESSION["userID"];
+    $recipientId = htmlspecialchars($_GET["id"], ENT_QUOTES);
+    $meId = $_SESSION["userID"];
 } else {
     header("Location: index.php?page=auth");
     exit;
 }
 
-$messages = MessageDAO::getAll($authorId, $receiverId);
+$messages = MessageDAO::getAll($meId, $recipientId);
 
 ?>
 
-<section class="privateMessages">
+<nav id="privateMessages">
 
-</section>
+</nav>
 
-<section class="messagesBox">
+<section id="mainBox">
+    <div id="messagesBox" class="d-flex w-100 h-100">
+        <?php
 
-    <textarea class="form-control messageTextarea" placeholder="Envoyer un message"></textarea>
-    <button class="btn btn-primary sendButton ">Envoyer</button>
+        foreach ($messages as $message) {
+            if ($message->getAuthorId() == $meId) {
+                echo "<section class='messageBox mbox-left'>";
+            } else {
+                echo "<section class='messageBox mbox-right'>";
+            }
+
+        ?>
+            <article class="message"><?php echo $message->getContent(); ?></article></section>
+        <?php } ?>
+    </div>
+
+    <div class="d-flex w-100">
+        <textarea id="messageTextarea" class="form-control" placeholder="Envoyer un message"></textarea>
+        <button class="btn btn-primary sendButton ">Envoyer</button>
+    </div>
 </section>

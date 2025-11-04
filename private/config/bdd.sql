@@ -76,7 +76,7 @@ CREATE TABLE announce_category
 CREATE TABLE message
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    content     TEXT NOT NULL,
+    content     LONGTEXT NOT NULL,
     author_id   INT  NOT NULL,
     receiver_id INT  NOT NULL,
     created_at  DATETIME DEFAULT NOW(),
@@ -156,3 +156,16 @@ VALUES (1, 2),
        (19, 1),
        (20, 5),
        (20, 6);
+
+
+# Messages
+INSERT INTO message (content, author_id, receiver_id)
+VALUES ("Bonjour Mr Admin, j'aurai une demande à vous faire", 2, 1),
+       ("Bonjour Mr User", 1, 2),
+       ("Que puis-je faire pour vous ?", 1, 2),
+       ("Bonjour,
+
+Je vous contacte car je n’arrive plus à modifier mon adresse e-mail sur mon compte par ce que j'ai accidentellement supprimé mon email. Merci d’avance pour votre aide.", 2, 1),
+       ("Merci de votre message, votre email à été réinitilisé. Vous pouvez en remettre un nouveau.", 1, 2),
+       ("Merci beaucoup Mr ! Bonne journée à vous !", 2, 1),
+       ("Bonne journée à vous aussi", 1, 2);
