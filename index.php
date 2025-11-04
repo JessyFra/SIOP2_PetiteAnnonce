@@ -24,7 +24,7 @@ $pages = [
 
     'annonce' => ['class' => 'AnnounceControl', 'method' => 'announce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
 
-    'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css'],
+    'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css', 'js' => 'inboxScript.js'],
 
     // Routes admin
     'admin' => ['class' => 'AdminControl', 'method' => 'dashboard', 'title' => 'Administration - Tableau de bord', 'css' => 'adminStyle.css'],
