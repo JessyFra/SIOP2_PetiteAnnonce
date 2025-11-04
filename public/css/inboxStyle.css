@@ -69,11 +69,11 @@ body, html {
     margin: 10px;
 }
 
-.mbox-left {
+.mbox-right {
     justify-items: end;
 }
 
-.mbox-right {
+.mbox-left {
     justify-items: start;
 }
 

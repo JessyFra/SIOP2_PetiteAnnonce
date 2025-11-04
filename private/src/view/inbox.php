@@ -22,9 +22,9 @@ $messages = MessageDAO::getAll($meId, $recipientId);
 
         foreach ($messages as $message) {
             if ($message->getAuthorId() == $meId) {
-                echo "<section class='messageBox mbox-left'>";
-            } else {
                 echo "<section class='messageBox mbox-right'>";
+            } else {
+                echo "<section class='messageBox mbox-left'>";
             }
 
         ?>
