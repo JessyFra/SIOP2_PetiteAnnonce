@@ -84,8 +84,12 @@ class AnnounceControl
                 $error = "Veuillez sélectionner au moins une catégorie.";
             } elseif ($type == 'offer' && $price <= 0) {
                 $error = "Le prix doit être supérieur à 0 pour une offre.";
-            } elseif (empty($_FILES['images']['name'][0])) {
+            }
+            // CORRECTION : Meilleure validation des images
+            elseif (!isset($_FILES['images']) || !isset($_FILES['images']['name']) || empty($_FILES['images']['name'][0])) {
                 $error = "Veuillez ajouter au moins une image.";
+            } elseif ($_FILES['images']['error'][0] === UPLOAD_ERR_NO_FILE) {
+                $error = "Aucune image n'a été téléchargée.";
             } else {
                 // Insertion de l'annonce
                 require_once 'private/src/model/DAO/AnnounceDAO.php';
@@ -107,6 +111,10 @@ class AnnounceControl
                 }
             }
         }
+
+        // Récupération des catégories et villes
+        $categories = CategoryDAO::getAll();
+        $cities = CityDAO::getAll();
 
         include_once 'private/src/view/createAnnounce.php';
     }
@@ -207,38 +215,63 @@ class AnnounceControl
             mkdir($uploadDir, 0755, true);
         }
 
-        $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
         $maxSize = 5 * 1024 * 1024; // 5MB
 
         $uploadedCount = 0;
+        $errors = [];
 
-        for ($i = 0; $i < count($files['name']); $i++) {
-            if ($files['error'][$i] === UPLOAD_ERR_OK) {
-                $fileType = $files['type'][$i];
-                $fileSize = $files['size'][$i];
+        // Vérifier que nous avons bien un tableau de fichiers
+        if (!isset($files['name']) || !is_array($files['name'])) {
+            return false;
+        }
 
-                // Validation
-                if (!in_array($fileType, $allowedTypes)) {
-                    continue;
-                }
+        $fileCount = count($files['name']);
 
-                if ($fileSize > $maxSize) {
-                    continue;
-                }
-
-                // Génération du nom de fichier unique
-                $extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
-                $filename = $announceId . '_' . time() . '_' . uniqid() . '.' . $extension;
-                $filepath = $uploadDir . $filename;
-
-                // Déplacement du fichier
-                if (move_uploaded_file($files['tmp_name'][$i], $filepath)) {
-                    // La première image est principale seulement si demandé
-                    $isMain = ($setFirstAsMain && $uploadedCount === 0) ? 1 : 0;
-                    AnnounceImageDAO::insert($announceId, $filename, $isMain);
-                    $uploadedCount++;
-                }
+        for ($i = 0; $i < $fileCount; $i++) {
+            // Ignorer les fichiers vides ou avec erreurs
+            if ($files['error'][$i] === UPLOAD_ERR_NO_FILE || empty($files['name'][$i])) {
+                continue;
             }
+
+            if ($files['error'][$i] !== UPLOAD_ERR_OK) {
+                $errors[] = "Erreur lors de l'upload du fichier {$files['name'][$i]}";
+                continue;
+            }
+
+            $fileType = $files['type'][$i];
+            $fileSize = $files['size'][$i];
+
+            // Validation du type
+            if (!in_array($fileType, $allowedTypes)) {
+                $errors[] = "Type de fichier non autorisé pour {$files['name'][$i]}";
+                continue;
+            }
+
+            // Validation de la taille
+            if ($fileSize > $maxSize) {
+                $errors[] = "Fichier trop volumineux : {$files['name'][$i]} (max 5MB)";
+                continue;
+            }
+
+            // Génération du nom de fichier unique
+            $filename = $announceId . '.png';
+            $filepath = $uploadDir . $filename;
+
+            // Déplacement du fichier
+            if (move_uploaded_file($files['tmp_name'][$i], $filepath)) {
+                // La première image uploadée est principale seulement si demandé
+                $isMain = ($setFirstAsMain && $uploadedCount === 0) ? 1 : 0;
+                AnnounceImageDAO::insert($announceId, $filename, $isMain);
+                $uploadedCount++;
+            } else {
+                $errors[] = "Échec du déplacement du fichier {$files['name'][$i]}";
+            }
+        }
+
+        // Log des erreurs si nécessaire (optionnel)
+        if (!empty($errors)) {
+            error_log("Erreurs d'upload d'images : " . implode(", ", $errors));
         }
 
         return $uploadedCount > 0;
@@ -253,32 +286,23 @@ class AnnounceControl
 
         $query = $_GET['q'] ?? '';
 
-        if (strlen($query) < 2) {
+        if (empty($query)) {
             echo json_encode([]);
             exit;
         }
 
-        // Recherche dans les annonces
-        require_once 'private/src/model/DAO/AnnounceDAO.php';
         $announces = AnnounceDAO::search(['search' => $query]);
 
-        // Limiter à 5 résultats pour l'autocomplétion
-        $announces = array_slice($announces, 0, 5);
-
-        // Formater les résultats
         $results = [];
         foreach ($announces as $announce) {
             $results[] = [
                 'id' => $announce->getId(),
                 'title' => $announce->getTitle(),
                 'type' => $announce->getType(),
-                'price' => number_format($announce->getPrice(), 2, ',', ' '),
-                'city' => $announce->getCityName(),
-                'status' => $announce->getStatus()
+                'price' => $announce->getPrice()
             ];
         }
 
         echo json_encode($results);
-        exit;
     }
 }

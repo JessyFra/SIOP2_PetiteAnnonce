@@ -1,7 +1,6 @@
 <?php
 
 include_once 'private/src/helper/DateHelper.php';
-// Récupérer les annonces de l'utilisateur au début
 include_once 'private/src/model/DAO/AnnounceDAO.php';
 $announces = AnnounceDAO::getByUser($user->getId());
 
@@ -266,11 +265,21 @@ if (!is_array($announces)) {
                                 </a>
 
                                 <?php if ($announce->getStatus() != 'closed'): ?>
+                                    <!-- Bouton Clôturer pour les annonces actives -->
                                     <form method="post" action="" style="display:inline;">
                                         <input type="hidden" name="closeAnnounceId" value="<?= $announce->getId() ?>">
                                         <button type="submit" class="btn-small btn-small-secondary">
                                             <i class="fa-solid fa-pause" style="font-size: 14px;"></i>
                                             Clôturer
+                                        </button>
+                                    </form>
+                                <?php else: ?>
+                                    <!-- Bouton Rouvrir pour les annonces clôturées -->
+                                    <form method="post" action="" style="display:inline;">
+                                        <input type="hidden" name="reopenAnnounceId" value="<?= $announce->getId() ?>">
+                                        <button type="submit" class="btn-small btn-small-success">
+                                            <i class="fa-solid fa-play" style="font-size: 14px;"></i>
+                                            Rouvrir
                                         </button>
                                     </form>
                                 <?php endif; ?>

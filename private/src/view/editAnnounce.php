@@ -256,7 +256,7 @@ $existingImages = AnnounceImageDAO::getByAnnounce($announceId);
                     <i class="fa-solid fa-times"></i>
                     Annuler
                 </a>
-                <button type="submit" name="updateAnnounce" class="btn btn-primary">
+                <button type="submit" name="updateAnnounce" class="btn editBtn">
                     <i class="fa-solid fa-check"></i>
                     Enregistrer les modifications
                 </button>

@@ -83,14 +83,9 @@ if (!$announce) {
             <?php endif; ?>
 
             <div class="announce-actions">
-                <?php if ($announce->getType() == 'offer' && $announce->getStatus() == 'open'): ?>
-                    <button class="btn btn-success btn-block">
-                        <i class="fa-solid fa-shopping-cart"></i> Acheter
-                    </button>
-                <?php endif; ?>
 
                 <?php if (isset($_SESSION['userID']) && $_SESSION['userID'] != $announce->getAuthorId()): ?>
-                    <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>" class="btn btn-primary btn-block">
+                    <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>" class="btn btn-block contactBtn">
                         <i class="fa-solid fa-envelope"></i> Contacter
                     </a>
                 <?php endif; ?>
