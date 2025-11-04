@@ -44,6 +44,7 @@ class CategoryDTO {
                     $announce->getDescription(),
                     $announce->getPrice(),
                     $announce->getStatus(),
+                    $announce->getType(),
                     $announce->getCityId(),
                     $announce->getAuthorId(),
                     $announce->getCreatedAt()

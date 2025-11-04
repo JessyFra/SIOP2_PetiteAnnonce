@@ -17,13 +17,21 @@ $pages = [
     'auth' => ['class' => 'UserControl', 'method' => 'auth', 'title' => 'Compte - Petites annonces', 'css' => 'authStyle.css'],
 
     'profil' => ['class' => 'UserControl', 'method' => 'profil', 'title' => 'Profil - Petites annonces', 'css' => 'profilStyle.css', 'js' => 'profil.js'],
-    
+
+    'user-profile' => ['class' => 'UserControl', 'method' => 'viewProfile', 'title' => 'Profil utilisateur', 'css' => 'publicProfileStyle.css'],
+
     'logout' => ['class' => 'UserControl', 'method' => 'logout', 'title' => 'Déconnexion'],
 
     'annonce' => ['class' => 'AnnounceControl', 'method' => 'announce', 'title' => 'Petites annonces', 'css' => 'announceStyle.css'],
 
-    'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css']
-    // Plus de pages peuvent être ajoutées ici
+    'inbox' => ['class' => 'InboxControl', 'method' => 'inbox', 'title' => 'Messagerie', 'css' => 'inboxStyle.css'],
+
+    // Routes admin
+    'admin' => ['class' => 'AdminControl', 'method' => 'dashboard', 'title' => 'Administration - Tableau de bord', 'css' => 'adminStyle.css'],
+
+    'admin-users' => ['class' => 'AdminControl', 'method' => 'manageUsers', 'title' => 'Administration - Utilisateurs', 'css' => 'adminStyle.css'],
+
+    'admin-announces' => ['class' => 'AdminControl', 'method' => 'manageAnnounces', 'title' => 'Administration - Annonces', 'css' => 'adminStyle.css'],
 ];
 
 // Vérifie les paramètres après ? dans l'URL, si vide redirection vers la liste des annonces
@@ -35,7 +43,7 @@ if (empty($_SERVER['QUERY_STRING'])) {
 // Démarrage du buffer pour capturer le contenu de la page
 ob_start();
 
-include_once 'private/src/control/' . $pages[$page]['class'] . '.php'; 
+include_once 'private/src/control/' . $pages[$page]['class'] . '.php';
 $controllerClass = $pages[$page]['class'];
 $controller = new $controllerClass();
 $controller->{$pages[$page]['method']}();

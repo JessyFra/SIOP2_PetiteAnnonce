@@ -1,3 +1,14 @@
+<?php
+// Vérifier si l'utilisateur est admin
+$isAdmin = false;
+if (!empty($_SESSION['userID'])) {
+    include_once 'private/src/model/DAO/UserDAO.php';
+    $userDAO = new UserDAO();
+    $currentUser = $userDAO->get($_SESSION['userID']);
+    $isAdmin = $currentUser && $currentUser->getRole() === 'admin';
+}
+?>
+
 <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top custom-navbar">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="index.php?page=annonces" style="color: #0D9B8A;">
@@ -25,6 +36,14 @@
                     <li class="nav-item">
                         <a class="nav-link custom-nav-link" href="index.php?page=profil">Profil</a>
                     </li>
+
+                    <?php if ($isAdmin): ?>
+                        <li class="nav-item">
+                            <a class="nav-link custom-nav-link" href="index.php?page=admin" style="color: #dc3545;">
+                                <i class="fa-solid fa-shield-halved"></i> Admin
+                            </a>
+                        </li>
+                    <?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link text-danger" href="index.php?page=logout" title="Déconnexion">Déconnexion</a>
