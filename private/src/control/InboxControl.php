@@ -11,12 +11,23 @@ class InboxControl {
         header('Content-Type: application/json');
         $message = json_decode(file_get_contents("php://input"));
 
-        if (!empty($message->content) && !empty($_SESSION['userID']) && !empty($message->receiverId)) {
-            MessageDAO::insert($message->content, $_SESSION['userID'], $message->receiverId);
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Missing data']);
+        if (empty($message->content) || empty($_SESSION['userID']) || empty($message->receiverId)) {
+            return;
         }
+
+        MessageDAO::insert($message->content, $_SESSION['userID'], $message->receiverId);
+    }
+
+    public function countReceiverAjax() {
+        $receiverId = $_GET["id"];
+
+        if (empty($_SESSION['userID']) || empty($receiverId)) {
+            return;
+        }
+
+        $count = MessageDAO::getCountReceiverMessages($_SESSION["userID"], $receiverId);
+        $arrayCount = array($count);
+        echo json_encode($arrayCount);
     }
 
 }

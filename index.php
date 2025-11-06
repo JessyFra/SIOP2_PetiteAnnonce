@@ -28,6 +28,8 @@ $pages = [
 
     'sendMessageAjax' => ['class' => 'InboxControl', 'method' => 'sendMessageAjax'],
 
+    'countReceiverAjax' => ['class' => 'InboxControl', 'method' => 'countReceiverAjax'],
+
     // Routes admin
     'admin' => ['class' => 'AdminControl', 'method' => 'dashboard', 'title' => 'Administration - Tableau de bord', 'css' => 'adminStyle.css'],
 

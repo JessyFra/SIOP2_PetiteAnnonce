@@ -1,7 +1,12 @@
+const recipientId = new URLSearchParams(window.location.search).get("id");
+let oldCountReceiverMessages = 0;
+let newCountReceiverMessages = 0;
+
+
 document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("load", () => {
         scrollToBottom();
-        setInterval(checkMessages, 250)
+        setInterval(checkMessages, 1000)
     });
 
     const sendMessageButton = document.getElementById("sendMessageButton");
@@ -9,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sendMessageButton.addEventListener("click", function () {
         const content = messageTextarea.value;
-        const recipientId = new URLSearchParams(window.location.search).get("id");
 
         if (!content || content === "") {
             return;
@@ -26,11 +30,20 @@ function scrollToBottom() {
     messagesBox.scrollTop = messagesBox.scrollHeight;
 }
 
-function sendAjax(page, object) {
+function postAjax(page, object) {
     const ajaxRequest = new XMLHttpRequest();
     ajaxRequest.open("POST", `index.php?page=${page}`);
     ajaxRequest.setRequestHeader("Content-Type", "application/json");
     ajaxRequest.send(JSON.stringify(object));
+
+    return ajaxRequest;
+}
+
+function getAjax(page) {
+    const ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.open("GET", `index.php?page=${page}`);
+    ajaxRequest.setRequestHeader("Content-Type", "application/json");
+    ajaxRequest.send();
 
     return ajaxRequest;
 }
@@ -41,7 +54,7 @@ function sendMessage(content, receiverId) {
     message.content = content;
     message.receiverId = receiverId;
 
-    const ajaxRequest = sendAjax("sendMessageAjax", message);
+    const ajaxRequest = postAjax("sendMessageAjax", message);
 
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
@@ -78,16 +91,27 @@ function appendMessage(content, isAuthor) {
 }
 
 
-let oldCountMessages = 0;
-let newCountMessages = 0;
-
 function checkMessages() {
-    if (oldCountMessages === newCountMessages) {
+    if (oldCountReceiverMessages === newCountReceiverMessages) {
         return;
     }
 
+    const ajaxRequest = getAjax(`countReceiverAjax?id=${recipientId}`);
+
+    ajaxRequest.addEventListener ("readystatechange", function(){
+        if (ajaxRequest.readyState === 4) {
+            if (ajaxRequest.status === 200) {
+                const response = JSON.parse(ajaxRequest.responseText);
+                console.log(response);
+            }
+
+            console.log(ajaxRequest.status);
+            scrollToBottom();
+        }
+    });
+
     // todo : Ajax -> BDD -> Content du dernier message du receveur -> appendMessage(content, false)
 
-    oldCountMessages = newCountMessages;
+    oldCountReceiverMessages = newCountReceiverMessages;
 }
 
