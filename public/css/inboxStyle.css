@@ -120,3 +120,28 @@ body, html {
         max-width: 200px;
     }
 }
+
+.pmBox {
+    display: flex;
+    background-color: #0D9B8A;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 75px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.pmBox > * {
+    pointer-events: none;
+}
+
+.pmBox img {
+    background-color: white;
+    height: 60px;
+    width: 60px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 7px;
+}

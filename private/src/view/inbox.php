@@ -13,7 +13,10 @@ $messages = MessageDAO::getAll($meId, $recipientId);
 ?>
 
 <nav id="privateMessages">
-
+    <div class="pmBox">
+        <img src="" alt="">
+        <div>Administrateur (@admin)</div>
+    </div>
 </nav>
 
 <section id="mainBox">
