@@ -101,7 +101,6 @@ function sendMessage(content, receiverId) {
                 newCountMessages = oldCountMessages;
             }
 
-            console.log(ajaxRequest.status);
             scrollToBottom();
         }
     };
@@ -141,13 +140,12 @@ function checkMessages() {
 
     ajaxRequest.addEventListener("readystatechange", function() {
         if (ajaxRequest.readyState === 4 && ajaxRequest.status === 200) {
-            console.log("countMessagesAjax response:", ajaxRequest.responseText);
-
             let response = 0;
+
             try {
                 response = JSON.parse(ajaxRequest.responseText);
             } catch (e) {
-                console.error("JSON countMessages parse error", e);
+                // Rien
             }
 
             newCountMessages = Number(response) || 0;
@@ -178,13 +176,12 @@ function getLastMessage() {
 
     ajaxRequest.addEventListener("readystatechange", function() {
         if (ajaxRequest.readyState === 4 && ajaxRequest.status === 200) {
-            console.log("getLastMessageAjax response:", ajaxRequest.responseText);
-
             let response = {};
+
             try {
                 response = JSON.parse(ajaxRequest.responseText);
             } catch (e) {
-                console.error("JSON getLastMessage parse error", e);
+                // Rien
             }
 
             if (response && response.content) {
@@ -194,6 +191,7 @@ function getLastMessage() {
             }
         }
     });
+
 }
 
 
