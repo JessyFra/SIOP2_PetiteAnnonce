@@ -28,7 +28,7 @@ $messages = MessageDAO::getAll($meId, $recipientId);
             }
 
         ?>
-            <article class="message"><?php echo $message->getContent(); ?></article></section>
+            <article class="message"><?php echo htmlspecialchars($message->getContent(), ENT_QUOTES); ?></article></section>
         <?php } ?>
     </div>
 
