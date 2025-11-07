@@ -18,16 +18,31 @@ class InboxControl {
         MessageDAO::insert($message->content, $_SESSION['userID'], $message->receiverId);
     }
 
-    public function countReceiverAjax() {
+    public function countMessagesAjax() {
+        header('Content-Type: application/json');
         $receiverId = $_GET["id"];
 
         if (empty($_SESSION['userID']) || empty($receiverId)) {
+            echo json_encode(0);
             return;
         }
 
-        $count = MessageDAO::getCountReceiverMessages($_SESSION["userID"], $receiverId);
-        $arrayCount = array($count);
-        echo json_encode($arrayCount);
+        $count = MessageDAO::getCountMessages($_SESSION["userID"], $receiverId);
+        echo json_encode($count);
     }
+
+    public function getLastMessageAjax() {
+        header('Content-Type: application/json');
+        $receiverId = $_GET["id"];
+
+        if (empty($_SESSION['userID']) || empty($receiverId)) {
+            echo json_encode(new stdClass());
+            return;
+        }
+
+        $lastMessage = MessageDAO::getLastMessage($_SESSION["userID"], $receiverId);
+        echo json_encode($lastMessage ?: new stdClass());
+    }
+
 
 }

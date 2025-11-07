@@ -17,7 +17,7 @@ $messages = MessageDAO::getAll($meId, $recipientId);
 </nav>
 
 <section id="mainBox">
-    <div id="messagesBox" class="d-flex w-100 h-100">
+    <div id="messagesBox" class="d-flex w-100 h-100" data-me-id="<?php echo htmlspecialchars($meId, ENT_QUOTES); ?>" data-recipient-id="<?php echo htmlspecialchars($recipientId, ENT_QUOTES); ?>">
         <?php
 
         foreach ($messages as $message) {

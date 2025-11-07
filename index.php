@@ -28,7 +28,9 @@ $pages = [
 
     'sendMessageAjax' => ['class' => 'InboxControl', 'method' => 'sendMessageAjax'],
 
-    'countReceiverAjax' => ['class' => 'InboxControl', 'method' => 'countReceiverAjax'],
+    'countMessagesAjax' => ['class' => 'InboxControl', 'method' => 'countMessagesAjax'],
+
+    'getLastMessageAjax' => ['class' => 'InboxControl', 'method' => 'getLastMessageAjax'],
 
     // Routes admin
     'admin' => ['class' => 'AdminControl', 'method' => 'dashboard', 'title' => 'Administration - Tableau de bord', 'css' => 'adminStyle.css'],
@@ -46,6 +48,14 @@ if (empty($_SERVER['QUERY_STRING'])) {
 
 // Démarrage du buffer pour capturer le contenu de la page
 ob_start();
+
+if (in_array($page, ['sendMessageAjax', 'countMessagesAjax', 'getLastMessageAjax'])) {
+    include_once 'private/src/control/' . $pages[$page]['class'] . '.php';
+    $controllerClass = $pages[$page]['class'];
+    $controller = new $controllerClass();
+    $controller->{$pages[$page]['method']}();
+    exit;
+}
 
 include_once 'private/src/control/' . $pages[$page]['class'] . '.php';
 $controllerClass = $pages[$page]['class'];
