@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (recipientId) {
             checkMessages();
-            setInterval(checkMessages, 1000);
+            setInterval(checkMessages, 10);
         }
     });
 
