@@ -16,7 +16,7 @@ body, html {
     display: flex;
     height: 100%;
     width: 25%;
-    border: 2px solid gray;
+    border: 2px solid #0d9b8a;
     border-radius: 15px 0 0 15px;
 }
 
@@ -27,7 +27,7 @@ body, html {
     width: 75%;
     align-items: end;
     justify-content: center;
-    border: 2px solid gray;
+    border: 2px solid #0d9b8a;
     border-left: none;
     border-radius: 0 15px 15px 0;
 }
@@ -37,7 +37,28 @@ body, html {
     flex-direction: column;
     height: 100%;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #0d9b8a #f3f4f6;
 }
+
+.messagesBox::-webkit-scrollbar {
+    height: 8px;
+}
+
+.messagesBox::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 4px;
+}
+
+.messagesBox::-webkit-scrollbar-thumb {
+    background: #0d9b8a;
+    border-radius: 4px;
+}
+
+.messagesBox::-webkit-scrollbar-thumb:hover {
+    background: #0a7a6d;
+}
+
 
 #messageTextarea {
     display: flex;
@@ -53,6 +74,8 @@ body, html {
     height: 50px;
     width: 100px;
     margin: 10px 5px 5px 2px;
+    background-color: #0d9b8a;
+    color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -82,6 +105,14 @@ body, html {
     padding: 10px;
     border: black solid 2px;
     border-radius: 10px;
+}
+
+.msg-right {
+    background-color: white;
+}
+
+.msg-left {
+    background-color: #e6f7f5;
 }
 
 @media only screen and (max-width: 600px) {
