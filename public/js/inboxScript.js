@@ -1,16 +1,16 @@
 let recipientId = new URLSearchParams(window.location.search).get("id");
-let currentUserId = null;
+let authorId = null;
 let oldCountMessages = 0;
 let newCountMessages = 0;
 let isCountInitialized = false;
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const messagesBox = document.getElementById("messagesBox");
 
     if (messagesBox) {
         recipientId = messagesBox.dataset.recipientId || recipientId;
-        currentUserId = messagesBox.dataset.meId || null;
+        authorId = messagesBox.dataset.meId || null;
     }
 
     window.addEventListener("load", () => {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageTextarea = document.getElementById("messageTextarea");
 
     if (sendMessageButton && messageTextarea) {
-        sendMessageButton.addEventListener("click", function () {
+        sendMessageButton.addEventListener("click", function() {
             const content = messageTextarea.value;
 
             if (!content || content.trim() === "") {
@@ -75,24 +75,19 @@ function getAjax(page, params = {}) {
 }
 
 
-function sendMessage(content, receiverId) {
+function sendMessage(content, recipientId) {
     const trimmedContent = content.trim();
 
-    if (!trimmedContent || !receiverId) {
+    if (!trimmedContent || !recipientId) {
         return;
     }
 
     const payload = {
         content: trimmedContent,
-        receiverId: receiverId
+        recipientId: recipientId
     };
 
     const ajaxRequest = postAjax("sendMessageAjax", payload);
-
-    ajaxRequest.onerror = function () {
-        console.error("Erreur de connexion");
-        sendPopup("Erreur de connexion");
-    };
 
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
@@ -104,6 +99,8 @@ function sendMessage(content, receiverId) {
                 appendMessage(trimmedContent, true);
                 oldCountMessages += 1;
                 newCountMessages = oldCountMessages;
+            } else {
+                sendPopup("Erreur de connexion");
             }
 
             scrollToBottom();
@@ -124,6 +121,7 @@ function sendPopup(message) {
 
 function appendMessage(content, isAuthor) {
     const messagesBox = document.getElementById("messagesBox");
+    const introMessage = document.getElementById("introMessage");
 
     if (!messagesBox) {
         return;
@@ -147,6 +145,15 @@ function appendMessage(content, isAuthor) {
 
     messageBox.appendChild(message);
     messagesBox.appendChild(messageBox);
+
+    introMessage.style.transition = "all .4s";
+
+    requestAnimationFrame(() => {
+        introMessage.style.height = "0";
+        introMessage.style.opacity = "0";
+    });
+
+    setTimeout(() => introMessage.remove(), 400);
 }
 
 
@@ -204,7 +211,7 @@ function getLastMessage() {
             }
 
             if (response && response.content) {
-                const isAuthor = response.author_id && currentUserId && String(response.author_id) === String(currentUserId);
+                const isAuthor = response.author_id && authorId && String(response.author_id) === String(authorId);
                 appendMessage(response.content, Boolean(isAuthor));
                 scrollToBottom();
             }

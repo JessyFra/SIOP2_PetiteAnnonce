@@ -28,7 +28,7 @@ class UserControl
                         $userData['id'],
                         $userData['name'],
                         $userData['hashed_password'],
-                        $userData['global_name'],
+                        $userData['display_name'],
                         $userData['biography'],
                         $userData['role'],
                         $userData['created_at'],
@@ -89,7 +89,7 @@ class UserControl
         // Mise à jour profil
         if (isset($_POST['updateProfile'])) {
             $user->setName($_POST['name']);
-            $user->setGlobalName($_POST['global_name']);
+            $user->setDisplayName($_POST['display_name']);
             $user->setBiography($_POST['biography']);
             $newPassword = $_POST['new_password'];
 

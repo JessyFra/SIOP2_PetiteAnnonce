@@ -10,7 +10,7 @@
                 <i class="fa-solid fa-shield-halved"></i>
                 Espace Administrateur
             </h1>
-            <p class="admin-subtitle">Bienvenue <?= htmlspecialchars($admin->getGlobalName() ?? $admin->getName()) ?></p>
+            <p class="admin-subtitle">Bienvenue <?= htmlspecialchars($admin->getDisplayName() ?? $admin->getName()) ?></p>
         </div>
     </div>
 

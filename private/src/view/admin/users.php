@@ -54,7 +54,7 @@
                         <tr>
                             <td>#<?= $user->getId() ?></td>
                             <td><?= htmlspecialchars($user->getName()) ?></td>
-                            <td><?= htmlspecialchars($user->getGlobalName() ?? '-') ?></td>
+                            <td><?= htmlspecialchars($user->getDisplayName() ?? '-') ?></td>
                             <td>
                                 <?php if ($user->getRole() == 'admin'): ?>
                                     <span class="badge badge-danger">
