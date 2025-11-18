@@ -19,7 +19,7 @@ class UserDAO
                 $result["id"],
                 $result["name"],
                 $result["hashed_password"],
-                $result["global_name"],
+                $result["display_name"],
                 $result["biography"],
                 $result["role"],
                 $result["created_at"],
@@ -46,7 +46,7 @@ class UserDAO
                 $result["id"],
                 $result["name"],
                 $result["hashed_password"],
-                $result["global_name"],
+                $result["display_name"],
                 $result["biography"],
                 $result["role"],
                 $result["created_at"],
@@ -93,11 +93,11 @@ class UserDAO
         if ($newPassword) {
             $state = $bdd->prepare("
             UPDATE user 
-            SET global_name = ?, biography = ?, name = ?, hashed_password = SHA2(?, 256)
+            SET display_name = ?, biography = ?, name = ?, hashed_password = SHA2(?, 256)
             WHERE id = ?
         ");
             $state->execute([
-                $user->getGlobalName(),
+                $user->getDisplayName(),
                 $user->getBiography(),
                 $user->getName(),
                 $newPassword,
@@ -106,11 +106,11 @@ class UserDAO
         } else {
             $state = $bdd->prepare("
             UPDATE user 
-            SET global_name = ?, biography = ?, name = ?
+            SET display_name = ?, biography = ?, name = ?
             WHERE id = ?
         ");
             $state->execute([
-                $user->getGlobalName(),
+                $user->getDisplayName(),
                 $user->getBiography(),
                 $user->getName(),
                 $user->getId()

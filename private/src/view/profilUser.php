@@ -26,7 +26,7 @@ if (!is_array($announces)) {
             </div>
             <div>
                 <h1 class="dashboard-title">Tableau de bord</h1>
-                <p class="dashboard-subtitle">Bienvenue, <?= $user->getGlobalName() ?></p>
+                <p class="dashboard-subtitle">Bienvenue, <?= $user->getDisplayName() ?></p>
             </div>
         </div>
         <div class="user-badge">
@@ -118,12 +118,12 @@ if (!is_array($announces)) {
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 16v-4M12 8h.01" />
                         </svg>
-                        Nom global
+                        Nom display
                     </label>
                     <div class="input-group">
-                        <span class="form-value" id="global_name-display"><?= $user->getGlobalName() ?></span>
-                        <input type="text" class="form-input" id="global_name-input" name="global_name" value="<?= $user->getGlobalName() ?>" hidden>
-                        <button type="button" class="icon-btn" onclick="toggleEdit('global_name')">
+                        <span class="form-value" id="display_name-display"><?= $user->getDisplayName() ?></span>
+                        <input type="text" class="form-input" id="display_name-input" name="display_name" value="<?= $user->getDisplayName() ?>" hidden>
+                        <button type="button" class="icon-btn" onclick="toggleEdit('display_name')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />

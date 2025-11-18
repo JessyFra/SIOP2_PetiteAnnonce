@@ -1,5 +1,5 @@
 let recipientId = new URLSearchParams(window.location.search).get("id");
-let currentUserId = null;
+let authorId = null;
 let oldCountMessages = 0;
 let newCountMessages = 0;
 let isCountInitialized = false;
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (messagesBox) {
         recipientId = messagesBox.dataset.recipientId || recipientId;
-        currentUserId = messagesBox.dataset.meId || null;
+        authorId = messagesBox.dataset.meId || null;
     }
 
     window.addEventListener("load", () => {
@@ -75,16 +75,16 @@ function getAjax(page, params = {}) {
 }
 
 
-function sendMessage(content, receiverId) {
+function sendMessage(content, recipientId) {
     const trimmedContent = content.trim();
 
-    if (!trimmedContent || !receiverId) {
+    if (!trimmedContent || !recipientId) {
         return;
     }
 
     const payload = {
         content: trimmedContent,
-        receiverId: receiverId
+        recipientId: recipientId
     };
 
     const ajaxRequest = postAjax("sendMessageAjax", payload);
@@ -211,7 +211,7 @@ function getLastMessage() {
             }
 
             if (response && response.content) {
-                const isAuthor = response.author_id && currentUserId && String(response.author_id) === String(currentUserId);
+                const isAuthor = response.author_id && authorId && String(response.author_id) === String(authorId);
                 appendMessage(response.content, Boolean(isAuthor));
                 scrollToBottom();
             }

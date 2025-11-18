@@ -3,13 +3,13 @@
 $inPm = false;
 
 if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
-    $meId = $_SESSION["userID"];
+    $authorId = $_SESSION["userID"];
     $recipientId = htmlspecialchars($_GET["id"], ENT_QUOTES);
 
-    $messages = MessageDAO::getAll($meId, $recipientId);
+    $messages = MessageDAO::getAll($authorId, $recipientId);
     $recipient = UserDAO::get($recipientId);
 
-    if (!empty($recipient) && $meId != $recipientId) {
+    if (!empty($recipient) && $authorId != $recipientId) {
         $inPm = true;
     }
 }
@@ -20,9 +20,9 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
     <?php if ($inPm) { ?>
         <div class="pmBox active">
             <div class="user-avatar">
-                <?php echo substr($recipient->getGlobalName(), 0, 1); ?>
+                <?php echo substr($recipient->getDisplayName(), 0, 1); ?>
             </div>
-            <div><?php echo $recipient->getGlobalName() ?></div>
+            <div><?php echo $recipient->getDisplayName() ?></div>
         </div>
     <?php } ?>
 
@@ -41,19 +41,19 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
     <?php
 
     if ($inPm) {
-        echo "<div id='messagesBox' class='d-flex w-100 h-100' data-me-id='" . htmlspecialchars($meId, ENT_QUOTES) . "' data-recipient-id='" . htmlspecialchars($recipientId, ENT_QUOTES) . "'>";
+        echo "<div id='messagesBox' class='d-flex w-100 h-100' data-me-id='" . htmlspecialchars($authorId, ENT_QUOTES) . "' data-recipient-id='" . htmlspecialchars($recipientId, ENT_QUOTES) . "'>";
 
         if ($messages) {
             foreach ($messages as $message) {
-                $classes = $message->getAuthorId() == $meId ? "messageBox mbox-right" : "messageBox mbox-left";
-                $msgClass = $message->getAuthorId() == $meId ? "message msg-right" : "message msg-left";
+                $classes = $message->getAuthorId() == $authorId ? "messageBox mbox-right" : "messageBox mbox-left";
+                $msgClass = $message->getAuthorId() == $authorId ? "message msg-right" : "message msg-left";
 
                 echo "<section class='$classes'><article class='$msgClass'>" .
                         htmlspecialchars($message->getContent(), ENT_QUOTES) .
                         "</article></section>";
             }
         } else {
-            echo "<div id='introMessage'>Lancez votre première conversation avec " . $recipient->getGlobalName() . "</div>";
+            echo "<div id='introMessage'>Lancez votre première conversation avec " . $recipient->getDisplayName() . "</div>";
         }
 
         echo "</div>";

@@ -30,7 +30,7 @@ function showSaveCancel() {
 
 function cancelEdits() {
     // Réinitialiser tous les champs en mode lecture seule
-    const fields = ["name", "global_name", "biography"];
+    const fields = ["name", "display_name", "biography"];
     fields.forEach((field) => {
         const display = document.getElementById(field + "-display");
         const input = document.getElementById(field + "-input");

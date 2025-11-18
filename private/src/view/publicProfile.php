@@ -5,7 +5,7 @@
             <?= strtoupper(substr($user->getName(), 0, 1)) ?>
         </div>
         <div class="profile-info">
-            <h1 class="profile-username"><?= htmlspecialchars($user->getGlobalName() ?? $user->getName()) ?></h1>
+            <h1 class="profile-username"><?= htmlspecialchars($user->getDisplayName() ?? $user->getName()) ?></h1>
             <p class="profile-handle">@<?= htmlspecialchars($user->getName()) ?></p>
 
             <?php if ($user->isBanned()): ?>
@@ -46,7 +46,7 @@
 
     <!-- Annonces de l'utilisateur -->
     <div class="profile-section">
-        <h2><i class="fa-solid fa-list"></i> Annonces de <?= htmlspecialchars($user->getGlobalName() ?? $user->getName()) ?></h2>
+        <h2><i class="fa-solid fa-list"></i> Annonces de <?= htmlspecialchars($user->getDisplayName() ?? $user->getName()) ?></h2>
 
         <?php if (!empty($announces)): ?>
             <div class="profile-announces-grid">

@@ -83,19 +83,19 @@ CREATE TABLE message (
     id INT AUTO_INCREMENT PRIMARY KEY,
     content LONGTEXT NOT NULL,
     author_id INT NOT NULL,
-    receiver_id INT NOT NULL,
+    recipient_id INT NOT NULL,
     created_at DATETIME DEFAULT NOW(),
     FOREIGN KEY (author_id) REFERENCES user (id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES user (id) ON DELETE CASCADE
+    FOREIGN KEY (recipient_id) REFERENCES user (id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 
 # Messages privés
 CREATE TABLE private_messages (
     user_id INT NOT NULL,
-    receiver_id INT NOT NULL,
+    recipient_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES user (id) ON DELETE CASCADE
+    FOREIGN KEY (recipient_id) REFERENCES user (id) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 
@@ -196,7 +196,7 @@ INSERT INTO announce_category VALUES
 
 
 # Messages
-INSERT INTO message (content, author_id, receiver_id) VALUES
+INSERT INTO message (content, author_id, recipient_id) VALUES
 ("Bonjour Mr Admin, j'aurai une demande à vous faire", 2, 1),
 ("Bonjour Mr User", 1, 2),
 ("Que puis-je faire pour vous ?", 1, 2),

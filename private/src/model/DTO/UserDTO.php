@@ -6,18 +6,18 @@ class UserDTO
     private $id;
     private $name;
     private $hashed_password;
-    private $global_name;
+    private $display_name;
     private $biography;
     private $role;
     private $created_at;
     private $banned;
 
-    public function __construct($id, $name, $hashed_password, $global_name, $biography, $role, $created_at, $banned = 0)
+    public function __construct($id, $name, $hashed_password, $display_name, $biography, $role, $created_at, $banned = 0)
     {
         $this->id = $id;
         $this->name = $name;
         $this->hashed_password = $hashed_password;
-        $this->global_name = $global_name;
+        $this->display_name = $display_name;
         $this->biography = $biography;
         $this->role = $role;
         $this->created_at = $created_at;
@@ -52,13 +52,13 @@ class UserDTO
         $this->hashed_password = $hashed_password;
     }
 
-    public function getGlobalName()
+    public function getDisplayName()
     {
-        return $this->global_name;
+        return $this->display_name;
     }
-    public function setGlobalName($global_name)
+    public function setDisplayName($display_name)
     {
-        $this->global_name = $global_name;
+        $this->display_name = $display_name;
     }
 
     public function getBiography()
