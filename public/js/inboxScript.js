@@ -89,11 +89,6 @@ function sendMessage(content, receiverId) {
 
     const ajaxRequest = postAjax("sendMessageAjax", payload);
 
-    ajaxRequest.onerror = function() {
-        console.error("Erreur de connexion");
-        sendPopup("Erreur de connexion");
-    };
-
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
             if (ajaxRequest.status === 200) {
@@ -104,6 +99,8 @@ function sendMessage(content, receiverId) {
                 appendMessage(trimmedContent, true);
                 oldCountMessages += 1;
                 newCountMessages = oldCountMessages;
+            } else {
+                sendPopup("Erreur de connexion");
             }
 
             scrollToBottom();
