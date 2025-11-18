@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (recipientId) {
             checkMessages();
-            setInterval(checkMessages, 10);
+            setInterval(checkMessages, 100);
         }
     });
 
@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (!content || content.trim() === "") {
                 return;
+            } else {
+                sendPopup("Un message ne peut pas être vide");
             }
 
             sendMessage(content, recipientId);
@@ -106,9 +108,6 @@ function sendMessage(content, recipientId) {
                 if (messageTextarea) {
                     messageTextarea.value = "";
                 }
-                appendMessage(trimmedContent, true);
-                oldCountMessages += 1;
-                newCountMessages = oldCountMessages;
             } else {
                 sendPopup("Erreur de connexion");
             }
@@ -127,6 +126,7 @@ function sendPopup(message) {
     const script = document.createElement("script");
     script.src = "public/js/popup.js";
     document.body.appendChild(script);
+    console.log("Popup")
 }
 
 function appendMessage(content, isAuthor) {
@@ -156,14 +156,18 @@ function appendMessage(content, isAuthor) {
     messageBox.appendChild(message);
     messagesBox.appendChild(messageBox);
 
-    introMessage.style.transition = "all .4s";
+    if (introMessage) {
+        introMessage.style.transition = "all .4s";
 
-    requestAnimationFrame(() => {
-        introMessage.style.height = "0";
-        introMessage.style.opacity = "0";
-    });
+        requestAnimationFrame(() => {
+            introMessage.style.height = "0";
+            introMessage.style.opacity = "0";
+        });
 
-    setTimeout(() => introMessage.remove(), 400);
+        setTimeout(() => introMessage.remove(), 400);
+    }
+
+    scrollToBottom();
 }
 
 
