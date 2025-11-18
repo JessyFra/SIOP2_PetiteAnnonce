@@ -89,6 +89,11 @@ function sendMessage(content, receiverId) {
 
     const ajaxRequest = postAjax("sendMessageAjax", payload);
 
+    ajaxRequest.onerror = function () {
+        console.error("Erreur de connexion");
+        sendPopup("Erreur de connexion");
+    };
+
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
             if (ajaxRequest.status === 200) {
@@ -104,6 +109,17 @@ function sendMessage(content, receiverId) {
             scrollToBottom();
         }
     };
+}
+
+function sendPopup(message) {
+    const popup = document.createElement("div");
+    popup.id = "messageBox";
+    popup.dataset.message = message;
+    document.body.appendChild(popup);
+
+    const script = document.createElement("script");
+    script.src = "public/js/popup.js";
+    document.body.appendChild(script);
 }
 
 function appendMessage(content, isAuthor) {
