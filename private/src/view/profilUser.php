@@ -207,8 +207,7 @@ if (!is_array($announces)) {
             </form>
 
             <div class="card-footer">
-                <button type="submit" name="deleteAccount" form="profile-form" class="btn btnSupp"
-                    onclick="return confirm('Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.');">
+                <button type="submit" name="deleteAccount" form="profile-form" class="btn btnSupp">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="3 6 5 6 21 6" />
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -286,8 +285,7 @@ if (!is_array($announces)) {
 
                                 <form method="post" action="" style="display:inline;">
                                     <input type="hidden" name="deleteAnnounceId" value="<?= $announce->getId() ?>">
-                                    <button type="submit" class="btn-small btn-small-danger"
-                                        onclick="return confirm('Voulez-vous vraiment retirer cette annonce ?');">
+                                    <button type="submit" class="btn-small btn-small-danger">
                                         <i class="fa-solid fa-trash" style="font-size: 14px;"></i>
                                         Supprimer
                                     </button>
