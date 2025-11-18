@@ -52,9 +52,9 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
                             "</article></section>";
                 }
             } else {
-                echo "<div>Lancez votre première conversation avec <b>" . $recipient->getGlobalName() . "</b></div>";
+                echo "<div id='introMessage'>Lancez votre première conversation avec " . $recipient->getGlobalName() . "</div>";
             }
-            }
+        }
 
         ?>
     </div>

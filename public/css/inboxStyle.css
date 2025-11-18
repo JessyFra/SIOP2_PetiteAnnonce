@@ -151,7 +151,6 @@ body, html {
 .user-avatar {
     min-width: 64px;
     min-height: 64px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
     background-color: #0D9B8A;
     border-radius: 50%;
     display: flex;
@@ -162,4 +161,12 @@ body, html {
     border: 2px solid black;
     margin: 10px;
     color: white;
+}
+
+#introMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 20px;
 }
