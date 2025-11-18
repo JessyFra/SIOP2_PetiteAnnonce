@@ -89,15 +89,16 @@ body, html {
 }
 
 .messageBox {
+    display: flex;
     margin: 10px;
 }
 
 .mbox-right {
-    justify-items: end;
+    justify-content: end;
 }
 
 .mbox-left {
-    justify-items: start;
+    justify-content: start;
 }
 
 .message {
