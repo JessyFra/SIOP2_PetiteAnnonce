@@ -23,6 +23,13 @@
                     <i class="fa-solid fa-calendar"></i>
                     <span>Membre depuis <?= date('M Y', strtotime($user->getCreatedAt())) ?></span>
                 </div>
+
+                <!-- Bouton de contact -->
+                <?php if (isset($_SESSION['userID']) && $_SESSION['userID'] != $user->getId()): ?>
+                    <a href="index.php?page=inbox&id=<?= $user->getId() ?>" class="btn contactBtn">
+                        <i class="fa-solid fa-envelope"></i> Contacter
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -32,15 +39,6 @@
         <div class="profile-section">
             <h2><i class="fa-solid fa-quote-left"></i> Biographie</h2>
             <p class="profile-bio"><?= nl2br(htmlspecialchars($user->getBiography())) ?></p>
-        </div>
-    <?php endif; ?>
-
-    <!-- Bouton de contact -->
-    <?php if (isset($_SESSION['userID']) && $_SESSION['userID'] != $user->getId()): ?>
-        <div class="profile-actions">
-            <a href="index.php?page=inbox&id=<?= $user->getId() ?>" class="btn btn-primary">
-                <i class="fa-solid fa-envelope"></i> Contacter
-            </a>
         </div>
     <?php endif; ?>
 

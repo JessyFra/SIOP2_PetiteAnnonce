@@ -1,3 +1,4 @@
+/* announcesStyle.css */
 .container h1,
 .container p {
     justify-self: center;
@@ -6,6 +7,7 @@
 /* Filtres de recherche */
 .filters-section {
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .filters-form {

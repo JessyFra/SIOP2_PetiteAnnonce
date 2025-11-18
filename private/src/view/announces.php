@@ -1,6 +1,4 @@
 <div class="filters-section">
-    <h1>Liste des Annonces</h1>
-    <p>Retrouvez ici la liste des annonces que vous pourriez vouloir</p>
 
     <!-- Formulaire de filtres -->
     <form method="GET" action="index.php" class="filters-form">
