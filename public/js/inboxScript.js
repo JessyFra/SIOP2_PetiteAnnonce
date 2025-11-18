@@ -91,11 +91,8 @@ function sendMessage(content, receiverId) {
 
     ajaxRequest.onerror = function () {
         console.error("Erreur de connexion");
-
         sendPopup("Erreur de connexion");
     };
-
-    sendPopup("Ok");
 
     ajaxRequest.onreadystatechange = function() {
         if (ajaxRequest.readyState === 4) {
