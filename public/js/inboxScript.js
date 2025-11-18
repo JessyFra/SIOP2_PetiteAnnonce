@@ -121,6 +121,7 @@ function sendPopup(message) {
 
 function appendMessage(content, isAuthor) {
     const messagesBox = document.getElementById("messagesBox");
+    const introMessage = document.getElementById("introMessage");
 
     if (!messagesBox) {
         return;
@@ -144,6 +145,15 @@ function appendMessage(content, isAuthor) {
 
     messageBox.appendChild(message);
     messagesBox.appendChild(messageBox);
+
+    introMessage.style.transition = "all .4s";
+
+    requestAnimationFrame(() => {
+        introMessage.style.height = "0";
+        introMessage.style.opacity = "0";
+    });
+
+    setTimeout(() => introMessage.remove(), 400);
 }
 
 
