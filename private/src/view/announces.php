@@ -97,9 +97,20 @@ $hasFilters = !empty($_GET['search']) || !empty($_GET['category']) || !empty($_G
             <div class="announces-grid">
                 <?php foreach ($announces as $announce): ?>
                     <?php
-                    $pathImage = "public/assets/img/" . $announce->getId() . ".png";
-                    if (!file_exists($pathImage)) {
-                        $pathImage = "public/assets/default.png";
+                    // Récupération de l'image principale
+                    require_once 'private/src/model/DAO/AnnounceImageDAO.php';
+                    $mainImage = AnnounceImageDAO::getMainImage($announce->getId());
+
+                    if ($mainImage) {
+                        $pathImage = $mainImage->getFullPath();
+                    } else {
+                        // Fallback : chercher n'importe quelle image de l'annonce
+                        $images = AnnounceImageDAO::getByAnnounce($announce->getId());
+                        if (!empty($images)) {
+                            $pathImage = $images[0]->getFullPath();
+                        } else {
+                            $pathImage = "public/assets/default.png";
+                        }
                     }
                     ?>
                     <article class="announce-card" onclick="window.location.href='index.php?page=annonce&id=<?= $announce->getId() ?>'">
@@ -169,9 +180,20 @@ $hasFilters = !empty($_GET['search']) || !empty($_GET['category']) || !empty($_G
                 <div class="category-announces-scroll">
                     <?php foreach ($categoryAnnounces as $announce): ?>
                         <?php
-                        $pathImage = "public/assets/img/" . $announce->getId() . ".png";
-                        if (!file_exists($pathImage)) {
-                            $pathImage = "public/assets/default.png";
+                        // Récupération de l'image principale
+                        require_once 'private/src/model/DAO/AnnounceImageDAO.php';
+                        $mainImage = AnnounceImageDAO::getMainImage($announce->getId());
+
+                        if ($mainImage) {
+                            $pathImage = $mainImage->getFullPath();
+                        } else {
+                            // Fallback : chercher n'importe quelle image de l'annonce
+                            $images = AnnounceImageDAO::getByAnnounce($announce->getId());
+                            if (!empty($images)) {
+                                $pathImage = $images[0]->getFullPath();
+                            } else {
+                                $pathImage = "public/assets/default.png";
+                            }
                         }
                         ?>
                         <article class="announce-card-horizontal" onclick="window.location.href='index.php?page=annonce&id=<?= $announce->getId() ?>'">

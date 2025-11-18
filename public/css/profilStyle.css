@@ -485,13 +485,15 @@
     background: var(--gray-300);
 }
 
-.btn-small-danger {
+.btn-small-danger,
+.btnSupp {
     background: white;
     color: var(--danger);
     border: 1px solid var(--danger);
 }
 
-.btn-small-danger:hover {
+.btn-small-danger:hover,
+.btnSupp:hover {
     background: var(--danger-light);
 }
 

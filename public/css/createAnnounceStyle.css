@@ -10,7 +10,7 @@
     background: white;
     border-radius: 12px;
     padding: 40px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-header {
@@ -196,6 +196,12 @@ textarea.form-control {
 .image-upload-zone.drag-over {
     border-color: #0d9b8a;
     background: #e6f7f5;
+}
+
+.image-preview-item.to-delete {
+    opacity: 0.5;
+    position: relative;
+    pointer-events: none;
 }
 
 .upload-icon {

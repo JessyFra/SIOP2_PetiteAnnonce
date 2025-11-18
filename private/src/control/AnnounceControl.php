@@ -84,9 +84,7 @@ class AnnounceControl
                 $error = "Veuillez sélectionner au moins une catégorie.";
             } elseif ($type == 'offer' && $price <= 0) {
                 $error = "Le prix doit être supérieur à 0 pour une offre.";
-            }
-            // CORRECTION : Meilleure validation des images
-            elseif (!isset($_FILES['images']) || !isset($_FILES['images']['name']) || empty($_FILES['images']['name'][0])) {
+            } elseif (!isset($_FILES['images']) || !isset($_FILES['images']['name']) || empty($_FILES['images']['name'][0])) {
                 $error = "Veuillez ajouter au moins une image.";
             } elseif ($_FILES['images']['error'][0] === UPLOAD_ERR_NO_FILE) {
                 $error = "Aucune image n'a été téléchargée.";
@@ -192,6 +190,8 @@ class AnnounceControl
 
                 if ($updateSuccess) {
                     $success = "Annonce modifiée avec succès !";
+                    header("Location: index.php?page=annonce&id=" . $announceId);
+                    exit;
                 } else {
                     $error = "Erreur lors de la modification de l'annonce.";
                 }
@@ -207,6 +207,12 @@ class AnnounceControl
     private function handleImageUpload($files, $announceId, $setFirstAsMain = true)
     {
         require_once 'private/src/model/DAO/AnnounceImageDAO.php';
+
+        // DEBUG
+        error_log("=== DEBUT UPLOAD ===");
+        error_log("Announce ID: " . $announceId);
+        error_log("Nombre de fichiers reçus: " . count($files['name']));
+        error_log("Set first as main: " . ($setFirstAsMain ? 'OUI' : 'NON'));
 
         $uploadDir = 'public/assets/img/';
 
@@ -254,8 +260,9 @@ class AnnounceControl
                 continue;
             }
 
-            // Génération du nom de fichier unique
-            $filename = $announceId . '.png';
+            // CORRECTION: Génération d'un nom de fichier UNIQUE
+            $extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+            $filename = $announceId . '_' . uniqid() . '.' . $extension;
             $filepath = $uploadDir . $filename;
 
             // Déplacement du fichier
@@ -299,10 +306,13 @@ class AnnounceControl
                 'id' => $announce->getId(),
                 'title' => $announce->getTitle(),
                 'type' => $announce->getType(),
-                'price' => $announce->getPrice()
+                'price' => number_format($announce->getPrice(), 2, ',', ' '),
+                'city' => $announce->getCityName(),
+                'status' => $announce->getStatus()
             ];
         }
 
         echo json_encode($results);
+        exit;
     }
 }

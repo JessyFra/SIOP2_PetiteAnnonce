@@ -43,14 +43,16 @@ $pages = [
         'class' => 'AnnounceControl',
         'method' => 'create',
         'title' => 'Créer une annonce',
-        'css' => 'createAnnounceStyle.css'
+        'css' => 'createAnnounceStyle.css',
+        'js' => 'createAnnounce.js'
     ],
 
     'edit-announce' => [
         'class' => 'AnnounceControl',
         'method' => 'edit',
         'title' => 'Modifier une annonce',
-        'css' => 'createAnnounceStyle.css'
+        'css' => 'createAnnounceStyle.css',
+        'js' => 'editAnnounce.js'
     ],
 
     'search-api' => [

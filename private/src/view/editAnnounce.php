@@ -215,11 +215,10 @@ $existingImages = AnnounceImageDAO::getByAnnounce($announceId);
                                     <span class="main-badge"><i class="fa-solid fa-star"></i> Principale</span>
                                 <?php endif; ?>
                                 <div class="image-actions">
-                                    <button type="button" class="image-action-btn delete" onclick="deleteExistingImage(<?= $image->getId() ?>)">
+                                    <button type="button" class="image-action-btn delete btn-delete-existing" data-image-id="<?= $image->getId() ?>">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
-                                <input type="hidden" name="existing_images[]" value="<?= $image->getId() ?>">
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -264,134 +263,3 @@ $existingImages = AnnounceImageDAO::getByAnnounce($announceId);
         </form>
     </div>
 </div>
-
-<script>
-    // Gestion du type d'annonce (afficher/masquer le prix)
-    document.querySelectorAll('input[name="type"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const priceInput = document.getElementById('price');
-            const priceRequired = document.getElementById('priceRequired');
-
-            if (this.value === 'request') {
-                priceInput.required = false;
-                priceInput.value = '0';
-                priceRequired.style.display = 'none';
-            } else {
-                priceInput.required = true;
-                priceRequired.style.display = 'inline';
-            }
-        });
-    });
-
-    // Suppression d'une image existante
-    function deleteExistingImage(imageId) {
-        if (!confirm('Voulez-vous vraiment supprimer cette image ?')) {
-            return;
-        }
-
-        const imageElement = document.querySelector(`[data-image-id="${imageId}"]`);
-        if (imageElement) {
-            imageElement.remove();
-        }
-
-        // Ajouter un champ caché pour marquer l'image à supprimer
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'delete_images[]';
-        input.value = imageId;
-        document.getElementById('announceForm').appendChild(input);
-    }
-
-    // Gestion de l'upload de nouvelles images
-    const uploadZone = document.getElementById('uploadZone');
-    const imageInput = document.getElementById('imageInput');
-    const imagePreview = document.getElementById('imagePreview');
-    let selectedFiles = [];
-
-    uploadZone.addEventListener('click', () => imageInput.click());
-    imageInput.addEventListener('change', handleFiles);
-
-    // Drag & Drop
-    uploadZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        uploadZone.classList.add('drag-over');
-    });
-
-    uploadZone.addEventListener('dragleave', () => {
-        uploadZone.classList.remove('drag-over');
-    });
-
-    uploadZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        uploadZone.classList.remove('drag-over');
-
-        const files = Array.from(e.dataTransfer.files).filter(file =>
-            file.type.startsWith('image/')
-        );
-
-        if (files.length > 0) {
-            imageInput.files = createFileList(files);
-            handleFiles();
-        }
-    });
-
-    function handleFiles() {
-        const files = Array.from(imageInput.files);
-        const existingCount = document.querySelectorAll('#existingImages .image-preview-item').length;
-
-        if (existingCount + files.length > 5) {
-            alert('Vous ne pouvez avoir que 5 images maximum au total');
-            return;
-        }
-
-        selectedFiles = files;
-        displayPreviews();
-    }
-
-    function displayPreviews() {
-        imagePreview.innerHTML = '';
-
-        selectedFiles.forEach((file, index) => {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const div = document.createElement('div');
-                div.className = 'image-preview-item';
-                div.innerHTML = `
-                <img src="${e.target.result}" alt="Preview">
-                <div class="image-actions">
-                    <button type="button" class="image-action-btn delete" onclick="removeImage(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            `;
-                imagePreview.appendChild(div);
-            };
-
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function removeImage(index) {
-        selectedFiles.splice(index, 1);
-        imageInput.files = createFileList(selectedFiles);
-        displayPreviews();
-    }
-
-    function createFileList(files) {
-        const dataTransfer = new DataTransfer();
-        files.forEach(file => dataTransfer.items.add(file));
-        return dataTransfer.files;
-    }
-
-    // Validation du formulaire
-    document.getElementById('announceForm').addEventListener('submit', function(e) {
-        const categories = document.querySelectorAll('input[name="categories[]"]:checked');
-
-        if (categories.length === 0) {
-            e.preventDefault();
-            alert('Veuillez sélectionner au moins une catégorie');
-            return false;
-        }
-    });
-</script>
