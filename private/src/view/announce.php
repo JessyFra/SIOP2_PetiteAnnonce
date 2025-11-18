@@ -1,5 +1,7 @@
 <?php
 
+include_once 'private/src/helper/DateHelper.php';
+
 if (!empty($_GET["id"])) {
     $announceId = htmlspecialchars($_GET["id"], ENT_QUOTES);
 } else {
@@ -21,12 +23,27 @@ if (!$announce) {
         <!-- Images -->
         <div class="announce-images">
             <?php
-            $pathImage = "public/assets/img/" . $announce->getId() . ".png";
-            if (!file_exists($pathImage)) {
+            require_once 'private/src/model/DAO/AnnounceImageDAO.php';
+            $images = AnnounceImageDAO::getByAnnounce($announce->getId());
+
+            // Afficher l'image principale ou la première, ou l'image par défaut
+            $mainImage = null;
+            if (!empty($images)) {
+                foreach ($images as $img) {
+                    if ($img->isMain()) {
+                        $mainImage = $img;
+                        break;
+                    }
+                }
+                if (!$mainImage) {
+                    $mainImage = $images[0];
+                }
+                $pathImage = $mainImage->getFullPath();
+            } else {
                 $pathImage = "public/assets/default.png";
             }
             ?>
-            <img src="<?php echo $pathImage ?>" alt="<?php echo htmlspecialchars($announce->getTitle()) ?>" class="announce-main-image">
+            <img src="<?php echo $pathImage ?>" alt="<?php echo htmlspecialchars($announce->getTitle()) ?>" class="announce-main-image" id="mainImage">
 
             <!-- Badges -->
             <div class="announce-badges">
@@ -39,6 +56,18 @@ if (!$announce) {
                     </span>
                 <?php endif; ?>
             </div>
+
+            <!-- Miniatures -->
+            <?php if (count($images) > 1): ?>
+                <div class="image-thumbnails">
+                    <?php foreach ($images as $index => $image): ?>
+                        <img src="<?= $image->getFullPath() ?>"
+                            alt="Image <?= $index + 1 ?>"
+                            class="thumbnail <?= $image->isMain() ? 'active' : '' ?>"
+                            onclick="changeMainImage('<?= $image->getFullPath() ?>', this)">
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
 
         <!-- Carte d'achat -->
@@ -54,14 +83,9 @@ if (!$announce) {
             <?php endif; ?>
 
             <div class="announce-actions">
-                <?php if ($announce->getType() == 'offer' && $announce->getStatus() == 'open'): ?>
-                    <button class="btn btn-success btn-block">
-                        <i class="fa-solid fa-shopping-cart"></i> Acheter
-                    </button>
-                <?php endif; ?>
 
                 <?php if (isset($_SESSION['userID']) && $_SESSION['userID'] != $announce->getAuthorId()): ?>
-                    <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>" class="btn btn-primary btn-block">
+                    <a href="index.php?page=inbox&id=<?php echo $announce->getAuthorId() ?>" class="btn btn-block contactBtn">
                         <i class="fa-solid fa-envelope"></i> Contacter
                     </a>
                 <?php endif; ?>
@@ -101,7 +125,7 @@ if (!$announce) {
                     <i class="fa-solid fa-calendar"></i>
                     <div>
                         <strong>Date de publication</strong>
-                        <p><?php echo date('d/m/Y à H:i', strtotime($announce->getCreatedAt())) ?></p>
+                        <p><span><?= DateHelper::getRelativeTime($announce->getCreatedAt()) ?></span></p>
                     </div>
                 </div>
                 <div class="info-item">
@@ -122,3 +146,11 @@ if (!$announce) {
         </div>
     </div>
 </section>
+
+<script>
+    function changeMainImage(imagePath, thumbnail) {
+        document.getElementById('mainImage').src = imagePath;
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        thumbnail.classList.add('active');
+    }
+</script>

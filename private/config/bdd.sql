@@ -62,6 +62,18 @@ CREATE TABLE announce
 ) ENGINE = InnoDB;
 
 
+# Images des annonces (support multi-images)
+CREATE TABLE announce_image
+(
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    announce_id INT          NOT NULL,
+    image_path  VARCHAR(255) NOT NULL,
+    is_main     TINYINT(1) DEFAULT 0,
+    created_at  DATETIME   DEFAULT NOW(),
+    FOREIGN KEY (announce_id) REFERENCES announce (id) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+
 # Catégories des annonces
 CREATE TABLE announce_category
 (
@@ -131,6 +143,29 @@ VALUES (1, "Maison 6 Pièces 105m²", "À découvrir", 285000, "closed", "offer"
        (18, "Robes vintage", "Lot de 3 robes", 99.99, "open", "offer", 1, 1, NOW()),
        (19, "Livre ancien", "Édition rare de 1890", 200, "open", "offer", 3, 3, NOW()),
        (20, "Smartphone + Accessoires", "Vendu avec coque et chargeur", 450, "open", "offer", 1, 2, NOW());
+
+
+# Insertion images
+INSERT INTO announce_image (announce_id, image_path, is_main)
+VALUES (1, '1.png', 1),
+       (2, '2.png', 1),
+       (3, '3.png', 1),
+       (4, '4.png', 1),
+       (5, '5.png', 1),
+       (6, '6.png', 1),
+       (7, '7.png', 1),
+       (8, '8.png', 1),
+       (9, '9.png', 1),
+       (10, '10.png', 1),
+       (11, '11.png', 1),
+       (12, '12.png', 1),
+       (13, '13.png', 1),
+       (14, '14.png', 1),
+       (15, '15.png', 1),
+       (16, '16.png', 1),
+       (17, '17.png', 1),
+       (18, '18.png', 1),
+       (19, '19.png', 1);
 
 
 # Catégories des annonces

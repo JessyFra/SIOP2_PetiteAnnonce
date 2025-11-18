@@ -1,6 +1,7 @@
 <?php
-// Récupérer les annonces de l'utilisateur au début
-require_once 'private/src/model/DAO/AnnounceDAO.php';
+
+include_once 'private/src/helper/DateHelper.php';
+include_once 'private/src/model/DAO/AnnounceDAO.php';
 $announces = AnnounceDAO::getByUser($user->getId());
 
 // S'assurer que $announces est un tableau
@@ -250,12 +251,12 @@ if (!is_array($announces)) {
                                         <line x1="8" y1="2" x2="8" y2="6" />
                                         <line x1="3" y1="10" x2="21" y2="10" />
                                     </svg>
-                                    <span><?= date('d/m/Y', strtotime($announce->getCreatedAt())) ?></span>
+                                    <span><?= DateHelper::getRelativeTime($announce->getCreatedAt()) ?></span>
                                 </div>
                             </div>
 
                             <div class="announce-actions">
-                                <a href="index.php?page=edit&id=<?= $announce->getId() ?>" class="btn-small btn-small-primary">
+                                <a href="index.php?page=edit-announce&id=<?= $announce->getId() ?>" class="btn-small btn-small-primary">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                                         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -264,11 +265,21 @@ if (!is_array($announces)) {
                                 </a>
 
                                 <?php if ($announce->getStatus() != 'closed'): ?>
+                                    <!-- Bouton Clôturer pour les annonces actives -->
                                     <form method="post" action="" style="display:inline;">
                                         <input type="hidden" name="closeAnnounceId" value="<?= $announce->getId() ?>">
                                         <button type="submit" class="btn-small btn-small-secondary">
                                             <i class="fa-solid fa-pause" style="font-size: 14px;"></i>
                                             Clôturer
+                                        </button>
+                                    </form>
+                                <?php else: ?>
+                                    <!-- Bouton Rouvrir pour les annonces clôturées -->
+                                    <form method="post" action="" style="display:inline;">
+                                        <input type="hidden" name="reopenAnnounceId" value="<?= $announce->getId() ?>">
+                                        <button type="submit" class="btn-small btn-small-success">
+                                            <i class="fa-solid fa-play" style="font-size: 14px;"></i>
+                                            Rouvrir
                                         </button>
                                     </form>
                                 <?php endif; ?>
