@@ -1,6 +1,7 @@
 <?php
 
 include_once 'private/src/model/DAO/MessageDAO.php';
+include_once 'private/src/model/DAO/UserDAO.php';
 
 class InboxControl {
     public function inbox() {
