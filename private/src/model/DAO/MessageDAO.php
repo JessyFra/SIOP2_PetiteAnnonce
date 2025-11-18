@@ -58,21 +58,21 @@ class MessageDAO {
         $query->execute(array($content, $authorId, $receiverId));
     }
 
-    public static function getCountReceiverMessages($authorId, $receiverId) {
+    public static function getCountMessages($authorId, $receiverId) {
         $bdd = DatabaseLinker::getConnexion();
 
-        $query = $bdd->prepare("SELECT COUNT(*) FROM message WHERE author_id = ? AND receiver_id = ? ORDER BY created_at");
-        $query->execute(array($authorId, $receiverId));
+        $query = $bdd->prepare("SELECT COUNT(*) AS count FROM message WHERE (author_id = ? AND receiver_id = ?) OR (author_id = ? AND receiver_id = ?)");
+        $query->execute(array($authorId, $receiverId, $receiverId, $authorId));
         $result = $query->fetch();
 
-        return $result;
+        return $result['count'];
     }
 
-    public static function getLastReceiverMessages($authorId, $receiverId) {
+    public static function getLastMessage($authorId, $receiverId) {
         $bdd = DatabaseLinker::getConnexion();
 
-        $query = $bdd->prepare("SELECT * FROM message WHERE author_id = ? AND receiver_id = ? ORDER BY created_at DESC LIMIT 1");
-        $query->execute(array($authorId, $receiverId));
+        $query = $bdd->prepare("SELECT * FROM message WHERE (author_id = ? AND receiver_id = ?) OR (author_id = ? AND receiver_id = ?) ORDER BY created_at DESC LIMIT 1");
+        $query->execute(array($authorId, $receiverId, $receiverId, $authorId));
         $result = $query->fetch();
 
         return $result;
