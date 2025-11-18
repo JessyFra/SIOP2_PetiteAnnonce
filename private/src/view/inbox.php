@@ -2,16 +2,27 @@
 
 $inPm = false;
 
-if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
+if (!empty($_SESSION["userID"])) {
+
     $authorId = $_SESSION["userID"];
-    $recipientId = htmlspecialchars($_GET["id"], ENT_QUOTES);
+    $recipientId = null;
+    $privates_messages = PrivateMessagesDAO::getAll($authorId);
 
-    $messages = MessageDAO::getAll($authorId, $recipientId);
-    $recipient = UserDAO::get($recipientId);
+    if (!empty($_GET["id"])) {
+        $recipientId = htmlspecialchars($_GET["id"], ENT_QUOTES);
 
-    if (!empty($recipient) && $authorId != $recipientId) {
-        $inPm = true;
+        $messages = MessageDAO::getAll($authorId, $recipientId);
+        $recipient = UserDAO::get($recipientId);
+
+        if (!empty($recipient) && $authorId != $recipientId) {
+            PrivateMessagesDAO::create($authorId, $recipientId);
+            PrivateMessagesDAO::deleteOldRecipientId($authorId, $recipientId);
+            $inPm = true;
+        }
     }
+} else {
+    header("Location: index.php?page=auth");
+    exit;
 }
 
 ?>
@@ -26,15 +37,18 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
         </div>
     <?php } ?>
 
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div>Leurre 1</div>
-    </div>
+    <?php foreach ($privates_messages as $private_messages) { ?>
+        <?php $recipientPm = $private_messages->getRecipient() ?>
 
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div>Leurre 2</div>
-    </div>
+        <?php if ($recipientPm->getId() != $recipientId) { ?>
+            <div class="pmBox">
+                <div class="user-avatar">
+                    <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
+                </div>
+                <div><?php echo $recipientPm->getDisplayName() ?></div>
+            </div>
+        <?php } ?>
+    <?php } ?>
 </nav>
 
 <section id="mainBox">
