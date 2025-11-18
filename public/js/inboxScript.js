@@ -5,7 +5,7 @@ let newCountMessages = 0;
 let isCountInitialized = false;
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const messagesBox = document.getElementById("messagesBox");
 
     if (messagesBox) {
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageTextarea = document.getElementById("messageTextarea");
 
     if (sendMessageButton && messageTextarea) {
-        sendMessageButton.addEventListener("click", function () {
+        sendMessageButton.addEventListener("click", function() {
             const content = messageTextarea.value;
 
             if (!content || content.trim() === "") {
@@ -89,7 +89,7 @@ function sendMessage(content, receiverId) {
 
     const ajaxRequest = postAjax("sendMessageAjax", payload);
 
-    ajaxRequest.onerror = function () {
+    ajaxRequest.onerror = function() {
         console.error("Erreur de connexion");
         sendPopup("Erreur de connexion");
     };
