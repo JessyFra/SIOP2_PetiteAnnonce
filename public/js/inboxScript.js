@@ -48,6 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.href = "index.php?page=inbox&id=" + element.id;
         });
     }
+
+    const privateMessages = document.getElementById("privateMessages");
+    const showPms = document.getElementById("showPms");
+
+    showPms.addEventListener("click", () => {
+        privateMessages.classList.toggle("open");
+    });
 });
 
 

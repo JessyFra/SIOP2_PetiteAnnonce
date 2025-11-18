@@ -36,7 +36,7 @@ if (!empty($_SESSION["userID"])) {
             <div class="user-avatar">
                 <?php echo substr($recipient->getDisplayName(), 0, 1); ?>
             </div>
-            <div><?php echo $recipient->getDisplayName() ?></div>
+            <div class="user-display-name"><?php echo $recipient->getDisplayName() ?></div>
         </div>
     <?php } ?>
 
@@ -48,7 +48,7 @@ if (!empty($_SESSION["userID"])) {
                 <div class="user-avatar">
                     <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
                 </div>
-                <div><?php echo $recipientPm->getDisplayName() ?></div>
+                <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ?></div>
             </div>
         <?php } ?>
     <?php } ?>
@@ -86,5 +86,7 @@ if (!empty($_SESSION["userID"])) {
     <?php } else { ?>
         <div id="introMessage">Lancez une conversation avec un client ou un particulier</div>
     <?php } ?>
+
+    <button id="showPms">💬</button>
 
 </section>

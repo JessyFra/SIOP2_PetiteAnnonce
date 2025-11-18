@@ -14,6 +14,7 @@ body, html {
 
 #privateMessages {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 25%;
     border: 2px solid #0d9b8a;
@@ -78,16 +79,6 @@ body, html {
     color: white;
 }
 
-@media only screen and (max-width: 600px) {
-    #messageTextarea {
-        height: 65px;
-    }
-
-    #sendMessageButton {
-        height: 65px;
-    }
-}
-
 .messageBox {
     display: flex;
     margin: 10px;
@@ -105,6 +96,7 @@ body, html {
     max-width: 350px;
     padding: 10px;
     border-radius: 10px;
+    word-wrap: break-word;
 }
 
 .msg-right {
@@ -114,17 +106,6 @@ body, html {
 
 .msg-left {
     background-color: #86cdc5;
-}
-
-@media only screen and (max-width: 600px) {
-    .message {
-        max-width: 200px;
-    }
-}
-
-#privateMessages {
-    display: flex;
-    flex-direction: column;
 }
 
 .pmBox {
@@ -153,7 +134,7 @@ body, html {
 
 .pmBox > * {
     pointer-events: none;
-    font-weight: 700;
+
 }
 
 .user-avatar {
@@ -175,7 +156,89 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 20px;
     height: 100%;
     width: 100%;
     font-size: 20px;
+}
+
+#showPms {
+    display: none;
+    height: 50px;
+    width: 65px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    #messageTextarea {
+        height: 65px;
+    }
+
+    #sendMessageButton {
+        height: 65px;
+    }
+
+    .message {
+        max-width: 150px;
+    }
+
+    .pmBox {
+        justify-content: start;
+    }
+
+    .container {
+        justify-content: center;
+    }
+
+    #mainBox {
+        width: 100%;
+        border-left: 2px solid #0d9b8a;
+        border-radius: 15px;
+    }
+
+    #privateMessages {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        left: -80%;
+        height: 100%;
+        width: 80%;
+        background-color: white;
+        z-index: 1000;
+        border: none;
+        border-right: 1px solid gray;
+        border-radius: 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
+        transition: left 0.35s ease;
+    }
+
+    #privateMessages.open {
+        left: 0;
+    }
+
+    .pmBox.active {
+        border-radius: 0;
+    }
+
+    #showPms {
+        display: flex;
+        position: fixed;
+        background-color: #0d9b8a;
+        left: 20px;
+        bottom: 0;
+        height: 60px;
+        width: 60px;
+        border: none;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        z-index: 10000;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
 }
