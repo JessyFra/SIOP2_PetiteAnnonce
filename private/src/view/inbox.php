@@ -14,8 +14,8 @@ $messages = MessageDAO::getAll($meId, $recipientId);
 
 <nav id="privateMessages">
     <div class="pmBox">
-        <img src="" alt="http://localhost/SIOP2_PetiteAnnonce/index.php?page=inbox&id=1">
-        <div>Administrateur (@admin)</div>
+        <div class="user-avatar">A</div>
+        <div>Administrateur</div>
     </div>
 </nav>
 
