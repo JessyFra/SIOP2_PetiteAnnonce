@@ -36,6 +36,16 @@ document.addEventListener("DOMContentLoaded", function() {
             sendMessage(content, recipientId);
         });
     }
+
+    const pmsBox = document.getElementsByClassName("pmBox");
+
+    for (let i = 0; i < pmsBox.length; i++) {
+        pmsBox[i].addEventListener("click", function(event) {
+            const element = event.target;
+
+            window.location.href = "index.php?page=inbox&id=" + element.id;
+        });
+    }
 });
 
 

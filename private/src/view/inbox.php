@@ -44,7 +44,7 @@ if (!empty($_SESSION["userID"])) {
         <?php $recipientPm = $private_messages->getRecipient() ?>
 
         <?php if ($recipientPm->getId() != $recipientId) { ?>
-            <div class="pmBox">
+            <div id="<?php echo $recipientPm->getId() ?>" class="pmBox">
                 <div class="user-avatar">
                     <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
                 </div>
