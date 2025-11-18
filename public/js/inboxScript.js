@@ -116,14 +116,17 @@ function appendMessage(content, isAuthor) {
     let messageBox = document.createElement("section");
     messageBox.classList.add("messageBox");
 
-    if (isAuthor) {
-        messageBox.classList.add("mbox-right");
-    } else {
-        messageBox.classList.add("mbox-left");
-    }
-
     let message = document.createElement("article");
     message.classList.add("message");
+
+    if (isAuthor) {
+        messageBox.classList.add("mbox-right");
+        message.classList.add("msg-right");
+    } else {
+        messageBox.classList.add("mbox-left");
+        message.classList.add("msg-left");
+    }
+
     message.textContent = content;
 
     messageBox.appendChild(message);
