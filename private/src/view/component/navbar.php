@@ -37,6 +37,10 @@ if (!empty($_SESSION['userID'])) {
                         <a class="nav-link custom-nav-link" href="index.php?page=profil">Profil</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link custom-nav-link" href="index.php?page=inbox">Messagerie</a>
+                    </li>
+
                     <?php if ($isAdmin): ?>
                         <li class="nav-item">
                             <a class="nav-link custom-nav-link" href="index.php?page=admin" style="color: #dc3545;">
