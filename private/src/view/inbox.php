@@ -17,6 +17,9 @@ if (!empty($_SESSION["userID"])) {
         if (!empty($recipient) && $authorId != $recipientId) {
             PrivateMessagesDAO::create($authorId, $recipientId);
             PrivateMessagesDAO::deleteOldRecipientId($authorId, $recipientId);
+
+            PrivateMessagesDAO::create($recipientId, $authorId);
+            PrivateMessagesDAO::deleteOldRecipientId($recipientId, $authorId);
             $inPm = true;
         }
     }

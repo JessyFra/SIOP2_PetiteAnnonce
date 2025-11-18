@@ -9,7 +9,7 @@ class PrivateMessagesDAO
     {
         $bdd = DatabaseLinker::getConnexion();
 
-        $query = $bdd->prepare("SELECT * FROM private_messages WHERE user_id = ?");
+        $query = $bdd->prepare("SELECT * FROM private_messages WHERE user_id = ? ORDER BY id DESC");
         $query->execute(array($userId));
         $results = $query->fetchAll();
 
