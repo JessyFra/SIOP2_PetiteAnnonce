@@ -32,7 +32,7 @@ if (!empty($_SESSION["userID"])) {
 
 <nav id="privateMessages">
     <?php if ($inPm) { ?>
-        <div class="pmBox active">
+        <div id="<?php echo $recipientId ?>" class="pmBox active">
             <div class="user-avatar">
                 <?php echo substr($recipient->getDisplayName(), 0, 1); ?>
             </div>

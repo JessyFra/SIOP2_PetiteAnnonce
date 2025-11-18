@@ -38,7 +38,7 @@ body, html {
     height: 100%;
     overflow-y: scroll;
     scrollbar-width: thin;
-    scrollbar-color: #0d9b8a #f3f4f6;
+    scrollbar-color: #0d9b8a white;
 }
 
 .messagesBox::-webkit-scrollbar {
@@ -46,7 +46,7 @@ body, html {
 }
 
 .messagesBox::-webkit-scrollbar-track {
-    background: #f3f4f6;
+    background: white;
     border-radius: 4px;
 }
 
@@ -56,7 +56,7 @@ body, html {
 }
 
 .messagesBox::-webkit-scrollbar-thumb:hover {
-    background: #0a7a6d;
+    background: #0d9b8a;
 }
 
 
@@ -104,16 +104,16 @@ body, html {
 .message {
     max-width: 350px;
     padding: 10px;
-    border: black solid 2px;
     border-radius: 10px;
 }
 
 .msg-right {
-    background-color: white;
+    background-color: #0d9b8a;
+    color: white;
 }
 
 .msg-left {
-    background-color: #e6f7f5;
+    background-color: #86cdc5;
 }
 
 @media only screen and (max-width: 600px) {
@@ -137,10 +137,18 @@ body, html {
     border-bottom: 2px solid #0D9B8A;
 }
 
+.pmBox:hover {
+    background-color: rgba(211, 211, 211, 0.75);
+}
+
 .pmBox.active {
     background-color: #0D9B8A;
     color: white;
     border-top-left-radius: 10px;
+}
+
+.pmBox.active:hover {
+    background-color: #0c8778;
 }
 
 .pmBox > * {
