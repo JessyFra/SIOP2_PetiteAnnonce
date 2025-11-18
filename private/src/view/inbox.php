@@ -8,6 +8,11 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
     exit;
 }
 
+if ($recipientId == $meId) {
+    echo '<script>history.back()</script>';
+    exit;
+}
+
 $messages = MessageDAO::getAll($meId, $recipientId);
 
 ?>
