@@ -38,31 +38,36 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
 </nav>
 
 <section id="mainBox">
-    <div id="messagesBox" class="d-flex w-100 h-100" data-me-id="<?php echo htmlspecialchars($meId, ENT_QUOTES); ?>" data-recipient-id="<?php echo htmlspecialchars($recipientId, ENT_QUOTES); ?>">
-        <?php
+    <?php
 
-        if ($inPm) {
-            if ($messages) {
-                foreach ($messages as $message) {
-                    $classes = $message->getAuthorId() == $meId ? "messageBox mbox-right" : "messageBox mbox-left";
-                    $msgClass = $message->getAuthorId() == $meId ? "message msg-right" : "message msg-left";
+    if ($inPm) {
+        echo "<div id='messagesBox' class='d-flex w-100 h-100' data-me-id='" . htmlspecialchars($meId, ENT_QUOTES) . "' data-recipient-id='" . htmlspecialchars($recipientId, ENT_QUOTES) . "'>";
 
-                    echo "<section class='$classes'><article class='$msgClass'>" .
-                            htmlspecialchars($message->getContent(), ENT_QUOTES) .
-                            "</article></section>";
-                }
-            } else {
-                echo "<div id='introMessage'>Lancez votre première conversation avec " . $recipient->getGlobalName() . "</div>";
+        if ($messages) {
+            foreach ($messages as $message) {
+                $classes = $message->getAuthorId() == $meId ? "messageBox mbox-right" : "messageBox mbox-left";
+                $msgClass = $message->getAuthorId() == $meId ? "message msg-right" : "message msg-left";
+
+                echo "<section class='$classes'><article class='$msgClass'>" .
+                        htmlspecialchars($message->getContent(), ENT_QUOTES) .
+                        "</article></section>";
             }
+        } else {
+            echo "<div id='introMessage'>Lancez votre première conversation avec " . $recipient->getGlobalName() . "</div>";
         }
 
-        ?>
-    </div>
+        echo "</div>";
+    }
+
+    ?>
 
     <?php if ($inPm) { ?>
         <div class="d-flex w-100">
             <textarea id="messageTextarea" class="form-control" placeholder="Envoyer un message"></textarea>
             <button id="sendMessageButton" class="btn">Envoyer</button>
         </div>
+    <?php } else { ?>
+        <div id="introMessage">Lancez une conversation avec un client ou un particulier</div>
     <?php } ?>
+
 </section>
