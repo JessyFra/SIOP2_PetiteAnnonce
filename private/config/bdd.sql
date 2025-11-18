@@ -18,9 +18,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 # Utilisateurs
 CREATE TABLE user (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(64) NOT NULL,
+    name VARCHAR(16) NOT NULL,
     hashed_password VARCHAR(255) NOT NULL,
-    display_name VARCHAR(64),
+    display_name VARCHAR(16),
     biography TEXT,
     role ENUM ("user", "admin") DEFAULT "user",
     banned TINYINT(1) DEFAULT 0,
