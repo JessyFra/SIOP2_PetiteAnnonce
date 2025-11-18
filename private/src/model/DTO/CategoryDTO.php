@@ -29,15 +29,14 @@ class CategoryDTO {
     }
 
     // Autres fonctions
-    public function getAnnounces() {
-
+    public function getAnnounces()
+    {
         $results = AnnounceCategoryDAO::getAll();
         $announces = [];
 
         foreach ($results as $result) {
             if ($result->getCategoryId() == $this->id) {
                 $announce = AnnounceDAO::get($result->getAnnounceId());
-
                 $announceDTO = new AnnounceDTO(
                     $announce->getId(),
                     $announce->getTitle(),
@@ -49,10 +48,14 @@ class CategoryDTO {
                     $announce->getAuthorId(),
                     $announce->getCreatedAt()
                 );
-
                 $announces[] = $announceDTO;
             }
         }
+
+        // Trier les annonces par date de création décroissante
+        usort($announces, function ($a, $b) {
+            return strtotime($b->getCreatedAt()) - strtotime($a->getCreatedAt());
+        });
 
         return $announces;
     }

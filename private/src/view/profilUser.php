@@ -207,7 +207,7 @@ if (!is_array($announces)) {
             </form>
 
             <div class="card-footer">
-                <button type="submit" name="deleteAccount" form="profile-form" class="btn btn-danger-outline"
+                <button type="submit" name="deleteAccount" form="profile-form" class="btn btnSupp"
                     onclick="return confirm('Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.');">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="3 6 5 6 21 6" />

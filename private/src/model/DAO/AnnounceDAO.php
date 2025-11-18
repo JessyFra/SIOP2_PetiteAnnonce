@@ -37,7 +37,7 @@ class AnnounceDAO
     {
         $bdd = DatabaseLinker::getConnexion();
 
-        $query = $bdd->query("SELECT * FROM announce");
+        $query = $bdd->query("SELECT * FROM announce ORDER BY created_at DESC");
         $results = $query->fetchAll();
 
         $announces = [];
@@ -241,6 +241,4 @@ class AnnounceDAO
 
         return $result;
     }
-
-    
 }

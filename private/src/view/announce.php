@@ -77,9 +77,7 @@ if (!$announce) {
             <?php if ($announce->getType() == 'offer'): ?>
                 <p class="announce-detail-price"><?php echo number_format($announce->getPrice(), 2, ',', ' ') ?> €</p>
             <?php else: ?>
-                <p class="announce-detail-type">
-                    <i class="fa-solid fa-search"></i> Recherche
-                </p>
+                <p class="announce-detail-price">0 €</p>
             <?php endif; ?>
 
             <div class="announce-actions">
