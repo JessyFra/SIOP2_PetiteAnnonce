@@ -55,9 +55,9 @@ if (!empty($_SESSION["userID"])) {
 </nav>
 
 <section id="mainBox">
-    <?php
+    <?php if ($inPm) { ?>
+        <?php
 
-    if ($inPm) {
         echo "<div id='messagesBox' class='d-flex w-100 h-100' data-me-id='" . htmlspecialchars($authorId, ENT_QUOTES) . "' data-recipient-id='" . htmlspecialchars($recipientId, ENT_QUOTES) . "'>";
 
         if ($messages) {
@@ -74,9 +74,11 @@ if (!empty($_SESSION["userID"])) {
         }
 
         echo "</div>";
-    }
 
-    ?>
+        ?>
+    <?php } ?>
+
+
 
     <?php if ($inPm) { ?>
         <div class="d-flex w-100">

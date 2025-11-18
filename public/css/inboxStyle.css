@@ -227,8 +227,8 @@ body, html {
         display: flex;
         position: fixed;
         background-color: #0d9b8a;
-        left: 20px;
-        bottom: 0;
+        left: 5px;
+        bottom: 5px;
         height: 60px;
         width: 60px;
         border: none;
