@@ -9,7 +9,7 @@ if (!empty($_SESSION["userID"]) && !empty($_GET["id"])) {
 }
 
 if ($recipientId == $meId) {
-    echo '<script>history.back()</script>';
+    echo "<script>history.back()</script>";
     exit;
 }
 
