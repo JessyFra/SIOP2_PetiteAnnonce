@@ -32,11 +32,11 @@ if (!empty($_SESSION["userID"])) {
 
 <nav id="privateMessages">
     <?php if ($inPm) { ?>
-        <div class="pmBox active">
+        <div id="<?php echo $recipientId ?>" class="pmBox active">
             <div class="user-avatar">
                 <?php echo substr($recipient->getDisplayName(), 0, 1); ?>
             </div>
-            <div><?php echo $recipient->getDisplayName() ?></div>
+            <div class="user-display-name"><?php echo $recipient->getDisplayName() ?></div>
         </div>
     <?php } ?>
 
@@ -44,20 +44,20 @@ if (!empty($_SESSION["userID"])) {
         <?php $recipientPm = $private_messages->getRecipient() ?>
 
         <?php if ($recipientPm->getId() != $recipientId) { ?>
-            <div class="pmBox">
+            <div id="<?php echo $recipientPm->getId() ?>" class="pmBox">
                 <div class="user-avatar">
                     <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
                 </div>
-                <div><?php echo $recipientPm->getDisplayName() ?></div>
+                <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ?></div>
             </div>
         <?php } ?>
     <?php } ?>
 </nav>
 
 <section id="mainBox">
-    <?php
+    <?php if ($inPm) { ?>
+        <?php
 
-    if ($inPm) {
         echo "<div id='messagesBox' class='d-flex w-100 h-100' data-me-id='" . htmlspecialchars($authorId, ENT_QUOTES) . "' data-recipient-id='" . htmlspecialchars($recipientId, ENT_QUOTES) . "'>";
 
         if ($messages) {
@@ -74,9 +74,11 @@ if (!empty($_SESSION["userID"])) {
         }
 
         echo "</div>";
-    }
 
-    ?>
+        ?>
+    <?php } ?>
+
+
 
     <?php if ($inPm) { ?>
         <div class="d-flex w-100">
@@ -86,5 +88,7 @@ if (!empty($_SESSION["userID"])) {
     <?php } else { ?>
         <div id="introMessage">Lancez une conversation avec un client ou un particulier</div>
     <?php } ?>
+
+    <button id="showPms">💬</button>
 
 </section>
