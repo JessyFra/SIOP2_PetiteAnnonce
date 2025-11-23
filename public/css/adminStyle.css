@@ -1,16 +1,4 @@
-/* adminStyle.css */
 /* ==================== ADMIN STYLES ==================== */
-
-:root {
-    --admin-primary: #0d9b8a;
-    --admin-danger: #dc3545;
-    --admin-success: #28a745;
-    --admin-warning: #ffc107;
-    --admin-info: #17a2b8;
-    --admin-secondary: #6c757d;
-    --admin-light: #f8f9fa;
-    --admin-dark: #343a40;
-}
 
 .admin-container {
     max-width: 1400px;
@@ -25,17 +13,17 @@
     align-items: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid var(--admin-primary);
+    border-bottom: 2px solid #0d9b8a;
 }
 
 .admin-title {
     font-size: 2rem;
-    color: var(--admin-dark);
+    color: #343a40;
     margin-bottom: 5px;
 }
 
 .admin-title i {
-    color: var(--admin-primary);
+    color: #0d9b8a;
 }
 
 .admin-subtitle {
@@ -58,7 +46,7 @@
     padding: 10px 20px;
     border-radius: 6px;
     text-decoration: none;
-    color: var(--admin-dark);
+    color: #343a40;
     font-weight: 500;
     transition: all 0.3s ease;
     display: flex;
@@ -67,12 +55,12 @@
 }
 
 .admin-nav-link:hover {
-    background: var(--admin-light);
-    color: var(--admin-primary);
+    background: #f8f9fa;
+    color: #0d9b8a;
 }
 
 .admin-nav-link.active {
-    background: var(--admin-primary);
+    background: #0d9b8a;
     color: white;
 }
 
@@ -135,7 +123,7 @@
 .stat-value {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--admin-dark);
+    color: #343a40;
     margin: 0;
 }
 
@@ -153,7 +141,7 @@
 .quick-actions h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
-    color: var(--admin-dark);
+    color: #343a40;
 }
 
 .actions-grid {
@@ -174,19 +162,19 @@
 
 .action-card:hover {
     transform: translateY(-5px);
-    border-color: var(--admin-primary);
+    border-color: #0d9b8a;
     box-shadow: 0 4px 12px rgba(13, 155, 138, 0.2);
 }
 
 .action-card i {
     font-size: 2rem;
-    color: var(--admin-primary);
+    color: #0d9b8a;
     margin-bottom: 15px;
 }
 
 .action-card h3 {
     font-size: 1.2rem;
-    color: var(--admin-dark);
+    color: #343a40;
     margin-bottom: 10px;
 }
 
@@ -216,11 +204,11 @@
 .card-header h2 {
     font-size: 1.3rem;
     margin: 0;
-    color: var(--admin-dark);
+    color: #343a40;
 }
 
 .btn-link {
-    color: var(--admin-primary);
+    color: #0d9b8a;
     text-decoration: none;
     font-weight: 500;
     transition: opacity 0.3s ease;
@@ -254,7 +242,7 @@
 
 .filter-group label {
     font-weight: 500;
-    color: var(--admin-dark);
+    color: #343a40;
     font-size: 0.9rem;
 }
 
@@ -269,15 +257,15 @@
 }
 
 .admin-table thead {
-    background: var(--admin-light);
+    background: #f8f9fa;
 }
 
 .admin-table th {
     padding: 15px;
     text-align: left;
     font-weight: 600;
-    color: var(--admin-dark);
-    border-bottom: 2px solid var(--admin-primary);
+    color: #343a40;
+    border-bottom: 2px solid #0d9b8a;
 }
 
 .admin-table td {
@@ -290,7 +278,7 @@
 }
 
 .admin-table a {
-    color: var(--admin-primary);
+    color: #0d9b8a;
     text-decoration: none;
 }
 
@@ -358,16 +346,16 @@
 }
 
 .btn-success {
-    background: var(--admin-success);
+    background: #28a745;
 }
 
 .btn-warning {
-    background: var(--admin-warning);
+    background: #ffc107;
     color: #333;
 }
 
 .btn-danger {
-    background: var(--admin-danger);
+    background: #dc3545;
 }
 
 /* ==================== EMPTY STATE ==================== */
