@@ -5,9 +5,7 @@ require_once 'private/src/model/DTO/AnnounceImageDTO.php';
 
 class AnnounceImageDAO
 {
-    /**
-     * Récupère une image par son ID
-     */
+    // Récupère une image par son ID
     public static function get($id)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -28,9 +26,7 @@ class AnnounceImageDAO
         return null;
     }
 
-    /**
-     * Récupère toutes les images d'une annonce
-     */
+    // Récupère toutes les images d'une annonce
     public static function getByAnnounce($announceId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -52,9 +48,7 @@ class AnnounceImageDAO
         return $images;
     }
 
-    /**
-     * Récupère l'image principale d'une annonce
-     */
+    // Récupère l'image principale d'une annonce
     public static function getMainImage($announceId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -75,9 +69,7 @@ class AnnounceImageDAO
         return null;
     }
 
-    /**
-     * Insère une nouvelle image
-     */
+    // Insère une nouvelle image
     public static function insert($announceId, $imagePath, $isMain = 0)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -85,9 +77,7 @@ class AnnounceImageDAO
         return $query->execute([$announceId, $imagePath, $isMain]);
     }
 
-    /**
-     * Définit une image comme principale (et retire ce statut aux autres)
-     */
+    // Définit une image comme principale (et retire ce statut aux autres)
     public static function setAsMain($imageId, $announceId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -101,9 +91,7 @@ class AnnounceImageDAO
         return $query2->execute([$imageId]);
     }
 
-    /**
-     * Supprime une image
-     */
+    // Supprime une image
     public static function delete($id)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -111,9 +99,7 @@ class AnnounceImageDAO
         return $query->execute([$id]);
     }
 
-    /**
-     * Supprime toutes les images d'une annonce
-     */
+    // Supprime toutes les images d'une annonce
     public static function deleteByAnnounce($announceId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -121,9 +107,7 @@ class AnnounceImageDAO
         return $query->execute([$announceId]);
     }
 
-    /**
-     * Compte le nombre d'images d'une annonce
-     */
+    // Compte le nombre d'images d'une annonce
     public static function countByAnnounce($announceId)
     {
         $bdd = DatabaseLinker::getConnexion();

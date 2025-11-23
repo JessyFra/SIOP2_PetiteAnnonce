@@ -219,6 +219,3 @@ function getLastMessage() {
     });
 
 }
-
-
-

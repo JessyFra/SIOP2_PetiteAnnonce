@@ -170,9 +170,5 @@ if (announceForm) {
             alert("Veuillez ajouter au moins une image");
             return false;
         }
-
-        // DEBUG: Vérifier les fichiers (optionnel, vous pouvez le retirer en production)
-        console.log("Nombre de fichiers à envoyer:", imageInput.files.length);
-        console.log("Fichiers:", imageInput.files);
     });
 }

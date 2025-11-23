@@ -39,27 +39,11 @@ $pages = [
 
     'admin-announces' => ['class' => 'AdminControl', 'method' => 'manageAnnounces', 'title' => 'Administration - Annonces', 'css' => 'adminStyle.css'],
 
-    'create-announce' => [
-        'class' => 'AnnounceControl',
-        'method' => 'create',
-        'title' => 'Créer une annonce',
-        'css' => 'createAnnounceStyle.css',
-        'js' => 'createAnnounce.js'
-    ],
+    'create-announce' => ['class' => 'AnnounceControl', 'method' => 'create', 'title' => 'Créer une annonce', 'css' => 'createAnnounceStyle.css', 'js' => 'createAnnounce.js'],
 
-    'edit-announce' => [
-        'class' => 'AnnounceControl',
-        'method' => 'edit',
-        'title' => 'Modifier une annonce',
-        'css' => 'createAnnounceStyle.css',
-        'js' => 'editAnnounce.js'
-    ],
+    'edit-announce' => ['class' => 'AnnounceControl', 'method' => 'edit', 'title' => 'Modifier une annonce', 'css' => 'createAnnounceStyle.css', 'js' => 'editAnnounce.js'],
 
-    'search-api' => [
-        'class' => 'AnnounceControl',
-        'method' => 'searchApi',
-        'title' => 'API de recherche'
-    ]
+    'search-api' => ['class' => 'AnnounceControl', 'method' => 'searchApi', 'title' => 'API de recherche']
 ];
 
 // Vérifie les paramètres après ? dans l'URL, si vide redirection vers la liste des annonces

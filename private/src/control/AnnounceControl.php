@@ -49,9 +49,7 @@ class AnnounceControl
         include_once 'private/src/view/announce.php';
     }
 
-    /**
-     * Page de création d'annonce
-     */
+    // Page de création d'annonce
     public function create()
     {
         // Vérification de l'authentification
@@ -117,9 +115,7 @@ class AnnounceControl
         include_once 'private/src/view/createAnnounce.php';
     }
 
-    /**
-     * Page de modification d'annonce
-     */
+    // Page de modification d'annonce
     public function edit()
     {
         // Vérification de l'authentification
@@ -201,18 +197,10 @@ class AnnounceControl
         include_once 'private/src/view/editAnnounce.php';
     }
 
-    /**
-     * Gère l'upload des images
-     */
+    //  Gère l'upload des images
     private function handleImageUpload($files, $announceId, $setFirstAsMain = true)
     {
         require_once 'private/src/model/DAO/AnnounceImageDAO.php';
-
-        // DEBUG
-        error_log("=== DEBUT UPLOAD ===");
-        error_log("Announce ID: " . $announceId);
-        error_log("Nombre de fichiers reçus: " . count($files['name']));
-        error_log("Set first as main: " . ($setFirstAsMain ? 'OUI' : 'NON'));
 
         $uploadDir = 'public/assets/img/';
 
@@ -222,12 +210,12 @@ class AnnounceControl
         }
 
         $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-        $maxSize = 5 * 1024 * 1024; // 5MB
+        $maxSize = 10 * 1024 * 1024; // 10MB
 
         $uploadedCount = 0;
         $errors = [];
 
-        // Vérifier que nous avons bien un tableau de fichiers
+        // Vérifie qu'on a bien un tableau de fichiers
         if (!isset($files['name']) || !is_array($files['name'])) {
             return false;
         }
@@ -235,7 +223,7 @@ class AnnounceControl
         $fileCount = count($files['name']);
 
         for ($i = 0; $i < $fileCount; $i++) {
-            // Ignorer les fichiers vides ou avec erreurs
+            // Ignore les fichiers vides ou avec erreurs
             if ($files['error'][$i] === UPLOAD_ERR_NO_FILE || empty($files['name'][$i])) {
                 continue;
             }
@@ -260,14 +248,14 @@ class AnnounceControl
                 continue;
             }
 
-            // CORRECTION: Génération d'un nom de fichier UNIQUE
+            // Génération d'un nom de fichier UNIQUE
             $extension = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
             $filename = $announceId . '_' . uniqid() . '.' . $extension;
             $filepath = $uploadDir . $filename;
 
             // Déplacement du fichier
             if (move_uploaded_file($files['tmp_name'][$i], $filepath)) {
-                // La première image uploadée est principale seulement si demandé
+                // La première image uploadée est principale
                 $isMain = ($setFirstAsMain && $uploadedCount === 0) ? 1 : 0;
                 AnnounceImageDAO::insert($announceId, $filename, $isMain);
                 $uploadedCount++;
@@ -276,17 +264,10 @@ class AnnounceControl
             }
         }
 
-        // Log des erreurs si nécessaire (optionnel)
-        if (!empty($errors)) {
-            error_log("Erreurs d'upload d'images : " . implode(", ", $errors));
-        }
-
         return $uploadedCount > 0;
     }
 
-    /**
-     * API de recherche pour l'autocomplétion
-     */
+    // API de recherche pour l'autocomplétion
     public function searchApi()
     {
         header('Content-Type: application/json');

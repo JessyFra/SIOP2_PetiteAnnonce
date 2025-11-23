@@ -84,12 +84,12 @@
 
 <!-- Affichage des annonces -->
 <?php
-// Déterminer si on affiche par catégorie ou en liste filtrée
+// Détermine si on affiche par catégorie ou en liste filtrée
 $hasFilters = !empty($_GET['search']) || !empty($_GET['category']) || !empty($_GET['city']) || !empty($_GET['type']);
 ?>
 
 <?php if ($hasFilters): ?>
-    <!-- AFFICHAGE FILTRÉ (liste simple) -->
+    <!-- Affichage filtré (liste simple) -->
     <?php if (!empty($announces)): ?>
         <section class="announces-list">
             <div class="announces-grid">
@@ -161,7 +161,7 @@ $hasFilters = !empty($_GET['search']) || !empty($_GET['category']) || !empty($_G
     <?php endif; ?>
 
 <?php else: ?>
-    <!-- AFFICHAGE PAR CATÉGORIE (style LeBonCoin) -->
+    <!-- Affichage par catégorie -->
     <?php foreach ($categories as $category): ?>
         <?php $categoryAnnounces = $category->getAnnounces(); ?>
 
