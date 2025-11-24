@@ -1,12 +1,18 @@
 <?php
-// Vérifier si l'utilisateur est admin
+
+// Vérifie si l'utilisateur est admin
 $isAdmin = false;
+
 if (!empty($_SESSION['userID'])) {
+
     include_once 'private/src/model/DAO/UserDAO.php';
+
     $userDAO = new UserDAO();
     $currentUser = $userDAO->get($_SESSION['userID']);
     $isAdmin = $currentUser && $currentUser->getRole() === 'admin';
+
 }
+
 ?>
 
 <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top custom-navbar">

@@ -163,9 +163,7 @@ class AnnounceDAO
         return $announces;
     }
 
-    /**
-     * Met à jour le statut d'une annonce
-     */
+    // Met à jour le statut d'une annonce
     public static function updateStatus($announceId, $status)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -173,9 +171,7 @@ class AnnounceDAO
         return $query->execute([$status, $announceId]);
     }
 
-    /**
-     * Supprime une annonce
-     */
+    // Supprime une annonce
     public static function delete($announceId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -183,9 +179,7 @@ class AnnounceDAO
         return $query->execute([$announceId]);
     }
 
-    /**
-     * Insère une nouvelle annonce et retourne son ID
-     */
+    // Insère une nouvelle annonce et retourne son ID
     public static function insert($title, $description, $price, $type, $cityId, $authorId, $categoryIds = [])
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -211,9 +205,7 @@ class AnnounceDAO
         return $announceId;
     }
 
-    /**
-     * Met à jour une annonce existante
-     */
+    // Met à jour une annonce existante
     public static function update($announceId, $title, $description, $price, $type, $cityId, $categoryIds = [])
     {
         $bdd = DatabaseLinker::getConnexion();

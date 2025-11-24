@@ -5,9 +5,7 @@ include_once 'private/src/model/DAO/AnnounceDAO.php';
 
 class AdminControl
 {
-    /**
-     * Vérifie si l'utilisateur connecté est admin
-     */
+    // Vérifie si l'utilisateur connecté est admin
     private function checkAdmin()
     {
         if (!isset($_SESSION['userID'])) {
@@ -26,9 +24,7 @@ class AdminControl
         return $user;
     }
 
-    /**
-     * Page principale de l'administration
-     */
+    // Page principale de l'administration
     public function dashboard()
     {
         $admin = $this->checkAdmin();
@@ -47,9 +43,7 @@ class AdminControl
         include_once 'private/src/view/admin/dashboard.php';
     }
 
-    /**
-     * Gestion des utilisateurs
-     */
+    // Gestion des utilisateurs
     public function manageUsers()
     {
         $admin = $this->checkAdmin();
@@ -97,9 +91,7 @@ class AdminControl
         include_once 'private/src/view/admin/users.php';
     }
 
-    /**
-     * Gestion des annonces
-     */
+    // Gestion des annonces
     public function manageAnnounces()
     {
         $admin = $this->checkAdmin();

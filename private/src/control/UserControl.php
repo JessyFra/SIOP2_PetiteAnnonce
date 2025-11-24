@@ -20,7 +20,7 @@ class UserControl
             $userData = $userDAO->getUserInfo($name, $password);
 
             if ($userData) {
-                // Vérifier si l'utilisateur est banni
+                // Vérifie si l'utilisateur est banni
                 if ($userData['banned'] == 1) {
                     $message = "Connexion -> Votre compte a été banni. Contactez un administrateur.";
                 } else {
@@ -104,7 +104,7 @@ class UserControl
             $announceId = intval($_POST['closeAnnounceId']);
             $announce = AnnounceDAO::get($announceId);
 
-            // Vérifier que l'annonce appartient à l'utilisateur
+            // Vérifie que l'annonce appartient à l'utilisateur
             if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
                 if (AnnounceDAO::updateStatus($announceId, 'closed')) {
                     $message = "Annonce clôturée avec succès.";
@@ -119,7 +119,7 @@ class UserControl
             $announceId = intval($_POST['reopenAnnounceId']);
             $announce = AnnounceDAO::get($announceId);
 
-            // Vérifier que l'annonce appartient à l'utilisateur
+            // Vérifie que l'annonce appartient à l'utilisateur
             if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
                 if (AnnounceDAO::updateStatus($announceId, 'open')) {
                     $message = "Annonce rouverte avec succès.";
@@ -129,12 +129,12 @@ class UserControl
             }
         }
 
-        // Supprimer une annonce
+        // Supprime une annonce
         if (isset($_POST['deleteAnnounceId'])) {
             $announceId = intval($_POST['deleteAnnounceId']);
             $announce = AnnounceDAO::get($announceId);
 
-            // Vérifier que l'annonce appartient à l'utilisateur
+            // Vérifie que l'annonce appartient à l'utilisateur
             if ($announce && $announce->getAuthorId() == $_SESSION['userID']) {
                 if (AnnounceDAO::delete($announceId)) {
                     $message = "Annonce supprimée avec succès.";
@@ -156,9 +156,7 @@ class UserControl
         include_once 'private/src/view/profilUser.php';
     }
 
-    /**
-     * Affiche le profil public d'un utilisateur
-     */
+    // Affiche le profil public d'un utilisateur
     public function viewProfile()
     {
         // Récupération de l'ID utilisateur depuis l'URL
@@ -177,10 +175,10 @@ class UserControl
             exit;
         }
 
-        // Récupérer les annonces de cet utilisateur
+        // Récupére les annonces de cet utilisateur
         $announces = AnnounceDAO::getByUser($userId);
 
-        // Si c'est son propre profil, rediriger vers la page profil
+        // Si c'est son propre profil, redirige vers sa page profil
         if (isset($_SESSION['userID']) && $_SESSION['userID'] == $userId) {
             header("Location: index.php?page=profil");
             exit;

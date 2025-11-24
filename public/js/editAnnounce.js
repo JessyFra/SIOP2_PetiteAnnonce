@@ -15,9 +15,7 @@ document.querySelectorAll('input[name="type"]').forEach((radio) => {
     });
 });
 
-// ========================================
-// GESTION DE LA SUPPRESSION DES IMAGES EXISTANTES
-// ========================================
+// Gestion de la suppression des images existantes
 document.addEventListener("DOMContentLoaded", function () {
     // Attacher les événements aux boutons de suppression des images existantes
     const deleteExistingButtons = document.querySelectorAll(
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function deleteExistingImage(imageId) {
     console.log("Tentative de suppression de l'image:", imageId);
 
-    // CORRECTION: Utiliser le bon sélecteur
+    // Utilise le bon sélecteur
     const imageElement = document.querySelector(
         `div.image-preview-item[data-image-id="${imageId}"]`
     );
@@ -43,41 +41,27 @@ function deleteExistingImage(imageId) {
     if (imageElement) {
         console.log("Image trouvée, marquage pour suppression");
 
-        // Marquer visuellement comme supprimée
+        // Marque visuellement comme supprimée
         imageElement.classList.add("to-delete");
         imageElement.style.opacity = "0.3";
         imageElement.style.position = "relative";
         imageElement.style.pointerEvents = "none";
 
-        // Ajouter un overlay "À supprimer"
+        // Ajoute un overlay
         const overlay = document.createElement("div");
         overlay.className = "delete-overlay";
         imageElement.appendChild(overlay);
 
-        // Masquer le bouton de suppression
+        // Masque le bouton de suppression
         const deleteBtn = imageElement.querySelector(".delete");
         if (deleteBtn) {
             deleteBtn.disabled = true;
             deleteBtn.style.display = "none";
         }
 
-        console.log("Image marquée visuellement pour suppression");
-    } else {
-        console.error("❌ Image non trouvée avec l'ID:", imageId);
-        console.log(
-            "Sélecteur utilisé:",
-            `div.image-preview-item[data-image-id="${imageId}"]`
-        );
-
-        // Debug: afficher tous les éléments avec data-image-id
-        const allImages = document.querySelectorAll("[data-image-id]");
-        console.log("Images trouvées dans le DOM:", allImages.length);
-        allImages.forEach((img) => {
-            console.log("- Image ID:", img.getAttribute("data-image-id"));
-        });
     }
 
-    // Ajouter un champ caché pour marquer l'image à supprimer côté serveur
+    // Ajoute un champ caché pour marquer l'image à supprimer côté serveur
     const input = document.createElement("input");
     input.type = "hidden";
     input.name = "delete_images[]";
@@ -88,9 +72,8 @@ function deleteExistingImage(imageId) {
     console.log("✅ Champ caché ajouté pour l'image:", imageId);
 }
 
-// ========================================
-// GESTION DE L'UPLOAD DE NOUVELLES IMAGES
-// ========================================
+
+// Gestion de l'upload d'images
 const uploadZone = document.getElementById("uploadZone");
 const imageInput = document.getElementById("imageInput");
 const imagePreview = document.getElementById("imagePreview");
@@ -128,7 +111,7 @@ if (uploadZone && imageInput) {
 function handleFiles() {
     const files = Array.from(imageInput.files);
 
-    // Compter les images existantes (non marquées pour suppression)
+    // Compte les images existantes (non marquées pour suppression)
     const existingImagesContainer = document.getElementById("existingImages");
     const existingCount = existingImagesContainer
         ? existingImagesContainer.querySelectorAll(
@@ -136,7 +119,7 @@ function handleFiles() {
           ).length
         : 0;
 
-    // Ajouter les nouveaux fichiers à la liste au lieu de la remplacer
+    // Ajoute les nouveaux fichiers à la liste au lieu de la remplacer
     const newFiles = files.filter((file) => {
         return !selectedFiles.some(
             (existing) =>
@@ -154,7 +137,7 @@ function handleFiles() {
         return;
     }
 
-    // Ajouter les nouveaux fichiers
+    // Ajoute les nouveaux fichiers
     selectedFiles = [...selectedFiles, ...newFiles];
     imageInput.files = createFileList(selectedFiles);
     displayPreviews();
@@ -202,9 +185,7 @@ function createFileList(files) {
     return dataTransfer.files;
 }
 
-// ========================================
-// VALIDATION DU FORMULAIRE
-// ========================================
+// Validation du formulaire
 const announceForm = document.getElementById("announceForm");
 if (announceForm) {
     announceForm.addEventListener("submit", function (e) {
@@ -218,7 +199,7 @@ if (announceForm) {
             return false;
         }
 
-        // Vérifier qu'il reste au moins une image (existantes non supprimées + nouvelles)
+        // Vérifie qu'il reste au moins une image (existantes non supprimées + nouvelles)
         const existingImagesContainer =
             document.getElementById("existingImages");
         const remainingExistingCount = existingImagesContainer

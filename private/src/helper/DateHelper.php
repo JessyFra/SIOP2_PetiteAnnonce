@@ -1,5 +1,7 @@
 <?php
 
+// Code trouvé sur un site de ressources PHP pour la gestion des dates en format relatif et français.
+
 class DateHelper
 {
     /**

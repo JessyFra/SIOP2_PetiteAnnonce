@@ -126,9 +126,7 @@ class UserDAO
         $state->execute([$id]);
     }
 
-    /**
-     * Bannir ou débannir un utilisateur
-     */
+    // Bannir ou débannir un utilisateur
     public function toggleBan($userId, $ban = true)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -136,9 +134,7 @@ class UserDAO
         return $state->execute([$ban ? 1 : 0, $userId]);
     }
 
-    /**
-     * Vérifie si un utilisateur est banni
-     */
+    // Vérifie si un utilisateur est banni
     public function isBanned($userId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -148,9 +144,7 @@ class UserDAO
         return $result && $result['banned'] == 1;
     }
 
-    /**
-     * Compte le nombre total d'utilisateurs
-     */
+    // Compte le nombre total d'utilisateurs
     public static function count()
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -159,9 +153,7 @@ class UserDAO
         return $result['total'];
     }
 
-    /**
-     * Compte le nombre d'utilisateurs bannis
-     */
+    // Compte le nombre d'utilisateurs bannis
     public static function countBanned()
     {
         $bdd = DatabaseLinker::getConnexion();

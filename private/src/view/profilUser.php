@@ -4,7 +4,7 @@ include_once 'private/src/helper/DateHelper.php';
 include_once 'private/src/model/DAO/AnnounceDAO.php';
 $announces = AnnounceDAO::getByUser($user->getId());
 
-// S'assurer que $announces est un tableau
+// S'assure que $announces est un tableau
 if (!is_array($announces)) {
     $announces = [];
 }
@@ -255,6 +255,7 @@ if (!is_array($announces)) {
                             </div>
 
                             <div class="announce-actions">
+                                <!-- Bouton Modifier pour les annonces -->
                                 <a href="index.php?page=edit-announce&id=<?= $announce->getId() ?>" class="btn-small btn-small-primary">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -283,6 +284,7 @@ if (!is_array($announces)) {
                                     </form>
                                 <?php endif; ?>
 
+                                <!-- Bouton Supprimer pour les annonces -->
                                 <form method="post" action="" style="display:inline;">
                                     <input type="hidden" name="deleteAnnounceId" value="<?= $announce->getId() ?>">
                                     <button type="submit" class="btn-small btn-small-danger">
