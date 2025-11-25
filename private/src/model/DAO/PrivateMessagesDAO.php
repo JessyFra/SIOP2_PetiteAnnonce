@@ -59,15 +59,15 @@ class PrivateMessagesDAO
 
         $query = $bdd->prepare("
             DELETE FROM private_messages
-            WHERE id = (
-                SELECT id FROM private_messages
+            WHERE user_id = ?
+            AND recipient_id = ?
+            AND id NOT IN (
+                SELECT MAX(id) FROM private_messages
                 WHERE user_id = ? AND recipient_id = ?
-                ORDER BY id
-                LIMIT 1
             )
         ");
 
-        $query->execute(array($userId, $recipientId));
+        $query->execute([$userId, $recipientId, $userId, $recipientId]);
 
         return true;
     }
