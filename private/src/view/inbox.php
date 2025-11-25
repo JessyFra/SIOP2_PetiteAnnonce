@@ -35,9 +35,9 @@ $privates_messages = PrivateMessagesDAO::getAll($authorId);
 
         <div id="<?php echo $recipientPm->getId() ?>" class="pmBox <?php echo ($recipientPm->getId() == $recipientId) ? 'active' : ''; ?> <?php echo ($index == 0) ? 'first-child' : ''; ?>">
             <div class="user-avatar">
-                <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
+                <?php echo strtoupper(substr($recipientPm->getName(), 0, 1)); ?>
             </div>
-            <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ?></div>
+            <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ? $recipientPm->getDisplayName() : $recipientPm->getName() ?></div>
         </div>
     <?php } ?>
 </nav>
