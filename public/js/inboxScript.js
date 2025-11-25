@@ -37,6 +37,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
             sendMessage(content, recipientId);
         });
+
+        messageTextarea.addEventListener("keydown", function(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                const content = messageTextarea.value;
+
+                if (!content || content.trim() === "") {
+                    return;
+                } else {
+                    sendPopup("Un message ne peut pas être vide");
+                }
+
+                sendMessage(content, recipientId);
+            }
+        });
     }
 
     const pmsBox = document.getElementsByClassName("pmBox");
