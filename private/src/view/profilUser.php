@@ -121,8 +121,8 @@ if (!is_array($announces)) {
                         Nom display
                     </label>
                     <div class="input-group">
-                        <span class="form-value" id="display_name-display"><?= $user->getDisplayName() ?></span>
-                        <input type="text" class="form-input" id="display_name-input" name="display_name" value="<?= $user->getDisplayName() ?>" hidden>
+                        <span class="form-value" id="display_name-display"><?= htmlspecialchars($user->getDisplayName()) ?></span>
+                        <input type="text" class="form-input" id="display_name-input" name="display_name" value="<?= htmlspecialchars($user->getDisplayName()) ?>" hidden>
                         <button type="button" class="icon-btn" onclick="toggleEdit('display_name')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -144,7 +144,7 @@ if (!is_array($announces)) {
                     </label>
                     <div class="input-group">
                         <span class="form-value" id="biography-display"><?= nl2br($user->getBiography() ?? "Aucune description...") ?></span>
-                        <textarea class="form-input form-textarea" id="biography-input" name="biography" hidden><?= $user->getBiography() ?? "Aucune description..." ?></textarea>
+                        <textarea class="form-input form-textarea" id="biography-input" name="biography" hidden><?= htmlspecialchars($user->getBiography() ?? "Aucune description...") ?></textarea>
                         <button type="button" class="icon-btn" onclick="toggleEdit('biography')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
