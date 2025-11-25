@@ -1,34 +1,30 @@
 name: Deploy on push to main
+
 on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      
+
     - name: Add host to known_hosts
       run: |
         mkdir -p ~/.ssh
         ssh-keyscan -p 1622 sio.jbdelasalle.com >> ~/.ssh/known_hosts
-        
+
     - name: Deploy to server with exclusions
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} rsync -avz -e "ssh -p 1622" \
           --exclude-from='.deployignore' \
           ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html/TP_PetiteAnnonce
-          
-    - name: Set base permissions
+
+    - name: Set public read/execute on all files and folders
       run: |
         sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
-          'chmod -R 755 /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/'
-          
-    - name: Configure upload directory permissions
-      run: |
-        sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
-          'mkdir -p /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/public/assets/img/ && \
-           chgrp -R www-data /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/public/assets/img/ && \
-           chmod -R 775 /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/public/assets/img/'
+          'chmod -R 777 /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/'
