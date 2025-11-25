@@ -62,8 +62,10 @@ class PrivateMessagesDAO
             WHERE user_id = ?
             AND recipient_id = ?
             AND id NOT IN (
-                SELECT MAX(id) FROM private_messages
-                WHERE user_id = ? AND recipient_id = ?
+                SELECT id FROM (
+                    SELECT MAX(id) AS id FROM private_messages
+                    WHERE user_id = ? AND recipient_id = ?
+                ) AS tmp
             )
         ");
 
