@@ -6,7 +6,6 @@ if (!empty($_SESSION["userID"])) {
 
     $authorId = $_SESSION["userID"];
     $recipientId = null;
-    $privates_messages = PrivateMessagesDAO::getAll($authorId);
 
     if (!empty($_GET["id"])) {
         $recipientId = htmlspecialchars($_GET["id"], ENT_QUOTES);
@@ -25,6 +24,8 @@ if (!empty($_SESSION["userID"])) {
     header("Location: index.php?page=auth");
     exit;
 }
+
+$privates_messages = PrivateMessagesDAO::getAll($authorId);
 
 ?>
 

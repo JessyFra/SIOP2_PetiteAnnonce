@@ -44,7 +44,7 @@ class PrivateMessagesDAO
         $check->execute(array($userId, $recipientId));
         $count = $check->fetchColumn();
 
-        if ($count <= 1) {
+        if ($count != 0) {
             return false;
         }
 
@@ -71,7 +71,7 @@ class PrivateMessagesDAO
         $check->execute(array($userId, $recipientId));
         $count = $check->fetchColumn();
 
-        if ($count <= 1) {
+        if ($count == 0) {
             return false;
         }
 
