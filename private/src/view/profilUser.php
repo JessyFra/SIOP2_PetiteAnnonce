@@ -77,7 +77,7 @@ if (!is_array($announces)) {
             </div>
             <div class="stat-content">
                 <p class="stat-label">Membre depuis</p>
-                <h3 class="stat-value"><?= floor((time() - strtotime($user->getCreatedAt())) / (60 * 60 * 24)) ?> jours</h3>
+                <h3 class="stat-value"><?= max(0, floor((time() - strtotime($user->getCreatedAt())) / (60 * 60 * 24))) ?> jours</h3>
             </div>
         </div>
     </div>
