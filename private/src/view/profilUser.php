@@ -26,7 +26,7 @@ if (!is_array($announces)) {
             </div>
             <div>
                 <h1 class="dashboard-title">Tableau de bord</h1>
-                <p class="dashboard-subtitle">Bienvenue, <?= $user->getDisplayName() ?></p>
+                <p class="dashboard-subtitle">Bienvenue, <?= htmlspecialchars($user->getDisplayName()) ?></p>
             </div>
         </div>
         <div class="user-badge">
@@ -118,7 +118,7 @@ if (!is_array($announces)) {
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 16v-4M12 8h.01" />
                         </svg>
-                        Nom display
+                        Nom d'affichage
                     </label>
                     <div class="input-group">
                         <span class="form-value" id="display_name-display"><?= htmlspecialchars($user->getDisplayName()) ?></span>
@@ -143,7 +143,10 @@ if (!is_array($announces)) {
                         Biographie
                     </label>
                     <div class="input-group">
-                        <span class="form-value" id="biography-display"><?= nl2br($user->getBiography() ?? "Aucune description...") ?></span>
+
+                        <?php $biography = nl2br(htmlspecialchars($user->getBiography() ?? "Aucune description...", ENT_QUOTES)) ?>
+
+                        <span class="form-value" id="biography-display"><?php echo $biography ?></span>
                         <textarea class="form-input form-textarea" id="biography-input" name="biography" hidden><?= htmlspecialchars($user->getBiography() ?? "Aucune description...") ?></textarea>
                         <button type="button" class="icon-btn" onclick="toggleEdit('biography')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
