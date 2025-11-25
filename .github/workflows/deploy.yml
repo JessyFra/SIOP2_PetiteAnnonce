@@ -24,9 +24,8 @@ jobs:
           --exclude-from='.deployignore' \
           ./ jfrachisse@sio.jbdelasalle.com:/home/SIO/jfrachisse/public_html/TP_PetiteAnnonce
 
-    - name: Set correct permissions
+    - name: Set public read/execute on all files and folders
       run: |
-        sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com '
-          find /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce -type d -exec chmod 755 {} \;
-          find /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce -type f -exec chmod 644 {} \;
-        '
+        sshpass -p ${{ secrets.PASSWORD_SIO_PetiteAnnonce }} ssh -p 1622 jfrachisse@sio.jbdelasalle.com \
+          'chmod -R 755 /home/SIO/jfrachisse/public_html/TP_PetiteAnnonce/'
+
