@@ -52,30 +52,6 @@ if (!empty($_SESSION["userID"])) {
             </div>
         <?php } ?>
     <?php } ?>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
-    <div class="pmBox">
-        <div class="user-avatar">L</div>
-        <div class="user-display-name">Leurre</div>
-    </div>
 </nav>
 
 <section id="mainBox">
