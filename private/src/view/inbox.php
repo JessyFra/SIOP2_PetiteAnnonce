@@ -40,11 +40,11 @@ if (!empty($_SESSION["userID"])) {
         </div>
     <?php } ?>
 
-    <?php foreach ($privates_messages as $private_messages) { ?>
+    <?php foreach ($privates_messages as $index => $private_messages) { ?>
         <?php $recipientPm = $private_messages->getRecipient() ?>
 
         <?php if ($recipientPm->getId() != $recipientId) { ?>
-            <div id="<?php echo $recipientPm->getId() ?>" class="pmBox">
+            <div id="<?php echo $recipientPm->getId() ?>" class="pmBox <?php echo ($index == 0) ? 'first-child' : ''; ?>">
                 <div class="user-avatar">
                     <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
                 </div>
