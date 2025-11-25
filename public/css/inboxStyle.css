@@ -133,7 +133,6 @@ body, html {
 .pmBox.active {
     background-color: #0D9B8A;
     color: white;
-    border-top-left-radius: 10px;
 }
 
 .pmBox.active:hover {

@@ -15,11 +15,9 @@ if (!empty($_SESSION["userID"])) {
         $recipient = UserDAO::get($recipientId);
 
         if (!empty($recipient) && $authorId != $recipientId) {
-            PrivateMessagesDAO::create($authorId, $recipientId);
+            PrivateMessagesDAO::createIfNotExist($authorId, $recipientId);
             PrivateMessagesDAO::deleteOldRecipientId($authorId, $recipientId);
 
-            PrivateMessagesDAO::create($recipientId, $authorId);
-            PrivateMessagesDAO::deleteOldRecipientId($recipientId, $authorId);
             $inPm = true;
         }
     }
@@ -31,26 +29,15 @@ if (!empty($_SESSION["userID"])) {
 ?>
 
 <nav id="privateMessages">
-    <?php if ($inPm) { ?>
-        <div id="<?php echo $recipientId ?>" class="pmBox active">
-            <div class="user-avatar">
-                <?php echo substr($recipient->getDisplayName(), 0, 1); ?>
-            </div>
-            <div class="user-display-name"><?php echo $recipient->getDisplayName() ?></div>
-        </div>
-    <?php } ?>
-
     <?php foreach ($privates_messages as $index => $private_messages) { ?>
         <?php $recipientPm = $private_messages->getRecipient() ?>
 
-        <?php if ($recipientPm->getId() != $recipientId) { ?>
-            <div id="<?php echo $recipientPm->getId() ?>" class="pmBox <?php echo ($index == 0) ? 'first-child' : ''; ?>">
-                <div class="user-avatar">
-                    <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
-                </div>
-                <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ?></div>
+        <div id="<?php echo $recipientPm->getId() ?>" class="pmBox <?php echo ($recipientPm->getId() == $recipientId) ? 'active' : ''; ?> <?php echo ($index == 0) ? 'first-child' : ''; ?>">
+            <div class="user-avatar">
+                <?php echo substr($recipientPm->getDisplayName(), 0, 1); ?>
             </div>
-        <?php } ?>
+            <div class="user-display-name"><?php echo $recipientPm->getDisplayName() ?></div>
+        </div>
     <?php } ?>
 </nav>
 

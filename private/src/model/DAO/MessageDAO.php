@@ -56,6 +56,12 @@ class MessageDAO {
 
         $query = $bdd->prepare("INSERT INTO message (content, author_id, recipient_id) VALUES (?, ?, ?)");
         $query->execute(array($content, $authorId, $recipientId));
+
+        PrivateMessagesDAO::create($authorId, $recipientId);
+        PrivateMessagesDAO::deleteOldRecipientId($authorId, $recipientId);
+
+        PrivateMessagesDAO::create($recipientId, $authorId);
+        PrivateMessagesDAO::deleteOldRecipientId($recipientId, $authorId);
     }
 
     public static function getCountMessages($authorId, $recipientId) {
