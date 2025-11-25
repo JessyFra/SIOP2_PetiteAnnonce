@@ -102,7 +102,7 @@ if (!is_array($announces)) {
                     </label>
                     <div class="input-group">
                         <span class="form-value" id="name-display"><?= htmlspecialchars($user->getName()) ?></span>
-                        <input type="text" class="form-input" id="name-input" name="name" value="<?= htmlspecialchars($user->getName()) ?>" hidden>
+                        <input type="text" class="form-input" id="name-input" name="name" maxlength="26" pattern="[a-zA-Z0-9._]{3,26}" title="Seules les lettres, chiffres, '.' et '_' sont autorisés (entre 3 et 26 caractères)" value="<?= htmlspecialchars($user->getName()) ?>" hidden>
                         <button type="button" class="icon-btn" onclick="toggleEdit('name')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -122,7 +122,7 @@ if (!is_array($announces)) {
                     </label>
                     <div class="input-group">
                         <span class="form-value" id="display_name-display"><?= htmlspecialchars($user->getDisplayName()) ?></span>
-                        <input type="text" class="form-input" id="display_name-input" name="display_name" value="<?= htmlspecialchars($user->getDisplayName()) ?>" hidden>
+                        <input type="text" class="form-input" id="display_name-input" name="display_name" maxlength="26" pattern="[a-zA-Z0-9._]{3,26}" title="Seules les lettres, chiffres, '.' et '_' sont autorisés (entre 3 et 26 caractères)" value="<?= htmlspecialchars($user->getDisplayName()) ?>" hidden>
                         <button type="button" class="icon-btn" onclick="toggleEdit('display_name')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -147,7 +147,7 @@ if (!is_array($announces)) {
                         <?php $biography = nl2br(htmlspecialchars($user->getBiography() ?? "Aucune description...", ENT_QUOTES)) ?>
 
                         <span class="form-value" id="biography-display"><?php echo $biography ?></span>
-                        <textarea class="form-input form-textarea" id="biography-input" name="biography" hidden><?= htmlspecialchars($user->getBiography() ?? "Aucune description...") ?></textarea>
+                        <textarea class="form-input form-textarea" id="biography-input" name="biography" maxlength="600" hidden><?= htmlspecialchars($user->getBiography() ?? "Aucune description...") ?></textarea>
                         <button type="button" class="icon-btn" onclick="toggleEdit('biography')">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
@@ -167,7 +167,7 @@ if (!is_array($announces)) {
                     </label>
                     <div class="input-group">
                         <span class="form-value" id="password-display">••••••••</span>
-                        <input type="password" class="form-input" id="password-input" name="new_password" placeholder="Nouveau mot de passe" hidden>
+                        <input type="password" class="form-input" id="password-input" name="new_password" placeholder="Nouveau mot de passe" pattern="[A-Za-zÀ-ÿ0-9.]+" maxlength="15" title="Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT" hidden>
                         <button type="button" class="icon-btn" onclick="togglePassword()">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
