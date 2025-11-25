@@ -1,5 +1,12 @@
 let modified = false;
 
+document.addEventListener("DOMContentLoaded", function() {
+    window.addEventListener("load", () => {
+        const bioDiv = document.getElementById("bio");
+        bioDiv.innerHTML = bioDiv.dataset.bio;
+    });
+});
+
 function toggleEdit(field) {
     const display = document.getElementById(field + "-display");
     const input = document.getElementById(field + "-input");
