@@ -136,7 +136,7 @@ function sendPopup(message) {
     console.log("Popup")
 }
 
-function appendMessage(content, isAuthor) {
+function appendMessage(content, isAuthor, recipientId) {
     const messagesBox = document.getElementById("messagesBox");
     const introMessage = document.getElementById("introMessage");
 
@@ -175,6 +175,12 @@ function appendMessage(content, isAuthor) {
     }
 
     scrollToBottom();
+    const privateMessages = document.getElementById("privateMessages");
+    const recipientBox = document.getElementById(recipientId);
+
+    if (recipientBox && privateMessages) {
+        privateMessages.prepend(recipientBox);
+    }
 }
 
 
@@ -231,9 +237,9 @@ function getLastMessage() {
                 // Rien
             }
 
-            if (response && response.content) {
+            if (response && response.content && response.recipient_id) {
                 const isAuthor = response.author_id && authorId && String(response.author_id) === String(authorId);
-                appendMessage(response.content, Boolean(isAuthor));
+                appendMessage(response.content, Boolean(isAuthor), response.recipient_id);
                 scrollToBottom();
             }
         }

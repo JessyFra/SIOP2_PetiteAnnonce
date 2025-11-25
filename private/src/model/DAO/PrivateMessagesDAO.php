@@ -36,6 +36,24 @@ class PrivateMessagesDAO
 
     }
 
+    public static function createIfNotExist($userId, $recipientId)
+    {
+        $bdd = DatabaseLinker::getConnexion();
+
+        $check = $bdd->prepare("SELECT COUNT(*) FROM private_messages WHERE user_id = ? AND recipient_id = ?");
+        $check->execute(array($userId, $recipientId));
+        $count = $check->fetchColumn();
+
+        if ($count != 0) {
+            return false;
+        }
+
+        $query = $bdd->prepare("INSERT INTO private_messages (user_id, recipient_id) VALUES (?, ?)");
+        $query->execute(array($userId, $recipientId));
+
+        return true;
+    }
+
     public static function delete($userId, $recipientId)
     {
         $bdd = DatabaseLinker::getConnexion();
@@ -53,7 +71,7 @@ class PrivateMessagesDAO
         $check->execute(array($userId, $recipientId));
         $count = $check->fetchColumn();
 
-        if ($count <= 1) {
+        if ($count == 0) {
             return false;
         }
 

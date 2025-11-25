@@ -19,6 +19,10 @@ body, html {
     width: 25%;
     border: 2px solid #0d9b8a;
     border-radius: 15px 0 0 15px;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #0d9b8a white;
 }
 
 #mainBox {
@@ -42,21 +46,25 @@ body, html {
     scrollbar-color: #0d9b8a white;
 }
 
-.messagesBox::-webkit-scrollbar {
+.messagesBox::-webkit-scrollbar,
+#privateMessages::-webkit-scrollbar {
     height: 8px;
 }
 
-.messagesBox::-webkit-scrollbar-track {
+.messagesBox::-webkit-scrollbar-track,
+#privateMessages::-webkit-scrollbar-track {
     background: white;
     border-radius: 4px;
 }
 
-.messagesBox::-webkit-scrollbar-thumb {
+.messagesBox::-webkit-scrollbar-thumb,
+#privateMessages::-webkit-scrollbar-thumb {
     background: #0d9b8a;
     border-radius: 4px;
 }
 
-.messagesBox::-webkit-scrollbar-thumb:hover {
+.messagesBox::-webkit-scrollbar-thumb:hover,
+#privateMessages::-webkit-scrollbar-thumb:hover {
     background: #0d9b8a;
 }
 
@@ -125,7 +133,6 @@ body, html {
 .pmBox.active {
     background-color: #0D9B8A;
     color: white;
-    border-top-left-radius: 10px;
 }
 
 .pmBox.active:hover {
