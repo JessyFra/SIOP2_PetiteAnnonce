@@ -52,6 +52,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 sendMessage(content, recipientId);
             }
         });
+
+        messageTextarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
     }
 
     const pmsBox = document.getElementsByClassName("pmBox");

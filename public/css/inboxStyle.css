@@ -72,19 +72,21 @@ body, html {
 #messageTextarea {
     display: flex;
     text-align: center;
-    height: 50px;
+    height: 60px;
     width: 100%;
     resize: none;
     scrollbar-width: none;
     margin: 10px 2px 5px 5px;
+    overflow: hidden;
 }
 
 #sendMessageButton {
-    height: 50px;
+    height: 60px;
     width: 100px;
     margin: 10px 5px 5px 2px;
     background-color: #0d9b8a;
     color: white;
+    place-self: end;
 }
 
 .messageBox {
