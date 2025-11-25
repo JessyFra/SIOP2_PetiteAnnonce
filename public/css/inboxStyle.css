@@ -1,4 +1,6 @@
-body, html {
+/* ====== GLOBAL ====== */
+
+html, body {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -12,23 +14,96 @@ body, html {
     margin-bottom: 10px;
 }
 
-#privateMessages {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 25%;
-    border: 2px solid #0d9b8a;
-    border-radius: 15px 0 0 15px;
-    overflow: hidden;
+/* ====== SCROLLBARS ====== */
+
+#privateMessages,
+#messagesBox {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #0d9b8a white;
 }
 
+#privateMessages::-webkit-scrollbar,
+#messagesBox::-webkit-scrollbar {
+    height: 8px;
+}
+
+#privateMessages::-webkit-scrollbar-track,
+#messagesBox::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 4px;
+}
+
+#privateMessages::-webkit-scrollbar-thumb,
+#messagesBox::-webkit-scrollbar-thumb {
+    background: #0d9b8a;
+    border-radius: 4px;
+}
+
+#privateMessages::-webkit-scrollbar-thumb:hover,
+#messagesBox::-webkit-scrollbar-thumb:hover {
+    background: #0d9b8a;
+}
+
+/* ====== LEFT PANEL (Private Messages) ====== */
+
+#privateMessages {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border: 2px solid #0d9b8a;
+    border-radius: 15px 0 0 15px;
+}
+
+/* List items */
+
+.pmBox {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 75px;
+    cursor: pointer;
+    border-bottom: 2px solid #0d9b8a;
+}
+
+.pmBox:hover {
+    background-color: rgba(211, 211, 211, 0.75);
+}
+
+.pmBox.active {
+    background-color: #0d9b8a;
+    color: white;
+}
+
+.pmBox.active:hover {
+    background-color: #0c8778;
+}
+
+.pmBox > * {
+    pointer-events: none;
+}
+
+/* Avatar */
+
+.user-avatar {
+    min-width: 64px;
+    min-height: 64px;
+    border-radius: 50%;
+    background-color: #0d9b8a;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    margin: 10px;
+    color: white;
+}
+
+/* ====== MAIN CHAT AREA ====== */
+
 #mainBox {
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 75%;
     align-items: end;
     justify-content: center;
@@ -41,43 +116,31 @@ body, html {
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #0d9b8a white;
 }
 
-.messagesBox::-webkit-scrollbar,
-#privateMessages::-webkit-scrollbar {
-    height: 8px;
+/* Intro */
+
+#introMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
 }
 
-.messagesBox::-webkit-scrollbar-track,
-#privateMessages::-webkit-scrollbar-track {
-    background: white;
-    border-radius: 4px;
-}
-
-.messagesBox::-webkit-scrollbar-thumb,
-#privateMessages::-webkit-scrollbar-thumb {
-    background: #0d9b8a;
-    border-radius: 4px;
-}
-
-.messagesBox::-webkit-scrollbar-thumb:hover,
-#privateMessages::-webkit-scrollbar-thumb:hover {
-    background: #0d9b8a;
-}
-
+/* ====== MESSAGE INPUT ====== */
 
 #messageTextarea {
-    display: flex;
-    text-align: center;
     height: 60px;
     width: 100%;
-    resize: none;
-    scrollbar-width: none;
     margin: 10px 2px 5px 5px;
+    resize: none;
     overflow: hidden;
+    text-align: center;
+    scrollbar-width: none;
 }
 
 #sendMessageButton {
@@ -88,6 +151,8 @@ body, html {
     color: white;
     place-self: end;
 }
+
+/* ====== MESSAGE BUBBLES ====== */
 
 .messageBox {
     display: flex;
@@ -118,59 +183,7 @@ body, html {
     background-color: #86cdc5;
 }
 
-.pmBox {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 100%;
-    height: 75px;
-    cursor: pointer;
-    border-bottom: 2px solid #0D9B8A;
-}
-
-.pmBox:hover {
-    background-color: rgba(211, 211, 211, 0.75);
-}
-
-.pmBox.active {
-    background-color: #0D9B8A;
-    color: white;
-}
-
-.pmBox.active:hover {
-    background-color: #0c8778;
-}
-
-.pmBox > * {
-    pointer-events: none;
-
-}
-
-.user-avatar {
-    min-width: 64px;
-    min-height: 64px;
-    background-color: #0D9B8A;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    box-shadow: var(--shadow-md);
-    border: 2px solid black;
-    margin: 10px;
-    color: white;
-}
-
-#introMessage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    font-size: 20px;
-}
+/* ====== MOBILE ====== */
 
 #showPms {
     display: none;
@@ -181,21 +194,6 @@ body, html {
 }
 
 @media only screen and (max-width: 600px) {
-    #messageTextarea {
-        height: 65px;
-    }
-
-    #sendMessageButton {
-        height: 65px;
-    }
-
-    .message {
-        max-width: 150px;
-    }
-
-    .pmBox {
-        justify-content: start;
-    }
 
     .container {
         justify-content: center;
@@ -208,18 +206,14 @@ body, html {
     }
 
     #privateMessages {
-        display: flex;
-        flex-direction: column;
         position: absolute;
         bottom: 0;
         left: -80%;
-        height: 100%;
         width: 80%;
+        height: 100%;
         background-color: white;
-        z-index: 1000;
         border: none;
         border-right: 1px solid gray;
-        border-radius: 0;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
         transition: left 0.35s ease;
     }
@@ -228,14 +222,18 @@ body, html {
         left: 0;
     }
 
-    .pmBox.active {
-        border-radius: 0;
+    .message {
+        max-width: 150px;
+    }
+
+    #messageTextarea,
+    #sendMessageButton {
+        height: 65px;
     }
 
     #showPms {
         display: flex;
         position: fixed;
-        background-color: #0d9b8a;
         left: 5px;
         bottom: 5px;
         height: 60px;
@@ -244,10 +242,10 @@ body, html {
         border-radius: 50%;
         justify-content: center;
         align-items: center;
+        font-size: 28px;
         color: white;
+        background-color: #0d9b8a;
         z-index: 10000;
         cursor: pointer;
-        font-size: 28px;
     }
-
 }
