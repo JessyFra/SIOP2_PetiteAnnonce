@@ -16,7 +16,7 @@
                 <i></i>
             </div>
             <div class="inputBox inputBoxOther">
-                <input type="password" name="password" pattern="[A-Za-zÀ-ÿ0-9.]+" maxlength="15" title="Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT" autocomplete="off" required>
+                <input type="password" name="password" pattern="[A-Za-zÀ-ÿ0-9.]+" maxlength="18" title="Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT" autocomplete="off" required>
                 <span>Mot de passe</span>
                 <i></i>
             </div>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="inputBox inputBoxOther">
-                <input type="password" name="password" pattern="[A-Za-zÀ-ÿ0-9.]+" maxlength="15" title="Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT" autocomplete="off" required>
+                <input type="password" name="password" pattern="[A-Za-zÀ-ÿ0-9.]+" maxlength="18" title="Le mot de passe doit contenir des lettres, des chiffres et uniquement le symboles POINT" autocomplete="off" required>
                 <span>Mot de passe</span>
                 <i></i>
             </div>
