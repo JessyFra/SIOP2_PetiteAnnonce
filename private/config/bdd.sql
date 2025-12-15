@@ -102,8 +102,8 @@ CREATE TABLE private_messages (
 
 # Utilisateurs
 INSERT INTO user VALUES
-(1, "admin", SHA2("admin", 256), "Administrateur", NULL, "admin", 0, NOW()),
-(2, "user", SHA2("user", 256), "Utilisateur", "Juste un utilisateur lambda", "user", 0, NOW()),
+(1, "admin", SHA2("UserAdmin2025SIO", 256), "Administrateur", NULL, "admin", 0, NOW()),
+(2, "user", SHA2("UserUser2025SIO", 256), "Utilisateur", "Juste un utilisateur lambda", "user", 0, NOW()),
 (3, "albert_einstein", SHA2("E=MC2", 256), "Albert Einstein", NULL, "user", 0, NOW());
 
 
